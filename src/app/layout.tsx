@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react'
-import './globals.css'
+import '../styles/global.css'
+import Link from 'next/link'
 
 export default function RootLayout ({
   children
@@ -8,7 +9,17 @@ export default function RootLayout ({
 }): JSX.Element {
   return (
     <html lang='en'>
-    <body>{children}</body>
+    <body>
+    <nav className={'flex gap-4 flex-row text-primary '}>
+      <Link href={'/editor'}>
+        Editor
+      </Link>
+      <Link href={'/'}>
+        Home
+      </Link>
+    </nav>
+    {children}
+    </body>
     </html>
   )
 }

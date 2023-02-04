@@ -13,7 +13,7 @@ const Home: NextPage = (): JSX.Element => {
         <h1>
           Dav WorkSpace
         </h1>
-        <span>MarkDonw Editor</span>
+        <span>MarkDown Editor</span>
         <br />
         <Link href={'/editor'}>
           Go to Editor
