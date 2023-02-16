@@ -1,31 +1,29 @@
 'use client'
 
 import { type NextPage } from 'next'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { editor } from 'monaco-editor'
-import EditorLayout from '@/components/Editor.component'
-// import {} from 'react-m'
-import ReactMarkdown from 'react-markdown'
 
 import IStandaloneCodeEditor = editor.IStandaloneCodeEditor
 
+import { PreviewMode } from './components/PreviewMode'
+import EditorLayout from '@/components/Editor.component'
+
 const EditorPage: NextPage = (): JSX.Element => {
+  const [preview, setPreview] = useState<string | undefined>('')
   const editorRef = useRef<null | IStandaloneCodeEditor>(null)
-  // const []
 
   const onMountHandler = (editor: IStandaloneCodeEditor): void => {
     editorRef.current = editor
+    setPreview(editor.getValue())
   }
 
   const onChangeHandler = (value: string | undefined): void => {
-    console.log({
-      value
-    })
+    setPreview(value)
   }
 
   return (
-    <div>
-      Editor Page
+    <div className='flex flex-row gap-4'>
       <EditorLayout
         onMount={onMountHandler}
         width={'50%'}
@@ -35,12 +33,7 @@ const EditorPage: NextPage = (): JSX.Element => {
         className={'h-editor-layout'}
         onChange={onChangeHandler}
       />
-      {/* <ReactM */}
-      <ReactMarkdown
-        // children={editorRef.current?.getValue() ?? '# no Content'}
-      >
-        {editorRef.current?.getValue() ?? '# No Content'}
-      </ReactMarkdown>
+      <PreviewMode value={preview !== undefined ? preview : ''} />
     </div>
   )
 }
