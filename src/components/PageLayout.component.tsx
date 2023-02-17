@@ -16,15 +16,13 @@ const PageLayout: FC<IPropsPageLayout> = ({ title, children }): JSX.Element => {
       <Head>
         <title>{title}</title>
       </Head>
-      <body>
-        <main
-          className={
-            'flex flex-col items-center text-white bg-secondary  min-h-screen ' +
-            inter.className
-          }>
-          {children}
-        </main>
-      </body>
+      <main
+        className={
+          'flex flex-col items-center text-white bg-secondary  min-h-screen ' +
+          inter.className
+        }>
+        {children}
+      </main>
     </>
   )
 }
