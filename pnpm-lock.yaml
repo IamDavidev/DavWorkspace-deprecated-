@@ -10,6 +10,7 @@ specifiers:
   autoprefixer: ^10.4.13
   eslint: ^8.33.0
   eslint-config-next: 13.1.6
+  eslint-config-prettier: 8.6.0
   eslint-config-standard-with-typescript: ^34.0.0
   eslint-plugin-import: ^2.25.2
   eslint-plugin-n: ^15.0.0
@@ -39,6 +40,7 @@ devDependencies:
   '@typescript-eslint/eslint-plugin': 5.52.0_7kw3g6rralp5ps6mg3uyzz6azm
   autoprefixer: 10.4.13_postcss@8.4.21
   eslint: 8.34.0
+  eslint-config-prettier: 8.6.0_eslint@8.34.0
   eslint-config-standard-with-typescript: 34.0.0_s4wyy3hkcfdlicuewz4avpo42q
   eslint-plugin-import: 2.27.5_eslint@8.34.0
   eslint-plugin-n: 15.6.1_eslint@8.34.0
@@ -978,6 +980,15 @@ packages:
       - eslint-import-resolver-webpack
       - supports-color
     dev: false
+
+  /eslint-config-prettier/8.6.0_eslint@8.34.0:
+    resolution: {integrity: sha512-bAF0eLpLVqP5oEVUFKpMA+NnRFICwn9X8B5jrR9FcqnYBuPbqWEjTEspPWMj5ye6czoSLDweCzSo3Ko7gGrZaA==}
+    hasBin: true
+    peerDependencies:
+      eslint: '>=7.0.0'
+    dependencies:
+      eslint: 8.34.0
+    dev: true
 
   /eslint-config-standard-with-typescript/34.0.0_s4wyy3hkcfdlicuewz4avpo42q:
     resolution: {integrity: sha512-zhCsI4/A0rJ1ma8sf3RLXYc0gc7yPmdTWRVXMh9dtqeUx3yBQyALH0wosHhk1uQ9QyItynLdNOtcHKNw8G7lQw==}
