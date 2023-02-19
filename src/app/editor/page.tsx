@@ -6,11 +6,16 @@ import { editor } from 'monaco-editor'
 
 import { EDITOR } from '@/constants/edtior.const'
 
-import { PreviewMode } from './components/PreviewMode'
+import { PreviewMode } from './components/PreviewLayout'
 import EditorLayout from '@/components/Editor.component'
-import PageLayout from '@/components/PageLayout.component'
 
 import IStandaloneCodeEditor = editor.IStandaloneCodeEditor
+import PageLayout from '@/components/PageLayout.component'
+
+/**
+ * try with useEditor hook
+ *
+ */
 
 const EditorPage: NextPage = (): JSX.Element => {
   const [preview, setPreview] = useState<string | undefined>('')
@@ -26,21 +31,26 @@ const EditorPage: NextPage = (): JSX.Element => {
   }
 
   return (
-    <PageLayout title='editor | davworspace'>
-      <div className='w-full h-full flex flex-row gap-8 p-8'>
-        <EditorLayout
-          theme='dracula'
-          onMount={onMountHandler}
-          width={'50%'}
-          defaultLanguage={EDITOR.LANGUAGES.MD}
-          defaultValue={'# File Markdown'}
-          height='95vh'
-          className={'h-editor-layout'}
-          onChange={onChangeHandler}
-        />
-        <PreviewMode value={preview !== undefined ? preview : ''} />
-      </div>
-    </PageLayout>
+    <>
+      <PageLayout title='Editor'>
+        <h1>Editor</h1>
+        <div className='w-full h-full flex flex-row gap-8 p-8'>
+          <div className='w-full h-full sticky top-10'>
+            <EditorLayout
+              theme='vs-dark'
+              onMount={onMountHandler}
+              width={'100%'}
+              defaultLanguage={EDITOR.LANGUAGES.MD}
+              defaultValue={'# File Markdown'}
+              height='85vh'
+              className={'h-editor-layout'}
+              onChange={onChangeHandler}
+            />
+          </div>
+          <PreviewMode value={preview !== undefined ? preview : ''} />
+        </div>
+      </PageLayout>
+    </>
   )
 }
 
