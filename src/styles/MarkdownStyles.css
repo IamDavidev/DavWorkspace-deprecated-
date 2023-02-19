@@ -1,0 +1,165 @@
+@media print {
+  .preview-md *,
+  .preview-md :after,
+  .preview-md :before {
+    background: 0 0 !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  .preview-md a,
+  .preview-md a:visited {
+    text-decoration: underline;
+  }
+  .preview-md a[href]:after {
+    content: ' (' attr(href) ')';
+  }
+  .preview-md abbr[title]:after {
+    content: ' (' attr(title) ')';
+  }
+  .preview-md a[href^='#']:after,
+  .preview-md a[href^='javascript:']:after {
+    content: '';
+  }
+  .preview-md blockquote,
+  .preview-md pre {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  .preview-md thead {
+    display: table-header-group;
+  }
+  .preview-md img,
+  .preview-md tr {
+    page-break-inside: avoid;
+  }
+  .preview-md img {
+    max-width: 100% !important;
+  }
+  .preview-md h2,
+  .preview-md h3,
+  .preview-md p {
+    orphans: 3;
+    widows: 3;
+  }
+  .preview-md h2,
+  .preview-md h3 {
+    page-break-after: avoid;
+  }
+}
+@media screen and (min-width: 32rem) and (max-width: 48rem) {
+  .preview-md html {
+    font-size: 15px;
+  }
+}
+@media screen and (min-width: 48rem) {
+  .preview-md html {
+    font-size: 16px;
+  }
+}
+.preview-md body {
+  line-height: 1.85;
+}
+.preview-md .splendor-p,
+.preview-md p {
+  font-size: 1rem;
+  margin-bottom: 1.3rem;
+}
+.preview-md .splendor-h1,
+.preview-md .splendor-h2,
+.preview-md .splendor-h3,
+.preview-md .splendor-h4,
+.preview-md h1,
+.preview-md h2,
+.preview-md h3,
+.preview-md h4 {
+  margin: 1.414rem 0 0.5rem;
+  font-weight: inherit;
+  line-height: 1.42;
+}
+.preview-md .splendor-h1,
+.preview-md h1 {
+  margin-top: 0;
+  font-size: 3.998rem;
+}
+.preview-md .splendor-h2,
+.preview-md h2 {
+  font-size: 2.827rem;
+}
+.preview-md .splendor-h3,
+.preview-md h3 {
+  font-size: 1.999rem;
+}
+.preview-md .splendor-h4,
+.preview-md h4 {
+  font-size: 1.414rem;
+}
+.preview-md .splendor-h5,
+.preview-md h5 {
+  font-size: 1.121rem;
+}
+.preview-md .splendor-h6,
+.preview-md h6 {
+  font-size: 0.88rem;
+}
+.preview-md .splendor-small,
+.preview-md small {
+  font-size: 0.707em;
+}
+.preview-md canvas,
+.preview-md iframe,
+.preview.md img,
+.preview-md select,
+.preview-md svg,
+.preview-md textarea,
+.preview-md video {
+  max-width: 100%;
+}
+@import url(http://fonts.googleapis.com/css?family=Merriweather:300italic,300);
+
+/* :not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p), */
+/* .preview-md p {
+    margin: 1rem auto;
+    max-width: 36rem;
+    padding: 0.25rem;
+  } */
+.preview-md div,
+.preview-md div img {
+  width: 100%;
+}
+.preview-md blockquote p {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin: 1rem auto;
+  max-width: 48rem;
+}
+.preview-md li {
+  margin-left: 2rem;
+}
+.preview-md h1 {
+  padding: 4rem 0 !important;
+}
+.preview-md p {
+  color: #555;
+  height: auto;
+  line-height: 1.45;
+}
+.preview-md code,
+.preview-md pre {
+  font-family: Menlo, Monaco, 'Courier New', monospace;
+}
+.preview-md pre {
+  background-color: #000;
+  font-size: 0.8rem;
+  overflow-x: scroll;
+  padding: 1.125em;
+}
+.preview-md a,
+.preview-md a:visited {
+  color: #3498db;
+}
+.preview-md a:active,
+.preview-md a:focus,
+.preview-md a:hover {
+  color: #2980b9;
+}
