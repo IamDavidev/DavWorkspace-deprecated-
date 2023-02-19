@@ -15,7 +15,14 @@ import PageLayout from '@/components/PageLayout.component'
  *
  */
 
-const EditorPage: NextPage = (): JSX.Element => {
+export interface IUseEditor {
+  preview: string | undefined
+  editorRef: any
+  onMountHandler: (editor: any) => void
+  onChangeHandler: (value: string | undefined) => void
+}
+
+export function useEditor(): IUseEditor {
   const [preview, setPreview] = useState<string | undefined>('')
   const editorRef = useRef(null)
 
@@ -28,26 +35,32 @@ const EditorPage: NextPage = (): JSX.Element => {
     setPreview(value)
   }
 
+  return {
+    preview,
+    editorRef,
+    onChangeHandler,
+    onMountHandler
+  }
+}
+
+const EditorPage: NextPage = (): JSX.Element => {
+  const { onChangeHandler, onMountHandler, preview } = useEditor()
+
   return (
     <>
-      <PageLayout title='Editor'>
-        <h1>Editor</h1>
-        <div className='w-full h-full flex flex-row gap-8 p-8'>
-          <div className='w-1/2 h-full sticky top-10'>
-            <EditorLayout
-              theme='vs-dark'
-              onMount={onMountHandler}
-              width={'100%'}
-              defaultLanguage={EDITOR.LANGUAGES.MD}
-              defaultValue={'# File Markdown'}
-              height='85vh'
-              className={'h-editor-layout'}
-              onChange={onChangeHandler}
-            />
-          </div>
-          <PreviewMode value={preview !== undefined ? preview : ''} />
-        </div>
-      </PageLayout>
+      <div className='w-full h-full flex flex-row p-8'>
+        <EditorLayout
+          theme='vs-dark'
+          onMount={onMountHandler}
+          width={'100%'}
+          defaultLanguage={EDITOR.LANGUAGES.MD}
+          defaultValue={'# File Markdown'}
+          height='85vh'
+          className={'h-editor-layout'}
+          onChange={onChangeHandler}
+        />
+        <PreviewMode value={preview !== undefined ? preview : ''} />
+      </div>
     </>
   )
 }

@@ -1,28 +1,23 @@
-import Head from 'next/head'
 import type { FC, ReactNode } from 'react'
 
 import { Inter } from '@next/font/google'
 
 export interface IPropsPageLayout {
-  title: string
   children: ReactNode
 }
 
 const inter = Inter({ subsets: ['latin'] })
 
-const PageLayout: FC<IPropsPageLayout> = ({ title, children }): JSX.Element => {
+const PageLayout: FC<IPropsPageLayout> = ({ children }): JSX.Element => {
   return (
     <>
-      <Head>
-        <title>{title}</title>
-      </Head>
-      <main
+      <div
         className={
           'flex flex-col items-center text-white bg-secondary  min-h-screen ' +
           inter.className
         }>
         {children}
-      </main>
+      </div>
     </>
   )
 }

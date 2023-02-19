@@ -8,8 +8,10 @@ interface IPropsPreviewMode {
 
 export const PreviewMode: FC<IPropsPreviewMode> = ({ value }): JSX.Element => {
   return (
-    <div>
-      <ReactMarkdown className='preview-md'>{value}</ReactMarkdown>
+    <div className='w-1/2 p-2'>
+      <ReactMarkdown className='preview-md markdown-body'>
+        {value}
+      </ReactMarkdown>
     </div>
   )
 }

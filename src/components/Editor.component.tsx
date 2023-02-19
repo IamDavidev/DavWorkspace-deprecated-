@@ -4,14 +4,14 @@ import Editor, { type EditorProps } from '@monaco-editor/react'
 
 type PropsEditorLayout = EditorProps
 
-const EditorLayout: FC<PropsEditorLayout> = ({ height, ...props }): JSX.Element => {
+const EditorLayout: FC<PropsEditorLayout> = ({
+  height,
+  ...props
+}): JSX.Element => {
   return (
-    <>
-      <Editor
-        height={height}
-        {...props}
-      />
-    </>
+    <div className='w-1/2 h-full sticky top-10   flex flex-col gap-1rem'>
+      <Editor height={height} {...props} />
+    </div>
   )
 }
 
