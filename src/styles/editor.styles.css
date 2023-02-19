@@ -1,0 +1,10 @@
+.monaco-editor .margin,
+.monaco-editor .margin-view-overlays {
+  /* background-color: #1e1e1e; */
+  display: none;
+}
+
+.monaco-scrollable-element {
+  left: 1rem !important;
+  top: 1rem !important;
+}
