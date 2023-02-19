@@ -2,14 +2,12 @@
 
 import { type NextPage } from 'next'
 import { useRef, useState } from 'react'
-import { editor } from 'monaco-editor'
 
 import { EDITOR } from '@/constants/edtior.const'
 
 import { PreviewMode } from './components/PreviewLayout'
 import EditorLayout from '@/components/Editor.component'
 
-import IStandaloneCodeEditor = editor.IStandaloneCodeEditor
 import PageLayout from '@/components/PageLayout.component'
 
 /**
@@ -19,9 +17,9 @@ import PageLayout from '@/components/PageLayout.component'
 
 const EditorPage: NextPage = (): JSX.Element => {
   const [preview, setPreview] = useState<string | undefined>('')
-  const editorRef = useRef<null | IStandaloneCodeEditor>(null)
+  const editorRef = useRef(null)
 
-  const onMountHandler = (editor: IStandaloneCodeEditor): void => {
+  const onMountHandler = (editor: any): void => {
     editorRef.current = editor
     setPreview(editor.getValue())
   }
@@ -35,7 +33,7 @@ const EditorPage: NextPage = (): JSX.Element => {
       <PageLayout title='Editor'>
         <h1>Editor</h1>
         <div className='w-full h-full flex flex-row gap-8 p-8'>
-          <div className='w-full h-full sticky top-10'>
+          <div className='w-1/2 h-full sticky top-10'>
             <EditorLayout
               theme='vs-dark'
               onMount={onMountHandler}
