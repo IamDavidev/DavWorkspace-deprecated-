@@ -1,10 +1,35 @@
-.monaco-editor .margin,
+/* .monaco-editor .margin,
 .monaco-editor .margin-view-overlays {
-  /* background-color: #1e1e1e; */
   display: none;
+} */
+
+// bg
+.monaco-editor-background {
+  background-color: #1b1b1b !important;
 }
 
 .monaco-scrollable-element {
   left: 1rem !important;
   top: 1rem !important;
+}
+.monaco-scrollable-element > .scrollbar > .slider {
+  width: 0.5rem !important;
+  background-color: #dd9ee5;
+  border-radius: 0.5rem;
+}
+
+// style scroll
+
+.h-editor-layout::-webkit-scrollbar {
+  width: 0.5rem !important;
+  background-color: #1b1b1b;
+  border-radius: 0.5rem;
+  border-color: 1px solid #dd9ee5;
+}
+
+.h-editor-layout::-webkit-scrollbar-thumb {
+  width: 0.5rem !important;
+  background-color: #1b1b1b;
+  border-radius: 0.5rem;
+  border-color: 1xp solid #dd9ee5;
 }
