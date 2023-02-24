@@ -8,8 +8,6 @@ import { EDITOR } from '@/constants/edtior.const'
 import { PreviewMode } from './components/PreviewLayout'
 import EditorLayout from '@/components/Editor.component'
 
-import PageLayout from '@/components/PageLayout.component'
-
 /**
  * try with useEditor hook
  *
