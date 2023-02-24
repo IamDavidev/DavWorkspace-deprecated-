@@ -15,15 +15,12 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body>
-        <div
-          className={
-            ' text-white bg-secondary  min-h-screen ' + inter.className
-          }>
-          <div className='app-editor  flex  flex-row gap-8'>
+        <div className={' text-white bg-secondary ' + inter.className}>
+          <div className='app-editor  flex  flex-row gap-8 min-h-screen'>
             <header className='max-w-[10%]'>
               <SlideNav />
             </header>
-            <main className='w-full'>{children}</main>
+            <main className='w-full max-w-[90%] h-full'>{children}</main>
           </div>
         </div>
       </body>

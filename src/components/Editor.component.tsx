@@ -3,6 +3,10 @@ import { type FC } from 'react'
 import Editor, { type EditorProps } from '@monaco-editor/react'
 import { JetBrains_Mono } from '@next/font/google'
 
+// import oneDarkTheme from '../utils/oneDarkTheme.json'
+
+// const theme = monaco
+
 const jetBrainsMono = JetBrains_Mono({
   subsets: ['latin']
 })
@@ -36,8 +40,9 @@ const EditorLayout: FC<PropsEditorLayout> = ({
   ...props
 }): JSX.Element => {
   return (
-    <div className='w-1/2 h-full sticky top-10   flex flex-col gap-1rem'>
+    <div className='w-1/2 h-full sticky top-0 flex flex-col gap-1rem'>
       <Editor
+        theme='vs-dark'
         options={globalEditorOptions}
         height={height}
         {...props}

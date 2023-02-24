@@ -11,7 +11,7 @@ const RootLayoutEditor: FC<IPropsRootLayoutEditor> = ({
   return (
     <>
       <Head title='Editor | DavWorSpace' />
-      <div className={'layout-editor'}>{children}</div>
+      <div className={'layout-editor h-full'}>{children}</div>
     </>
   )
 }
