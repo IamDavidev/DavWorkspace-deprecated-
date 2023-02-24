@@ -7,3 +7,15 @@
   --secondary: '#1b1b1b';
   --e-gray: '#2d2d2d';
 }
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+  background-color: #1b1b1b;
+  border-radius: 0.5rem;
+  border-color: 1px solid #dd9ee5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #dd9ee5;
+  border-radius: 0.5rem;
+}
