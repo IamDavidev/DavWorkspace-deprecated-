@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  --bg: "#060606"
   --primary: '#dd9ee5';
   --secondary: '#1b1b1b';
   --e-gray: '#2d2d2d';
