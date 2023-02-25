@@ -3,8 +3,6 @@ import { type FC } from 'react'
 import Editor, { type EditorProps } from '@monaco-editor/react'
 import { JetBrains_Mono } from '@next/font/google'
 
-// import oneDarkTheme from '../utils/oneDarkTheme.json'
-
 // const theme = monaco
 
 const jetBrainsMono = JetBrains_Mono({
@@ -29,7 +27,8 @@ export const globalEditorOptions = {
   cursorWidth: 2,
   cursorBlinking: 'smooth',
   lineNumbers: 'off',
-  lineNumbersMinChars: 3
+  lineNumbersMinChars: 3,
+  acceptSuggestionOnEnter: 'off'
 }
 
 type PropsEditorLayout = EditorProps
@@ -45,10 +44,10 @@ const EditorLayout: FC<PropsEditorLayout> = ({
     [&>section]:rounded-2xl [&>section]:overflow-hidden
     '>
       <Editor
-        theme='vs-dark'
         options={globalEditorOptions}
         height={height}
         {...props}
+        // theme='vs-dark-custom'
         className={`${className ?? ' '}  ${jetBrainsMono.className}`}
       />
     </div>

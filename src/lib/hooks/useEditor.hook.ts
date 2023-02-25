@@ -1,42 +1,47 @@
-import { useMonaco } from '@monaco-editor/react'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
+
+import oneDarkTheme from '../../utils/oneDarkTheme.json'
 
 export interface IUseEditor {
   preview: string | undefined
   editorRef: any
-  onMountHandler: (editor: any) => void
+  onMountHandler: (editor: any, monaco: any) => void
   onChangeHandler: (value: string | undefined) => void
+  editorWillMount: (monaco: any) => void
 }
 
 export function useEditor(): IUseEditor {
-  const monaco = useMonaco()
   const [preview, setPreview] = useState<string | undefined>('')
   const editorRef = useRef(null)
 
-  const onMountHandler = (editor: any): void => {
+  const onMountHandler = (editor: any, monaco: any): void => {
     editorRef.current = editor
     setPreview(editor.getValue())
+    monaco.editor.defineTheme('vs-dark-custom', {
+      base: 'vs-dark',
+      inherit: true,
+      rules: [],
+      colors: {
+        ...oneDarkTheme.colors,
+        'editor.background': '#0d0d0d'
+      }
+    })
+    // monaco.la
+    monaco.editor.setTheme('vs-dark-custom')
   }
 
   const onChangeHandler = (value: string | undefined): void => {
     setPreview(value)
   }
-
-  useEffect(() => {
-    // monaco.editor.defineTheme('one-dark', {
-    //   base: 'vs-dark',
-    //   inherit: true,
-    //   ...oneDarkTheme
-    // })
-    console.log({
-      monaco
-    })
-  }, [])
+  const editorWillMount = (monaco: any): void => {
+    console.log('editorWillMount')
+  }
 
   return {
     preview,
     editorRef,
     onChangeHandler,
-    onMountHandler
+    onMountHandler,
+    editorWillMount
   }
 }
