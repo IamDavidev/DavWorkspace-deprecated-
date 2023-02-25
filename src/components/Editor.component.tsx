@@ -9,7 +9,7 @@ const jetBrainsMono = JetBrains_Mono({
   subsets: ['latin']
 })
 
-export const globalEditorOptions = {
+export const globalEditorOptions: EditorProps['options'] = {
   minimap: {
     enabled: false
   },
@@ -26,9 +26,8 @@ export const globalEditorOptions = {
   cursorStyle: 'line',
   cursorWidth: 2,
   cursorBlinking: 'smooth',
-  lineNumbers: 'off',
-  lineNumbersMinChars: 3,
-  acceptSuggestionOnEnter: 'off'
+  lineNumbers: 'on',
+  quickSuggestions: false
 }
 
 type PropsEditorLayout = EditorProps
@@ -47,7 +46,6 @@ const EditorLayout: FC<PropsEditorLayout> = ({
         options={globalEditorOptions}
         height={height}
         {...props}
-        // theme='vs-dark-custom'
         className={`${className ?? ' '}  ${jetBrainsMono.className}`}
       />
     </div>

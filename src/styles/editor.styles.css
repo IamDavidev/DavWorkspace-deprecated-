@@ -8,13 +8,9 @@
   background-color: #0d0d0d !important;
 }
 
-.monaco-scrollable-element {
-  left: 1rem !important;
-  top: 1rem !important;
-}
 .monaco-scrollable-element > .scrollbar > .slider {
   width: 0.5rem !important;
-  background-color: #dd9ee5;
+  background-color: #dd9ee5d1;
   border-radius: 0.5rem;
 }
 
@@ -24,12 +20,12 @@
   width: 0.5rem !important;
   background-color: #1b1b1b;
   border-radius: 0.5rem;
-  border-color: 1px solid #dd9ee5;
+  border-color: 1px solid #dd9ee5c9;
 }
 
 .h-editor-layout::-webkit-scrollbar-thumb {
   width: 0.5rem !important;
   background-color: #1b1b1b;
   border-radius: 0.5rem;
-  border-color: 1xp solid #dd9ee5;
+  border-color: 1xp solid #dd9ee5d0;
 }
