@@ -9,7 +9,7 @@ import { PreviewMode } from './components/PreviewLayout'
 import EditorLayout from '@/components/Editor.component'
 import { useMonaco } from '@monaco-editor/react'
 
-import oneDarkTheme from '../../utils/oneDarkTheme.json'
+// import oneDarkTheme from '../../utils/oneDarkTheme.json'
 
 /**
  * try with useEditor hook

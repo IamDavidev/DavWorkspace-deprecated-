@@ -15,9 +15,9 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body>
-        <div className={' text-white bg-secondary ' + inter.className}>
+        <div className={' text-white bg-bg ' + inter.className}>
           <div className='app-editor  flex  flex-row gap-8 min-h-screen'>
-            <header className='max-w-[10%]'>
+            <header className='max-w-[10%] w-[10%] p-3'>
               <SlideNav />
             </header>
             <main className='w-full max-w-[90%] h-full'>{children}</main>
