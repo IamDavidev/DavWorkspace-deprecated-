@@ -1,12 +1,15 @@
 'use client'
 
 import { type NextPage } from 'next'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { EDITOR } from '@/constants/edtior.const'
 
 import { PreviewMode } from './components/PreviewLayout'
 import EditorLayout from '@/components/Editor.component'
+import { useMonaco } from '@monaco-editor/react'
+
+import oneDarkTheme from '../../utils/oneDarkTheme.json'
 
 /**
  * try with useEditor hook
@@ -21,6 +24,7 @@ export interface IUseEditor {
 }
 
 export function useEditor(): IUseEditor {
+  const monaco = useMonaco()
   const [preview, setPreview] = useState<string | undefined>('')
   const editorRef = useRef(null)
 
@@ -32,6 +36,17 @@ export function useEditor(): IUseEditor {
   const onChangeHandler = (value: string | undefined): void => {
     setPreview(value)
   }
+
+  useEffect(() => {
+    // monaco.editor.defineTheme('one-dark', {
+    //   base: 'vs-dark',
+    //   inherit: true,
+    //   ...oneDarkTheme
+    // })
+    console.log({
+      monaco
+    })
+  }, [])
 
   return {
     preview,
@@ -46,14 +61,14 @@ const EditorPage: NextPage = (): JSX.Element => {
 
   return (
     <>
-      <div className='w-full h-full flex flex-row p-8'>
+      <div className='w-full h-full flex flex-row px-12'>
         <EditorLayout
           theme='vs-dark'
           onMount={onMountHandler}
           width={'100%'}
           defaultLanguage={EDITOR.LANGUAGES.MD}
           defaultValue={'# File Markdown'}
-          height='85vh'
+          height='100vh'
           className={'h-editor-layout'}
           onChange={onChangeHandler}
         />
