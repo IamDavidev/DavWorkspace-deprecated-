@@ -12,7 +12,7 @@ interface IPropsPreviewMode {
 }
 export const PreviewMode: FC<IPropsPreviewMode> = ({ value }): JSX.Element => {
   return (
-    <div className='w-1/2 p-2'>
+    <div className='w-1/2 p-8 bg-secondary rounded-2xl  min-h-full overflow-scroll'>
       <ReactMarkdown
         components={{
           code: ({ node, inline, className, children, ...props }) => {

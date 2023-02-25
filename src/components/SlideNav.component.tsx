@@ -5,7 +5,7 @@ const btnStyle = 'text-white bg-primary  rounded-2xl p-2 w-full'
 
 const SlideNav: FC = (): JSX.Element => {
   return (
-    <nav className='h-full max-w-[120px] bg-secondary p-2 rounded-2xl flex flex-col justify-between items-start'>
+    <nav className='h-full max-w-[120px] bg-secondary p-2 rounded-2xl flex flex-col justify-between items-start sticky top-8'>
       <div className='flex flex-col gap-4 my-4 w-full'>
         <Link href={'/editor'}>Editor</Link>
         <Link href={'/'}>Home</Link>

@@ -40,7 +40,10 @@ const EditorLayout: FC<PropsEditorLayout> = ({
   ...props
 }): JSX.Element => {
   return (
-    <div className='w-1/2 h-full sticky top-0 flex flex-col gap-1rem'>
+    <div
+      className='w-1/2 h-full sticky top-8 flex flex-col gap-1rem 
+    [&>section]:rounded-2xl [&>section]:overflow-hidden
+    '>
       <Editor
         theme='vs-dark'
         options={globalEditorOptions}
