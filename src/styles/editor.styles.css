@@ -14,8 +14,6 @@
   border-radius: 0.5rem;
 }
 
-// style scroll
-
 .h-editor-layout::-webkit-scrollbar {
   width: 0.5rem !important;
   background-color: #1b1b1b;
