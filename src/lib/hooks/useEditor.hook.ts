@@ -10,23 +10,47 @@ export interface IUseEditor {
   editorWillMount: (monaco: any) => void
 }
 
+export interface Token {
+  token: string
+  foreground: string
+  background?: string
+}
+
+export const rules: Token[] = [
+  {
+    token: 'keyword.md',
+    foreground: '#EF596F'
+  },
+  {
+    token: 'strong.md',
+    foreground: '#D8985F'
+  },
+  {
+    token: 'emphasis.md',
+    foreground: '#d55fde'
+  },
+  {
+    token: 'string.link.md',
+    foreground: '#d55fde'
+  }
+]
+
 export function useEditor(): IUseEditor {
-  const [preview, setPreview] = useState<string | undefined>('')
+  const [preview, setPreview] = useState<string | undefined>(' ')
   const editorRef = useRef(null)
 
   const onMountHandler = (editor: any, monaco: any): void => {
     editorRef.current = editor
     setPreview(editor.getValue())
     monaco.editor.defineTheme('vs-dark-custom', {
-      base: 'vs-dark',
+      base: 'hc-black',
       inherit: true,
-      rules: [],
+      rules,
       colors: {
         ...oneDarkTheme.colors,
         'editor.background': '#0d0d0d'
       }
     })
-    // monaco.la
     monaco.editor.setTheme('vs-dark-custom')
   }
 
@@ -35,6 +59,7 @@ export function useEditor(): IUseEditor {
   }
   const editorWillMount = (monaco: any): void => {
     console.log('editorWillMount')
+    console.log(monaco)
   }
 
   return {
