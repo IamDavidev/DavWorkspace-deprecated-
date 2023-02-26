@@ -2,6 +2,7 @@ import { type FC } from 'react'
 
 import Editor, { type EditorProps } from '@monaco-editor/react'
 import { JetBrains_Mono } from '@next/font/google'
+import { motion } from 'framer-motion'
 
 // const theme = monaco
 
@@ -38,7 +39,7 @@ const EditorLayout: FC<PropsEditorLayout> = ({
   ...props
 }): JSX.Element => {
   return (
-    <div
+    <motion.div
       className='w-1/2 h-full sticky top-8 flex flex-col gap-1rem 
     [&>section]:rounded-2xl [&>section]:overflow-hidden
     '>
@@ -48,7 +49,7 @@ const EditorLayout: FC<PropsEditorLayout> = ({
         {...props}
         className={`${className ?? ' '}  ${jetBrainsMono.className}`}
       />
-    </div>
+    </motion.div>
   )
 }
 

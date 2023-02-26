@@ -1,6 +1,7 @@
 import { type FC } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { motion } from 'framer-motion'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
@@ -12,7 +13,17 @@ interface IPropsPreviewMode {
 }
 export const PreviewMode: FC<IPropsPreviewMode> = ({ value }): JSX.Element => {
   return (
-    <div className='w-1/2 p-8 bg-secondary rounded-2xl  min-h-full overflow-y-scroll max-h-[calc(100vh-4rem)]'>
+    <motion.div
+      initial={{
+        opacity: 0,
+        translateX: 70
+      }}
+      animate={{
+        opacity: 1,
+        translateX: 0
+      }}
+      transition={{ duration: 1 }}
+      className='w-1/2 p-8 bg-secondary rounded-2xl  min-h-full overflow-y-scroll max-h-[calc(100vh-4rem)]'>
       <ReactMarkdown
         components={{
           code: ({ node, inline, className, children, ...props }) => {
@@ -37,6 +48,6 @@ export const PreviewMode: FC<IPropsPreviewMode> = ({ value }): JSX.Element => {
         remarkPlugins={[remarkGfm]}>
         {value}
       </ReactMarkdown>
-    </div>
+    </motion.div>
   )
 }
