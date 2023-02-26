@@ -7,7 +7,7 @@ const Home: NextPage = (): JSX.Element => {
   return (
     <>
       <Head title='Home | DavWorkSpace' />
-      <Link href={'/editor'}>Go to Editor</Link>
+      <Link href={'/dasboard/editor/123'}>Go to Editor</Link>
     </>
   )
 }
