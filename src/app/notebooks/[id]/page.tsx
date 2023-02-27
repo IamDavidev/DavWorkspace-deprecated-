@@ -1,13 +1,12 @@
-import { type NextPage } from 'next'
+// import { type NextPage } from 'next'
 
 interface IPropsNotebookIdPage {
   params: {
     id: string
   }
+  searchParams?: Record<string, string | string[] | undefined>
 }
-const NotebookIdPage: NextPage<IPropsNotebookIdPage> = ({
-  params
-}: IPropsNotebookIdPage): JSX.Element => {
+const NotebookIdPage = ({ params }: IPropsNotebookIdPage): JSX.Element => {
   const notebookId = params.id
 
   return (

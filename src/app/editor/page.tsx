@@ -1,8 +1,6 @@
 'use client'
 
-import { type NextPage } from 'next'
-
-const EditorPage: NextPage = (): JSX.Element => {
+const EditorPage = (): JSX.Element => {
   return <>deprecated editor</>
 }
 

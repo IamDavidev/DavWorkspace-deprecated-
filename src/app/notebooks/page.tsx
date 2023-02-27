@@ -1,6 +1,4 @@
-import { type NextPage } from 'next'
-
-const NotebooksPage: NextPage = () => {
+const NotebooksPage = (): JSX.Element => {
   return <div>Note</div>
 }
 
