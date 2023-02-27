@@ -6,6 +6,7 @@ import { type NextPage } from 'next'
 import { Suspense } from 'react'
 import EditorLayout from './components/Editor.component'
 import { PreviewMode } from './components/PreviewLayout'
+import Head from './head'
 
 interface IPropsEditNote {
   params: {
@@ -21,6 +22,7 @@ const EditNote: NextPage<IPropsEditNote> = ({
 
   return (
     <>
+      <Head title={` ${id} | DavWorkspace`} />
       <div className='w-full h-full flex flex-row py-8 rounded-2xl gap-4 overflow-hidden'>
         <Suspense
           fallback={
