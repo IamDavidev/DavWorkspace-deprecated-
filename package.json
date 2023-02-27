@@ -9,6 +9,8 @@
     "run::lint": "next lint"
   },
   "dependencies": {
+    "@codesandbox/sandpack-react": "^2.0.17",
+    "@codesandbox/sandpack-themes": "^2.0.1",
     "@monaco-editor/react": "^4.4.6",
     "@next/font": "13.1.6",
     "@types/node": "18.11.18",
