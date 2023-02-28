@@ -14,9 +14,9 @@ export interface IPropsEditNotePage {
 }
 
 const EditNotePage = (props: IPropsEditNotePage): JSX.Element => {
-  const { id: idNote } = props.params
+  const { id: docId } = props.params
   const { onChangeHandler, onMountHandler, preview } = useEditor()
-  console.log('id', idNote)
+  console.log('id', docId)
 
   return (
     <>
@@ -32,7 +32,7 @@ const EditNotePage = (props: IPropsEditNotePage): JSX.Element => {
             onMount={onMountHandler}
             width={'100%'}
             defaultLanguage={EDITOR.LANGUAGES.MD}
-            defaultValue={`# File Markdown ${'` ' + idNote + ' `'}`}
+            defaultValue={`# File Markdown ${'` ' + docId + ' `'}`}
             height='calc(100vh - 4rem)'
             className={'h-editor-layout'}
             onChange={onChangeHandler}

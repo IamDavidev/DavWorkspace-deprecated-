@@ -17,10 +17,10 @@ export default function RootLayout({
       <body>
         <div className={' text-white bg-bg ' + inter.className}>
           <div className='app-editor  flex  flex-row gap-4 min-h-screen'>
-            <header className='max-w-[10%] w-[10%] min-w-[120px]'>
+            <header className='max-w-[10%] w-[10%] min-w-[160px]'>
               <SlideNav />
             </header>
-            <main className='w-full max-w-[85%]  h-full px-4 mx-auto'>
+            <main className='w-full max-w-[85%]  h-auto px-4 mx-auto'>
               {children}
             </main>
           </div>

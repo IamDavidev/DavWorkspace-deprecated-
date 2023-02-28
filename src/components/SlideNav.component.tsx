@@ -63,7 +63,7 @@ export const LinkNav: FC<IPropsLinkNav> = ({
 const SlideNav: FC = (): JSX.Element => {
   return (
     <nav className='h-full w-full text-link bg-secondary p-2 rounded-tr-2xl rounded-br-2xl flex flex-col justify-between items-start sticky top-8'>
-      <div className='flex flex-col gap-4 my-4 w-full'>
+      <div className='flex flex-col gap-6 my-4 w-full'>
         <LinkNav
           label='New note'
           icon={<NewIcon className='w-5 h-5 ' color={COLORS.LINK} />}
@@ -75,7 +75,7 @@ const SlideNav: FC = (): JSX.Element => {
         />
         <LinkNav
           href='/notebooks/all-notes'
-          label='View notes'
+          label='View Docs'
           icon={<NotesIcon className='w-5 h-5 ' color={COLORS.LINK} />}
         />
         <LinkNav
@@ -86,8 +86,7 @@ const SlideNav: FC = (): JSX.Element => {
       </div>
       <div className='flex flex-col gap-4 w-full my-4'>
         <LinkNav
-          href='/login'
-          // label='Login'
+          href='/user/sign-in'
           classNameLink={
             'border border-primary bg-transparent p-2 rounded-lg mx-auto justify-center'
           }
@@ -95,7 +94,7 @@ const SlideNav: FC = (): JSX.Element => {
           <span className='mx-auto w-full text-primary font-bold'>Login</span>
         </LinkNav>
         <LinkNav
-          href='/register'
+          href='/user/sign-up'
           icon={<UserPlus className='w-5 h-5' color={COLORS.BG} />}
           classNameLink='border border-primary bg-primary p-2 rounded-lg mx-auto justify-center'>
           <span className='mx-auto w-full text-bg font-bold'>Register</span>
