@@ -5,7 +5,7 @@ const Home = (): JSX.Element => {
   return (
     <>
       <Head title='Home | DavWorkSpace' />
-      <Link href={'/dasboard/editor/123'}>Go to Editor</Link>
+      <Link href={'/dashboard/editor/123'}>Go to Editor</Link>
     </>
   )
 }

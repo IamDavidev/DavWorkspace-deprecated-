@@ -79,7 +79,7 @@ const SlideNav: FC = (): JSX.Element => {
           icon={<NotesIcon className='w-5 h-5 ' color={COLORS.LINK} />}
         />
         <LinkNav
-          href='/dashboard/notes/5f9f1b9b0b9b9b0b9b0b9b0b'
+          href='/dashboard/editor/5f9f1b9b0b9b9b0b9b0b9b0b'
           label='Editor '
           icon={<EditIcon className='w-5 h-5 ' color={COLORS.LINK} />}
         />
