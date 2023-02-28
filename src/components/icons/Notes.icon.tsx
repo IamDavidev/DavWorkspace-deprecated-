@@ -1,7 +1,7 @@
 import { type IPropsIcon } from '@lib/models/Icon.interface'
 import { type FC } from 'react'
 
-export const BookIcon: FC<IPropsIcon> = ({
+export const NotesIcon: FC<IPropsIcon> = ({
   color,
   className,
   styles
@@ -9,13 +9,14 @@ export const BookIcon: FC<IPropsIcon> = ({
   return (
     <>
       <svg
+        color={color}
         className={className}
         viewBox='0 0 24 24'
-        style={styles}
         fill='none'
+        style={styles}
         xmlns='http://www.w3.org/2000/svg'>
         <path
-          d='M4 19.5C4 20.163 4.26339 20.7989 4.73223 21.2678C5.20107 21.7366 5.83696 22 6.5 22H20V2H6.5C5.83696 2 5.20107 2.26339 4.73223 2.73223C4.26339 3.20107 4 3.83696 4 4.5V19.5ZM4 19.5C4 18.837 4.26339 18.2011 4.73223 17.7322C5.20107 17.2634 5.83696 17 6.5 17H20'
+          d='M5 15H4C3.46957 15 2.96086 14.7893 2.58579 14.4142C2.21071 14.0391 2 13.5304 2 13V4C2 3.46957 2.21071 2.96086 2.58579 2.58579C2.96086 2.21071 3.46957 2 4 2H13C13.5304 2 14.0391 2.21071 14.4142 2.58579C14.7893 2.96086 15 3.46957 15 4V5M11 9H20C21.1046 9 22 9.89543 22 11V20C22 21.1046 21.1046 22 20 22H11C9.89543 22 9 21.1046 9 20V11C9 9.89543 9.89543 9 11 9Z'
           stroke={color}
           strokeWidth='2'
           strokeLinecap='round'
