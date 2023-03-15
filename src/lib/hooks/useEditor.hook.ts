@@ -36,7 +36,7 @@ export const rules: Token[] = [
 ]
 
 export function useEditor(): IUseEditor {
-  const [preview, setPreview] = useState<string | undefined>(' ')
+  const [preview, setPreview] = useState<string | undefined>('')
   const editorRef = useRef(null)
 
   const onMountHandler = (editor: any, monaco: any): void => {

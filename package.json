@@ -3,14 +3,18 @@
   "version": "0.2.1",
   "private": true,
   "scripts": {
+    "pheonix::pnpm": "rm -rf node_modules pnpm-lock.yaml && pnpm install",
     "run::dev": "next dev",
     "run::build": "next build",
     "run::start": "next start",
     "run::lint": "next lint"
   },
   "dependencies": {
+    "@codesandbox/sandpack-react": "^2.0.17",
+    "@codesandbox/sandpack-themes": "^2.0.1",
     "@monaco-editor/react": "^4.4.6",
     "@next/font": "13.1.6",
+    "@supabase/supabase-js": "^2.8.0",
     "@types/node": "18.11.18",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
@@ -24,7 +28,8 @@
     "react-markdown": "^8.0.5",
     "react-syntax-highlighter": "15.5.0",
     "remark-gfm": "3.0.1",
-    "remark-highlight.js": "7.0.1"
+    "remark-highlight.js": "7.0.1",
+    "sonner": "^0.2.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.0.0",

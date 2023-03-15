@@ -7,8 +7,16 @@ import { useEditor } from '@lib/hooks/useEditor.hook'
 import EditorLayout from './components/Editor.component'
 import { PreviewMode } from './components/PreviewLayout'
 
-const EditNotePage = (): JSX.Element => {
+export interface IPropsEditNotePage {
+  params: {
+    id: string
+  }
+}
+
+const EditNotePage = (props: IPropsEditNotePage): JSX.Element => {
+  const { id: docId } = props.params
   const { onChangeHandler, onMountHandler, preview } = useEditor()
+  console.log('id', docId)
 
   return (
     <>
@@ -24,13 +32,12 @@ const EditNotePage = (): JSX.Element => {
             onMount={onMountHandler}
             width={'100%'}
             defaultLanguage={EDITOR.LANGUAGES.MD}
-            // defaultValue={`# File Markdown ${'` ' + idNote + ' `'}`}
-            defaultValue={' '}
+            defaultValue={`# File Markdown ${'` ' + docId + ' `'}`}
             height='calc(100vh - 4rem)'
             className={'h-editor-layout'}
             onChange={onChangeHandler}
           />
-          {preview !== ' ' && (
+          {preview !== '' && (
             <PreviewMode value={preview !== undefined ? preview : ''} />
           )}
         </Suspense>
