@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "pheonix::pnpm": "rm -rf node_modules pnpm-lock.yaml && pnpm install",
-    "run::dev": "next dev",
-    "run::build": "next build",
-    "run::start": "next start",
-    "run::lint": "next lint"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "^2.0.17",
