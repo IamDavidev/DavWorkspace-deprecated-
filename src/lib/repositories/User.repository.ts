@@ -1,11 +1,10 @@
+import { SUPABASE_KEY, SUPABASE_URL } from '@constants/client.const'
 import {
   createClient,
-  type User,
-  type SupabaseClient
+  type SupabaseClient,
+  type User
 } from '@supabase/supabase-js'
-import { SUPABASE_KEY, SUPABASE_URL } from '@constants/client.const'
 import { toast } from 'sonner'
-import { stylesToaster } from '@lib/constants/toasterStyles.const'
 
 export enum PROVIDERS_AUTH {
   GITHUB = 'github',
@@ -18,6 +17,10 @@ export type UserResponse = {
 export type UserResponsePromise = Promise<UserResponse>
 
 export class UserRepository {
+  private getClient(): SupabaseClient {
+    return createClient(SUPABASE_URL, SUPABASE_KEY)
+  }
+
   private static readonly client: SupabaseClient = createClient(
     SUPABASE_URL,
     SUPABASE_KEY
@@ -43,11 +46,6 @@ export class UserRepository {
     })
 
     if (error !== null) {
-      toast.error(error.message + ' - ' + userEmail + ' - ' + userPassword, {
-        style: {
-          ...stylesToaster.error
-        }
-      })
       throw new Error(error.message)
     }
   }
@@ -79,7 +77,10 @@ export class UserRepository {
     }
   }
 
-  public user(): void {}
+  public static async getUser(): Promise<void> {
+    const user = await this.client.auth.getSession()
+    console.log('user', user)
+  }
 
   /*
   public async signOut(): Promise<void> {

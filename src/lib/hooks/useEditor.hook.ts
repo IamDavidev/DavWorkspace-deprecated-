@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react'
 
-import oneDarkTheme from '../../utils/oneDarkTheme.json'
-
+import oneDarkTheme from '@lib/utils/oneDarkTheme.json'
 export interface IUseEditor {
   preview: string | undefined
   editorRef: any

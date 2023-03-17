@@ -1,6 +1,15 @@
-import { supabaseClient } from '@lib/clients/supabase.client'
+// import { supabaseClient } from '@lib/clients/supabase.client'
+
 import { type User } from '@supabase/supabase-js'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { SUPABASE_KEY, SUPABASE_URL } from '@constants/client.const'
+import { createClient } from '@supabase/supabase-js'
+
+export const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
+  auth: {
+    persistSession: true
+  }
+})
 
 export enum PROVIDERS_AUTH {
   GITHUB = 'github',
@@ -12,7 +21,7 @@ export interface IUseUser {
   setUser: (user: IUserState) => void
   signInWithGithub: () => Promise<void>
   signOut: () => Promise<void>
-  signUpWithEmail: (email: string, password: string) => Promise<void>
+  signUpWithEmail: (email: string, password: string) => Promise<User | null>
 }
 export async function getUser(): Promise<User | null> {
   const { data } = await supabaseClient.auth.getUser()
@@ -85,22 +94,33 @@ export function useUser(): IUseUser {
   const signUpWithEmail = async (
     email: string,
     password: string
-  ): Promise<void> => {
-    console.log('email', email)
-    console.log('password', password)
+  ): Promise<User | null> => {
     try {
-      const { error, data } = await supabaseClient.auth.signUp({
+      const {
+        error,
+        data: { user }
+      } = await supabaseClient.auth.signUp({
         email,
         password
       })
-      console.log(data)
       if (error != null) {
         throw new AuthError(error.message, error.status)
       }
+
+      return user ?? null
     } catch (err) {
       console.error(err)
+      return null
     }
   }
+  useEffect(() => {
+    console.log('useEffect')
+    getUser()
+      .then(user => {
+        console.log('user', user)
+      })
+      .catch(() => {})
+  }, [])
 
   return {
     user,
