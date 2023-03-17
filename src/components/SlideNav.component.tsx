@@ -1,6 +1,4 @@
 import { COLORS } from '@constants/colors.const'
-import { supabaseClient } from '@lib/clients/supabase.client'
-import { type User } from '@supabase/supabase-js'
 import Link from 'next/link'
 import { type FC } from 'react'
 import { BookIcon } from './icons/Book.icon'
@@ -18,12 +16,6 @@ export interface IPropsLinkNav {
   icon?: JSX.Element | React.ReactNode
   classNameLink?: string
   children?: React.ReactNode
-}
-
-export async function getUser(): Promise<User | null> {
-  const { data } = await supabaseClient.auth.getUser()
-
-  return data.user
 }
 
 const SlideNav = (): JSX.Element => {

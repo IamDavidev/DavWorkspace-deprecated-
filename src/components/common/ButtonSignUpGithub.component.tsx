@@ -1,9 +1,9 @@
 'use client'
 import { COLORS } from '@constants/colors.const'
 import { useUser } from '@lib/hooks/useUser.hook'
-import { GithubIcon } from './icons/Github.icon'
+import { GithubIcon } from '../icons/Github.icon'
 
-const ButtonSignUpGithub = (): JSX.Element => {
+export const ButtonSignUpGithub = (): JSX.Element => {
   const { signInWithGithub } = useUser()
 
   return (
@@ -23,5 +23,3 @@ const ButtonSignUpGithub = (): JSX.Element => {
     </>
   )
 }
-
-export default ButtonSignUpGithub
