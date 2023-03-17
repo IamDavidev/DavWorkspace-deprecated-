@@ -1,9 +1,12 @@
 'use client'
 
+import { ContainerCenter } from '@components/atoms/ContainerCenter.atom'
 import { InputAtom, InputType } from '@components/atoms/Input.atom'
+import { stylesToaster } from '@lib/constants/toasterStyles.const'
 import { UserRepository } from '@lib/repositories/User.repository'
 import { useRouter } from 'next/navigation'
 import { type FormEvent } from 'react'
+import { toast } from 'sonner'
 
 export const FormSignUserEmail = (): JSX.Element => {
   const router = useRouter()
@@ -12,19 +15,43 @@ export const FormSignUserEmail = (): JSX.Element => {
     e: FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault()
-    const form = e.target as HTMLFormElement
-    const email = form.username.value
-    const password = form.password.value
-    UserRepository.signUpWithEmailAndPassword(email, password)
+
+    const { email, password } = e.target as HTMLFormElement
+
+    if (email.value.length < 1) {
+      toast.error('Please enter your email', {
+        style: {
+          ...stylesToaster.error
+        }
+      })
+      return
+    }
+    console.log(email.value)
+    if (password.value.length < 1) {
+      console.log(password.value.length)
+      toast.error('Please enter your password', {
+        style: {
+          ...stylesToaster.error
+        }
+      })
+      return
+    }
+    toast.success('You have successfully signed up!', {
+      description: 'Redirecting to sign in page...'
+    })
+
+    UserRepository.signUpWithEmailAndPassword(email.value, password.value)
       .then(() => {
-        router.push('/sign-in')
+        console.log('redirect')
+        router.push('/user/sign-in')
       })
       .catch(() => {})
+    console.log('Finish')
   }
 
   return (
     <>
-      <div className='flex justify-center items-center flex-col'>
+      <ContainerCenter direction='column'>
         <form
           className='flex flex-col gap-4'
           onSubmit={(e): void => {
@@ -56,7 +83,7 @@ export const FormSignUserEmail = (): JSX.Element => {
             </button>
           </label>
         </form>
-      </div>
+      </ContainerCenter>
     </>
   )
 }
