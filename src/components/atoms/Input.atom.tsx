@@ -30,15 +30,9 @@ export const InputAtom: FC<InputProps> = ({
   return (
     <label htmlFor={id} className={classLabel ?? ''}>
       {/*  htmlFor */}
-      <span className={classLabelText ?? ''}>
-        {label}
-        {/**
-         * classLabel
-         * label
-         *
-         */}
-      </span>
+      <span className={classLabelText ?? ''}>{label}</span>
       <input
+        autoComplete='on'
         type={type}
         id={id}
         placeholder={placeholder ?? ''}

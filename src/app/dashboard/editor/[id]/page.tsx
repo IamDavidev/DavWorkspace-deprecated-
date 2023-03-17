@@ -16,7 +16,6 @@ export interface IPropsEditNotePage {
 const EditNotePage = (props: IPropsEditNotePage): JSX.Element => {
   const { id: docId } = props.params
   const { onChangeHandler, onMountHandler, preview } = useEditor()
-  console.log('id', docId)
 
   return (
     <>
