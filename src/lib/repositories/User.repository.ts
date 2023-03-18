@@ -1,4 +1,5 @@
 import { SUPABASE_KEY, SUPABASE_URL } from '@constants/client.const'
+import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import {
   createClient,
   type SupabaseClient,
@@ -21,10 +22,7 @@ export class UserRepository {
     return createClient(SUPABASE_URL, SUPABASE_KEY)
   }
 
-  private static readonly client: SupabaseClient = createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  )
+  private static readonly client: SupabaseClient = createBrowserSupabaseClient()
 
   public static async signInWithGithub(): Promise<void> {
     const { error } = await this.client.auth.signInWithOAuth({
