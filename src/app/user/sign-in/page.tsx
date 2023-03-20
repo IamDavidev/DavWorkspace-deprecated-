@@ -2,15 +2,15 @@
 
 import { useRouter } from 'next/navigation'
 import { type FormEvent } from 'react'
+import { toast } from 'sonner'
 
 import PageLayout from '@/layouts/Page.layout'
 import { ContainerCenter } from '@components/atoms/ContainerCenter.atom'
 import { Divider } from '@components/atoms/Divider.atom'
 import { InputAtom, InputType } from '@components/atoms/Input.atom'
 import { ButtonSignUpGithub } from '@components/common/ButtonSignUpGithub.component'
-import { UserRepository } from '@lib/repositories/User.repository'
-import { toast } from 'sonner'
 import { stylesToaster } from '@lib/constants/toasterStyles.const'
+import { UserClientRepository } from '@lib/repositories/UserClient.repository'
 
 const SignInUserPage = (): JSX.Element => {
   const router = useRouter()
@@ -22,7 +22,7 @@ const SignInUserPage = (): JSX.Element => {
     const form = e.target as HTMLFormElement
     const email = form.email.value
     const password = form.password.value
-    UserRepository.signInWithEmailAndPassword(email, password)
+    UserClientRepository.signInWithEmailAndPassword(email, password)
       .then((): void => {
         router.push('/dashboard')
       })

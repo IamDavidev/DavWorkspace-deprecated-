@@ -3,7 +3,7 @@
 import { ContainerCenter } from '@components/atoms/ContainerCenter.atom'
 import { InputAtom, InputType } from '@components/atoms/Input.atom'
 import { stylesToaster } from '@lib/constants/toasterStyles.const'
-import { UserRepository } from '@lib/repositories/User.repository'
+import { UserClientRepository } from '@lib/repositories/UserClient.repository'
 import { useRouter } from 'next/navigation'
 import { type FormEvent } from 'react'
 import { toast } from 'sonner'
@@ -40,7 +40,7 @@ export const FormSignUserEmail = (): JSX.Element => {
       description: 'Redirecting to sign in page...'
     })
 
-    UserRepository.signUpWithEmailAndPassword(email.value, password.value)
+    UserClientRepository.signUpWithEmailAndPassword(email.value, password.value)
       .then(() => {
         console.log('redirect')
         router.push('/user/sign-in')
