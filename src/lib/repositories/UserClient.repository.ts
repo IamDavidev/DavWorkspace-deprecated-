@@ -17,7 +17,7 @@ export type UserResponse = {
 } | null
 export type UserResponsePromise = Promise<UserResponse>
 
-export class UserRepository {
+export class UserClientRepository {
   private getClient(): SupabaseClient {
     return createClient(SUPABASE_URL, SUPABASE_KEY)
   }
