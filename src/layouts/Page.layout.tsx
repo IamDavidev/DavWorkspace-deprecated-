@@ -8,7 +8,7 @@ export interface IPropsPageLayout {
   className: string
 }
 
-const PageLayout: FC<IPropsPageLayout> = ({
+export const PageLayout: FC<IPropsPageLayout> = ({
   children,
   title,
   description,
