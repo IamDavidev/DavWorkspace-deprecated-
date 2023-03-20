@@ -85,4 +85,11 @@ export class UserRepository {
     const {} = await this.client.auth.signOut()
   }
   */
+
+  public static async signOut(): Promise<void> {
+    const { error } = await this.client.auth.signOut()
+    console.log(error)
+
+    console.log('signOut')
+  }
 }
