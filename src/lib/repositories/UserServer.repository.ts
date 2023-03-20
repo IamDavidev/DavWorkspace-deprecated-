@@ -8,6 +8,7 @@ import { cookies, headers } from 'next/headers'
 // import { toast } from 'sonner'
 import {
   createServerComponentSupabaseClient,
+  type User,
   type SupabaseClient
 } from '@supabase/auth-helpers-nextjs'
 
@@ -28,12 +29,16 @@ export class UserServerRepository {
 
   private static readonly server = createClient()
 
-  public static async getUserServer(): Promise<void> {
+  public static async getUserServer(): Promise<{
+    user: User | null
+  }> {
     const userDataPromise = (await this.server).auth
       .getUser()
       .then(data => data)
 
     const userData = await userDataPromise
-    console.log(userData)
+    return {
+      user: userData.data.user
+    }
   }
 }
