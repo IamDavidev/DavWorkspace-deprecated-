@@ -1,5 +1,5 @@
 import { SUPABASE_KEY, SUPABASE_URL } from '@constants/client.const'
-import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs'
+import { browserClient } from '@lib/clients/supbaseBrowser.client'
 import {
   createClient,
   type SupabaseClient,
@@ -22,10 +22,10 @@ export class UserClientRepository {
     return createClient(SUPABASE_URL, SUPABASE_KEY)
   }
 
-  private static readonly client: SupabaseClient = createBrowserSupabaseClient()
+  // private static readonly client: SupabaseClient = createBrowserSupabaseClient()
 
   public static async signInWithGithub(): Promise<void> {
-    const { error } = await this.client.auth.signInWithOAuth({
+    const { error } = await browserClient.auth.signInWithOAuth({
       provider: PROVIDERS_AUTH.GITHUB
     })
 
@@ -38,7 +38,7 @@ export class UserClientRepository {
     userEmail: string,
     userPassword: string
   ): Promise<void> {
-    const { error } = await this.client.auth.signInWithPassword({
+    const { error } = await browserClient.auth.signInWithPassword({
       email: userEmail,
       password: userPassword
     })
@@ -53,7 +53,7 @@ export class UserClientRepository {
     userPassword: string
   ): Promise<UserResponse> {
     console.log(userEmail, userPassword)
-    const { data, error } = await this.client.auth.signUp({
+    const { data, error } = await browserClient.auth.signUp({
       email: userEmail,
       password: userPassword
     })
@@ -76,7 +76,7 @@ export class UserClientRepository {
   }
 
   public static async getUser(): Promise<void> {
-    const user = await this.client.auth.getSession()
+    const user = await browserClient.auth.getSession()
     console.log('user', user)
   }
 
@@ -87,7 +87,7 @@ export class UserClientRepository {
   */
 
   public static async signOut(): Promise<void> {
-    const { error } = await this.client.auth.signOut()
+    const { error } = await browserClient.auth.signOut()
     console.log(error)
 
     console.log('signOut')

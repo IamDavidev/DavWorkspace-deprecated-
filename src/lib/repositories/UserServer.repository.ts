@@ -1,10 +1,6 @@
-import { cookies, headers } from 'next/headers'
-import {
-  createServerComponentSupabaseClient,
-  type User,
-  type SupabaseClient
-} from '@supabase/auth-helpers-nextjs'
+import { type User } from '@supabase/auth-helpers-nextjs'
 
+import { serverClient } from '@lib/clients/supbaseServer.client'
 import { type AuthError } from '@supabase/supabase-js'
 
 export enum PROVIDERS_AUTH {
@@ -16,20 +12,11 @@ export interface IUserServer {
   error: AuthError | null
 }
 
-export const createClient = async (): Promise<SupabaseClient> => {
-  return createServerComponentSupabaseClient({
-    cookies,
-    headers
-  })
-}
-
 export class UserServerRepository {
   private getServer(): void {}
 
-  private static readonly server = createClient()
-
   public static async getUserServer(): Promise<IUserServer> {
-    const userDataPromise = (await this.server).auth.getUser()
+    const userDataPromise = (await serverClient).auth.getUser()
 
     const { data, error } = await userDataPromise
     return {
