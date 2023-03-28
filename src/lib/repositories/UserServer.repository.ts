@@ -1,44 +1,27 @@
-// import {
-//   createClient,
-//   type SupabaseClient,
-//   type User
-// } from '@supabase/supabase-js'
-import { cookies, headers } from 'next/headers'
+import { type User } from '@supabase/auth-helpers-nextjs'
 
-// import { toast } from 'sonner'
-import {
-  createServerComponentSupabaseClient,
-  type User,
-  type SupabaseClient
-} from '@supabase/auth-helpers-nextjs'
+import { serverClient } from '@lib/clients/supbaseServer.client'
+import { type AuthError } from '@supabase/supabase-js'
 
 export enum PROVIDERS_AUTH {
   GITHUB = 'github',
   GOOGlE = 'google'
 }
-
-export const createClient = async (): Promise<SupabaseClient> => {
-  return createServerComponentSupabaseClient({
-    cookies,
-    headers
-  })
+export interface IUserServer {
+  user: User | null
+  error: AuthError | null
 }
 
 export class UserServerRepository {
   private getServer(): void {}
 
-  private static readonly server = createClient()
+  public static async getUserServer(): Promise<IUserServer> {
+    const userDataPromise = (await serverClient).auth.getUser()
 
-  public static async getUserServer(): Promise<{
-    user: User | null
-  }> {
-    const userDataPromise = (await this.server).auth
-      .getUser()
-      .then(data => data)
-
-    const userData = await userDataPromise
+    const { data, error } = await userDataPromise
     return {
-      user: userData.data.user
+      user: data.user ?? null,
+      error: error ?? null
     }
   }
 }
