@@ -1,51 +1,56 @@
 'use client'
 
+import { ContainerCenter } from '@components/atoms/ContainerCenter.atom'
+import { InputAtom, InputType } from '@components/atoms/Input.atom'
+import { stylesToaster } from '@lib/constants/toasterStyles.const'
+import { UserClientRepository } from '@lib/repositories/UserClient.repository'
 import { useRouter } from 'next/navigation'
 import { type FormEvent } from 'react'
 import { toast } from 'sonner'
 
-import PageLayout from '@/layouts/Page.layout'
-import { ContainerCenter } from '@components/atoms/ContainerCenter.atom'
-import { Divider } from '@components/atoms/Divider.atom'
-import { InputAtom, InputType } from '@components/atoms/Input.atom'
-import { ButtonSignUpGithub } from '@components/common/ButtonSignUpGithub.component'
-import { stylesToaster } from '@lib/constants/toasterStyles.const'
-import { UserClientRepository } from '@lib/repositories/UserClient.repository'
-
-const SignInUserPage = (): JSX.Element => {
+export const FormSignUserEmail = (): JSX.Element => {
   const router = useRouter()
 
   const onSubmitHandler = async (
     e: FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault()
-    const form = e.target as HTMLFormElement
-    const email = form.email.value
-    const password = form.password.value
-    UserClientRepository.signInWithEmailAndPassword(email, password)
-      .then((): void => {
-        router.push('/dashboard')
+
+    const { email, password } = e.target as HTMLFormElement
+
+    if (email.value.length < 1) {
+      toast.error('Please enter your email', {
+        style: {
+          ...stylesToaster.error
+        }
       })
-      .catch((e: Error): void => {
-        toast.error(e.message, {
-          style: {
-            ...stylesToaster.error
-          }
-        })
+      return
+    }
+    console.log(email.value)
+    if (password.value.length < 1) {
+      console.log(password.value.length)
+      toast.error('Please enter your password', {
+        style: {
+          ...stylesToaster.error
+        }
       })
+      return
+    }
+    toast.success('You have successfully signed up!', {
+      description: 'Redirecting to sign in page...'
+    })
+
+    UserClientRepository.signUpWithEmailAndPassword(email.value, password.value)
+      .then(() => {
+        console.log('redirect')
+        router.push('/user/sign-in')
+      })
+      .catch(() => {})
+    console.log('Finish')
   }
 
   return (
-    <PageLayout
-      title='Sign in | DavWorkspace'
-      description=''
-      className='flex justify-center items-center flex-col'>
-      <h2 className='mb-12'>
-        <span className='text-6xl font-bold text-primary'>Sign</span>
-        <span className='text-6xl font-bold  mx-2'>In</span>
-      </h2>
-      <ButtonSignUpGithub />
-      <Divider />
+    <>
       <ContainerCenter direction='column'>
         <form
           className='flex flex-col gap-4'
@@ -79,8 +84,6 @@ const SignInUserPage = (): JSX.Element => {
           </label>
         </form>
       </ContainerCenter>
-    </PageLayout>
+    </>
   )
 }
-
-export default SignInUserPage

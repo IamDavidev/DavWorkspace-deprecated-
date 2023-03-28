@@ -5,6 +5,7 @@ specifiers:
   '@codesandbox/sandpack-themes': ^2.0.1
   '@monaco-editor/react': ^4.4.6
   '@next/font': 13.1.6
+  '@supabase/auth-helpers-nextjs': ^0.5.6
   '@supabase/supabase-js': ^2.8.0
   '@types/node': 18.11.18
   '@types/react': 18.0.27
@@ -39,6 +40,7 @@ dependencies:
   '@codesandbox/sandpack-themes': 2.0.21
   '@monaco-editor/react': 4.4.6_waewrrayshn643ztij6zbniufy
   '@next/font': 13.1.6
+  '@supabase/auth-helpers-nextjs': 0.5.6_h4fmw4dd6b3xkulak4k3c7hqqu
   '@supabase/supabase-js': 2.8.0
   '@types/node': 18.11.18
   '@types/react': 18.0.27
@@ -517,6 +519,23 @@ packages:
 
   /@stitches/core/1.2.8:
     resolution: {integrity: sha512-Gfkvwk9o9kE9r9XNBmJRfV8zONvXThnm1tcuojL04Uy5uRyqg93DC83lDebl0rocZCfKSjUv+fWYtMQmEDJldg==}
+    dev: false
+
+  /@supabase/auth-helpers-nextjs/0.5.6_h4fmw4dd6b3xkulak4k3c7hqqu:
+    resolution: {integrity: sha512-NiUGGnO9vRycMDnl/DzFbHCJhNV9DdH1vH61T1Fzgp2aRW8LfLRVlBQeGCg2AzyvAe0MiLbbRsGNcJmAmJPs9A==}
+    peerDependencies:
+      '@supabase/supabase-js': ^2.0.4
+    dependencies:
+      '@supabase/auth-helpers-shared': 0.3.0_h4fmw4dd6b3xkulak4k3c7hqqu
+      '@supabase/supabase-js': 2.8.0
+    dev: false
+
+  /@supabase/auth-helpers-shared/0.3.0_h4fmw4dd6b3xkulak4k3c7hqqu:
+    resolution: {integrity: sha512-6lKhVMBZnGdFelpZyvQDBQSOY+pglS6a5U4ieAqfKQ/rx3rSjRASR3UGh7V+el1re3xYe3ddVBWXw16rdVAzrQ==}
+    peerDependencies:
+      '@supabase/supabase-js': ^2.0.4
+    dependencies:
+      '@supabase/supabase-js': 2.8.0
     dev: false
 
   /@supabase/functions-js/2.0.0:
