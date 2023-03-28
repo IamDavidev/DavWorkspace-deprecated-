@@ -1,51 +1,51 @@
-import { serverClient } from '@lib/clients/supbaseServer.client'
-import { type PostgrestError } from '@supabase/supabase-js'
+import { serverClient } from "@lib/clients/supbaseServer.client";
+import { type PostgrestError } from "@supabase/supabase-js";
 
-type NotebooksType = Array<Record<string, any>> | null
+type NotebooksType = Array<Record<string, any>> | [];
 
 interface INotebooksResponse {
-  notebooks: NotebooksType
-  error: PostgrestError | null
-  status: number | null
+  notebooks: NotebooksType;
+  error: PostgrestError | null;
+  status: number | null;
 }
 
-export type OwnerIdType = string
+export type OwnerIdType = string;
 
 export class NotebooksServerRepository {
   private async getClient(): Promise<string> {
-    return ''
+    return "";
   }
 
   public static async getAllNotebooks(): Promise<INotebooksResponse> {
     const {
       data: notebooks,
       error,
-      status
-    } = await (await serverClient).from('notebooks').select('*')
+      status,
+    } = await (await serverClient).from("notebooks").select("*");
 
     return {
-      notebooks,
+      notebooks: notebooks ?? [],
       error,
-      status
-    }
+      status,
+    };
   }
 
   public static async getNotebooksByOwnerId(
-    ownerId: OwnerIdType
+    ownerId: OwnerIdType,
   ): Promise<INotebooksResponse> {
     const {
       data: notebooks,
       error,
-      status
+      status,
     } = await (await serverClient)
-      .from('notebooks')
-      .select('*')
-      .eq('owner_id', ownerId)
+      .from("notebooks")
+      .select("*")
+      .eq("owner_id", ownerId);
 
     return {
-      notebooks,
+      notebooks: notebooks ?? [],
       error,
-      status
-    }
+      status,
+    };
   }
 }

@@ -3,7 +3,7 @@ import { UserServerRepository } from '@lib/repositories/UserServer.repository'
 
 import { BookIcon } from './icons/Book.icon'
 import { EditIcon } from './icons/Edit.icon'
-import { NewIcon } from './icons/new.icon'
+import { NewIcon } from './icons/New.icon'
 import { NotesIcon } from './icons/Notes.icon'
 import { LinkNav } from './navbar/LInkNav.component'
 import { SignOutBtn } from './navbar/SignOut.component'
