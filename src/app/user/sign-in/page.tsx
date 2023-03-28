@@ -4,13 +4,17 @@ import { useRouter } from 'next/navigation'
 import { type FormEvent } from 'react'
 import { toast } from 'sonner'
 
-import PageLayout from '@/layouts/Page.layout'
 import { ContainerCenter } from '@components/atoms/ContainerCenter.atom'
 import { Divider } from '@components/atoms/Divider.atom'
 import { InputAtom, InputType } from '@components/atoms/Input.atom'
 import { ButtonSignUpGithub } from '@components/common/ButtonSignUpGithub.component'
 import { stylesToaster } from '@lib/constants/toasterStyles.const'
 import { UserClientRepository } from '@lib/repositories/UserClient.repository'
+
+export const metadata = {
+  title: 'Sign In | DavWorkspace',
+  description: 'Sign In page'
+}
 
 const SignInUserPage = (): JSX.Element => {
   const router = useRouter()
@@ -36,10 +40,7 @@ const SignInUserPage = (): JSX.Element => {
   }
 
   return (
-    <PageLayout
-      title='Sign in | DavWorkspace'
-      description=''
-      className='flex justify-center items-center flex-col'>
+    <div className='flex justify-center items-center flex-col'>
       <h2 className='mb-12'>
         <span className='text-6xl font-bold text-primary'>Sign</span>
         <span className='text-6xl font-bold  mx-2'>In</span>
@@ -79,7 +80,7 @@ const SignInUserPage = (): JSX.Element => {
           </label>
         </form>
       </ContainerCenter>
-    </PageLayout>
+    </div>
   )
 }
 
