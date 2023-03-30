@@ -36,7 +36,7 @@ const SlideNav = async (): Promise<JSX.Element> => {
           icon={<EditIcon className='w-5 h-5 ' color={COLORS.LINK} />}
         />
       </div>
-      <div>
+      <div className='w-full'>
         {user !== null ? <SignOutBtn /> : <SignInSocial />}
         {user != null && (
           <span className='text-xs text-white font-bold text-center w-full my-4'>
