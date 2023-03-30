@@ -40,7 +40,7 @@ const SignInUserPage = (): JSX.Element => {
   }
 
   return (
-    <div className='flex justify-center items-center flex-col'>
+    <div className='flex justify-center items-center flex-col h-full'>
       <h2 className='mb-12'>
         <span className='text-6xl font-bold text-primary'>Sign</span>
         <span className='text-6xl font-bold  mx-2'>In</span>
