@@ -18,7 +18,7 @@ const NotebookIdPage = async ({
   const notebookId = params.id
 
   const { documents } =
-    await DocumentsServerRespository.getAllDocumentByNotebookId(notebookId, '')
+    await DocumentsServerRespository.getAllDocumentsByNotebookId(notebookId, '')
 
   return (
     <div className='p-12'>
