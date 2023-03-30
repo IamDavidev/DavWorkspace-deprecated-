@@ -3,7 +3,7 @@ import { COLORS } from '@constants/colors.const'
 import Link from 'next/link'
 import { type FC } from 'react'
 
-export const Navbar: FC = (): JSX.Element => {
+export const NavbarNotebooks: FC = (): JSX.Element => {
   return (
     <nav className='flex flex-row justify-between items-center p-9'>
       <span></span>
