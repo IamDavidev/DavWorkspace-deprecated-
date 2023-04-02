@@ -1,9 +1,9 @@
 import { redirect } from 'next/navigation'
-import Link from 'next/link'
 
-import { NotebooksServerRepository } from '@lib/repositories/NotebooksServer.repository'
+import { useNotebooks } from '@lib/hooks/useNotebooks.hook'
 import { UserServerRepository } from '@lib/repositories/UserServer.repository'
 import { NavbarNotebooks } from './components/NavbarNotebooks.component'
+import { type INotebook } from '@lib/models/Notebook.interface'
 
 export const metadata = {
   title: 'Notebooks | DavWorkspace',
@@ -11,6 +11,7 @@ export const metadata = {
 }
 
 const NotebooksPage = async (): Promise<JSX.Element> => {
+  const { getNotebooksByOwnerIdServer } = useNotebooks()
   const { user } = await UserServerRepository.getUserServer()
 
   if (user == null) {
@@ -19,34 +20,17 @@ const NotebooksPage = async (): Promise<JSX.Element> => {
 
   const ownerId = user.id
 
-  const { notebooks } = await NotebooksServerRepository.getNotebooksByOwnerId(
+  const response = await getNotebooksByOwnerIdServer({
     ownerId
-  )
-
+  })
+  const notebooks = response.notebooks as INotebook[]
   return (
     <>
       <NavbarNotebooks />
       <section className='flex flex-wrap gap-6 '>
-        {notebooks?.length > 0 &&
-          notebooks.map(notebook => {
-            return (
-              <Link
-                href={`/notebooks/${notebook.id as string}`}
-                key={notebook.id}
-                className='bg-transparent border-solid border-white text-white border px-16 py-2 w-auto rounded-xl maxw-[320px]'>
-                <span className='text-2xl font-bold text-primary my-4'>
-                  {notebook.title}
-                </span>
-                <p>
-                  {notebook.description.length > 100 ? (
-                    <span>{notebook.description.slice(0, 100)}...</span>
-                  ) : (
-                    <span>{notebook.description}</span>
-                  )}
-                </p>
-              </Link>
-            )
-          })}
+        {notebooks.map(({ id, title }: INotebook): JSX.Element => {
+          return <span key={id}>{title}</span>
+        })}
       </section>
     </>
   )
