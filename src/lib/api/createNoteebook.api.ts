@@ -1,5 +1,6 @@
 import { type INotebook } from "@lib/models/Notebook.interface";
 import { NotebookBrowserRepository } from "@lib/repositories/NotebooksClient.repository";
+import { generateUUId } from "@lib/utils/generateUUId.util";
 import { type PostgrestError } from "@supabase/supabase-js";
 
 export interface IResponseOk {
@@ -39,22 +40,23 @@ export function adapterResponseOk(
 
 export const IMAGE_DEFAULT =
   "https://media.istockphoto.com/id/182476659/es/foto/pintura-de-aerosol-lugar.jpg?s=612x612&w=0&k=20&c=Yg3wRXddzX5J0Nzpspg1BrJTmBwwU6-uyk9ZUY0avrw=";
+export interface ICreateNotebookProps {
+  title: string;
+  description: string;
+  image: string | null;
+  ownerId: string;
+}
 
-export async function createNotebook({
-  title,
-  created_at: createdAt,
-  description,
-  id,
-  image,
-  owner_id: ownerId,
-}: INotebook): Promise<IResponseOk> {
+export async function apiCreateNotebook(
+  { description, image, ownerId, title }: ICreateNotebookProps,
+): Promise<IResponseOk> {
   const apiBrowser = new NotebookBrowserRepository();
 
   const notebook: INotebook = {
     title,
-    created_at: createdAt ?? new Date(),
+    created_at: new Date(),
     description,
-    id,
+    id: generateUUId(),
     image: image ?? IMAGE_DEFAULT,
     owner_id: ownerId,
   };
