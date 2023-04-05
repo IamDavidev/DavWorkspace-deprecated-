@@ -1,7 +1,8 @@
 'use client'
 
+import { apiCreateNotebook } from '@lib/api/createNoteebook.api'
 import { stylesToaster } from '@lib/constants/toasterStyles.const'
-import { type FC, type ReactNode } from 'react'
+import { type FormEvent, type FC, type ReactNode } from 'react'
 
 import { toast } from 'sonner'
 
@@ -24,49 +25,49 @@ export const FormCreateNotebookWrapper: FC<FormWrapperProps> = ({
   children,
   userId
 }): JSX.Element => {
-  // const onSubmitHandler = async (e: FormEvent): Promise<void> => {
-  //   e.preventDefault()
-  //   const form = e.target as HTMLFormElement
+  const onSubmitHandler = async (e: FormEvent): Promise<void> => {
+    e.preventDefault()
+    const form = e.target as HTMLFormElement
 
-  //   const { title_notebook: title, description } = form
+    const { title_notebook: title, description } = form
 
-  //   const titleValue = title.value
-  //   if (titleValue.length < 1) {
-  //     inputEmptyExceptionClient('Title')
-  //     return
-  //   }
-  //   const descriptionValue = description.value as string
-  //   if (descriptionValue.length < 1) {
-  //     inputEmptyExceptionClient('Description')
-  //   }
-  //   const { error } = await NotebookBrowserRepository.createNewNotebook({
-  //     title: titleValue,
-  //     description: descriptionValue,
-  //     created_at: new Date(),
-  //     id: generateUUId(),
-  //     image: '',
-  //     owner_id: userId
-  //   })
+    const titleValue = title.value
+    if (titleValue.length < 1) {
+      inputEmptyExceptionClient('Title')
+      return
+    }
+    const descriptionValue = description.value as string
+    if (descriptionValue.length < 1) {
+      inputEmptyExceptionClient('Description')
+    }
 
-  //   if (error !== null) {
-  //     toast.error(error.message, {
-  //       style: {
-  //         ...stylesToaster.error
-  //       }
-  //     })
-  //     return
-  //   }
+    const {
+      isOk,
+      error: { message }
+    } = await apiCreateNotebook({
+      title: titleValue,
+      description: descriptionValue,
+      image: null,
+      ownerId: userId
+    })
 
-  //   router.push('/notebooks')
-  // }
+    if (!isOk) {
+      toast.error(message, {
+        style: {
+          ...stylesToaster.error
+        }
+      })
+    }
+
+    // router.push('/notebooks')
+  }
 
   return (
     <form
       className='flex flex-col justify-start items-center gap-8'
-      // onSubmit={e => {
-      //   onSubmitHandler(e).catch(console.error)
-      // }}
-    >
+      onSubmit={e => {
+        onSubmitHandler(e).catch(console.error)
+      }}>
       {children}
     </form>
   )
