@@ -1,9 +1,7 @@
 import { redirect } from 'next/navigation'
 
-import { useNotebooks } from '@lib/hooks/useNotebooks.hook'
 import { UserServerRepository } from '@lib/repositories/UserServer.repository'
 import { NavbarNotebooks } from './components/NavbarNotebooks.component'
-import { type INotebook } from '@lib/models/Notebook.interface'
 
 export const metadata = {
   title: 'Notebooks | DavWorkspace',
@@ -11,7 +9,6 @@ export const metadata = {
 }
 
 const NotebooksPage = async (): Promise<JSX.Element> => {
-  const { getNotebooksByOwnerIdServer } = useNotebooks()
   const { user } = await UserServerRepository.getUserServer()
 
   if (user == null) {
@@ -20,18 +17,12 @@ const NotebooksPage = async (): Promise<JSX.Element> => {
 
   const ownerId = user.id
 
-  const response = await getNotebooksByOwnerIdServer({
-    ownerId
-  })
-  const notebooks = response.notebooks as INotebook[]
+  console.log(ownerId)
+
   return (
     <>
       <NavbarNotebooks />
-      <section className='flex flex-wrap gap-6 '>
-        {notebooks.map(({ id, title }: INotebook): JSX.Element => {
-          return <span key={id}>{title}</span>
-        })}
-      </section>
+      <section className='flex flex-wrap gap-6 '></section>
     </>
   )
 }
