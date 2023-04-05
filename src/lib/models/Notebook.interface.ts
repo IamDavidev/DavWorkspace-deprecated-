@@ -22,4 +22,5 @@ export interface INotebooksResponse {
 
 export interface INotebookBadResponse {
   error: PostgrestError | null;
+  status: number | string;
 }

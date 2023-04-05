@@ -9,12 +9,13 @@ export class NotebookBrowserRepository {
   public async createNew(
     notebook: INotebook,
   ): Promise<INotebookBadResponse> {
-    const { error } = await browserClient.from("notebooks").insert([
+    const { error, status } = await browserClient.from("notebooks").insert([
       notebook,
     ]);
 
     return {
       error,
+      status,
     };
   }
 }

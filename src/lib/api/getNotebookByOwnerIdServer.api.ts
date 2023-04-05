@@ -49,6 +49,8 @@ export async function apiGetNotebooksByOwnerIdServer(
 ): Promise<INotebooksResponse> {
   const apiServer = new NotebooksServerRepository();
 
+  // missing verify if ownerId is valid
+
   const { notebooks: notebooksDB, error, status } = await apiServer
     .findByOwnerId(ownerId);
 
