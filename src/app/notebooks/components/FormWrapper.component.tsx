@@ -43,8 +43,14 @@ export async function hanlderOnSubmit({
   const titleInput = title.value
   const descriptionInput = description.value
 
-  checkInputEmpty(titleInput) && inputEmptyExceptionClient('Title')
-  checkInputEmpty(description.value) && inputEmptyExceptionClient('Description')
+  if (checkInputEmpty(titleInput)) {
+    inputEmptyExceptionClient('Title')
+    return
+  }
+  if (checkInputEmpty(descriptionInput)) {
+    inputEmptyExceptionClient('Description')
+    return
+  }
 
   const {
     isOk,
