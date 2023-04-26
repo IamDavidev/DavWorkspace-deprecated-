@@ -8,7 +8,6 @@ export const metadata = {
 const Home = (): JSX.Element => {
   return (
     <>
-      <Link href={'/dashboard/editor/123'}>Go to Editor</Link>
     </>
   )
 }
