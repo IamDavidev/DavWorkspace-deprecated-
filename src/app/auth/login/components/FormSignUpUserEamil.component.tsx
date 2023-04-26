@@ -45,7 +45,7 @@ export const FormSignUserEmail = (): JSX.Element => {
         console.log('redirect')
         router.push('/user/sign-in')
       })
-      .catch(() => {})
+      .catch(() => { })
     console.log('Finish')
   }
 
@@ -55,7 +55,7 @@ export const FormSignUserEmail = (): JSX.Element => {
         <form
           className='flex flex-col gap-4'
           onSubmit={(e): void => {
-            onSubmitHandler(e).catch(() => {})
+            onSubmitHandler(e).catch(() => { })
           }}>
           <InputAtom
             id='email'
@@ -77,8 +77,8 @@ export const FormSignUserEmail = (): JSX.Element => {
           />{' '}
           <label className='flex justify-end'>
             <button
-              type='submit'
-              className='px-4 py-1 bg-white text-black rounded-lg border border-white border-solid transition duration-300 ease-in-out hover:bg-bg hover:text-white  hover:border-white'>
+              type='submit' className='flex gap-4 bg-white justify-center items-center border border-white border-solid px-16 py-2 rounded-2xl text-black  transition duration-300 ease-in-out    hover:border-light-violet hover:bg-transparent hover:text-light-violet'
+            >
               Login
             </button>
           </label>
