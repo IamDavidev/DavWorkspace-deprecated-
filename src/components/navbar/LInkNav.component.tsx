@@ -20,9 +20,8 @@ export const LinkNav: FC<IPropsLinkNav> = ({
   if (href === undefined || href === null)
     return (
       <button
-        className={`w-full h-full flex flex-row gap-3 px-2 items-center ${
-          classNameLink ?? ''
-        } `}
+        className={`w-full h-full flex flex-row gap-3  items-center ${classNameLink ?? ''
+          } `}
         {...props}>
         {Boolean(icon) && <span>{icon}</span>}
         {label !== undefined ? (
@@ -37,12 +36,11 @@ export const LinkNav: FC<IPropsLinkNav> = ({
     <>
       <Link
         href={href}
-        className={`w-full h-full flex flex-row gap-3 justify-start items-center px-2 ${
-          classNameLink ?? ''
-        } `}>
+        className={`w-full h-full flex flex-row gap-3 justify-start items-center  ${classNameLink ?? ''
+          } `}>
         {Boolean(icon) && <span>{icon}</span>}
         {label !== undefined ? (
-          <span className=' tracking-wide'>{label}</span>
+          <span className=' tracking-wide text-white'>{label}</span>
         ) : (
           children
         )}

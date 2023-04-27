@@ -21,10 +21,10 @@ export default function RootLayout({
             ' app-editor  flex  flex-row gap-4 min-h-screen text-white bg-dark ' +
             inter.className
           }>
-          {/* <header className='max-w-[10%] w-[10%] min-w-[160px]'>
+          <header className='max-w-[250px] w-[250px]'>
             <SlideNav />
-          </header> */}
-          <main className='w-full max-w-[85%]  h-auto px-4 mx-auto'>
+          </header>
+          <main className='w-full h-auto mx-auto'>
             {children}
           </main>
         </div>

@@ -7,8 +7,11 @@ export const metadata = {
 
 const Home = (): JSX.Element => {
   return (
-    <>
-    </>
+    <section className='p-4'>
+      <Link href={'/auth/login'} >
+        Login
+      </Link>
+    </section>
   )
 }
 

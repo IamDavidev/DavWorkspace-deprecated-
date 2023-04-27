@@ -4,4 +4,5 @@ export const COLORS = {
   SECONDARY: "#0d0d0d",
   LINK: "#a7a9ac",
   DARK_GRAY: "#191919",
+  WHITE: "#DBE2EF",
 };
