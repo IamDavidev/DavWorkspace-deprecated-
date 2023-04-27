@@ -3,12 +3,13 @@
 import { ContainerCenter } from '@components/atoms/ContainerCenter.atom'
 import { InputAtom, InputType } from '@components/atoms/Input.atom'
 import { stylesToaster } from '@lib/constants/toasterStyles.const'
-import { UserClientRepository } from '@lib/repositories/UserClient.repository'
+import { compositionRootUserAuth } from '@lib/modules/user/root'
 import { useRouter } from 'next/navigation'
 import { type FormEvent } from 'react'
 import { toast } from 'sonner'
 
 export const FormSignUserEmail = (): JSX.Element => {
+  const { userAuthRepository } = compositionRootUserAuth()
   const router = useRouter()
 
   const onSubmitHandler = async (
@@ -40,13 +41,10 @@ export const FormSignUserEmail = (): JSX.Element => {
       description: 'Redirecting to sign in page...'
     })
 
-    UserClientRepository.signUpWithEmailAndPassword(email.value, password.value)
-      .then(() => {
-        console.log('redirect')
-        router.push('/user/sign-in')
-      })
-      .catch(() => { })
-    console.log('Finish')
+
+    userAuthRepository.signInWithEmailAndPassword(email.value, password.value).then(() => {
+      router.push('/user/sign-in')
+    }).catch(() => { })
   }
 
   return (

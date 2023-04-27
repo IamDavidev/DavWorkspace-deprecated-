@@ -9,7 +9,7 @@ import { Divider } from '@components/atoms/Divider.atom'
 import { InputAtom, InputType } from '@components/atoms/Input.atom'
 import { ButtonSignUpGithub } from '@components/common/ButtonSignUpGithub.component'
 import { stylesToaster } from '@lib/constants/toasterStyles.const'
-import { UserClientRepository } from '@lib/repositories/UserClient.repository'
+import { compositionRootUserAuth } from '@lib/modules/user/root'
 
 export const metadata = {
   title: 'Sign In | DavWorkspace',
@@ -17,6 +17,7 @@ export const metadata = {
 }
 
 const SignInUserPage = (): JSX.Element => {
+  const { userAuthRepository } = compositionRootUserAuth()
   const router = useRouter()
 
   const onSubmitHandler = async (
@@ -26,17 +27,17 @@ const SignInUserPage = (): JSX.Element => {
     const form = e.target as HTMLFormElement
     const email = form.email.value
     const password = form.password.value
-    UserClientRepository.signInWithEmailAndPassword(email, password)
-      .then((): void => {
-        router.push('/dashboard')
+
+
+    userAuthRepository.signInWithEmailAndPassword(email, password).then(() => {
+      router.push('/dashboard')
+    }).catch(() => {
+      toast.error('Please enter your email', {
+        style: {
+          ...stylesToaster.error
+        }
       })
-      .catch((e: Error): void => {
-        toast.error(e.message, {
-          style: {
-            ...stylesToaster.error
-          }
-        })
-      })
+    })
   }
 
   return (
@@ -51,7 +52,7 @@ const SignInUserPage = (): JSX.Element => {
         <form
           className='flex flex-col gap-4'
           onSubmit={(e): void => {
-            onSubmitHandler(e).catch(() => {})
+            onSubmitHandler(e).catch(() => { })
           }}>
           <InputAtom
             id='email'
