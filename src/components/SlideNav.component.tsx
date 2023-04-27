@@ -6,17 +6,17 @@ import { BookIcon } from './icons/Book.icon'
 import { NewIcon } from './icons/New.icon'
 import { SearchIcon } from "./icons/Search.icon"
 import { LinkNav } from './navbar/LInkNav.component'
-import Link from "next/link"
+// import Link from "next/link"
 import { DraftsIcon } from "./icons/Drafts.icon"
 
 export const btnStyle = 'text-white bg-primary  rounded-2xl p-2 w-full'
 
-export const dotStyle = "w-4 h-4 bg-white rounded-full"
+export const dotStyle = "w-4 h-4  rounded-full"
 
 export const DotsNavbar: FC = (): JSX.Element => {
   return (
     <div className="flex flex-row gap-2">
-      <div className={dotStyle}></div>
+      <div className={dotStyle + " bg-white"}></div>
       <div className={dotStyle + " bg-light-violet"}></div>
       <div className={dotStyle + " bg-light-blue"}></div>
     </div>
