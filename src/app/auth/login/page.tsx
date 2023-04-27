@@ -24,7 +24,7 @@ const SignUpUserPage = (): JSX.Element => {
       <section className='flex flex-col gap-[32px]'>
         <h2 className='text-3xl font-medium'>
           Continue with {' '}
-          <span className='italic text-light-violet'>
+          <span className='text-light-violet font-bold'>
             **email**
           </span>
         </h2>

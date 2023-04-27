@@ -45,7 +45,7 @@ export class Logger implements ILogger {
   }
 }
 
-export const compositionLogger = (): { logger: ILogger } => {
+export const compositionRootLogger = (): { logger: ILogger } => {
   const logger = new Logger();
 
   return {

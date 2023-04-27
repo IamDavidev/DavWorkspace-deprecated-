@@ -1,14 +1,16 @@
 'use client'
 
-import { ContainerCenter } from '@components/atoms/ContainerCenter.atom'
-import { InputAtom, InputType } from '@components/atoms/Input.atom'
-import { stylesToaster } from '@lib/constants/toasterStyles.const'
-import { compositionRootUserAuth } from '@lib/modules/user/root'
 import { useRouter } from 'next/navigation'
 import { type FormEvent } from 'react'
 import { toast } from 'sonner'
 
+import { ContainerCenter } from '@components/atoms/ContainerCenter.atom'
+import { InputAtom, InputType } from '@components/atoms/Input.atom'
+import { compositionRootLogger } from '@lib/modules/logger/root'
+import { compositionRootUserAuth } from '@lib/modules/user/root'
+
 export const FormSignUserEmail = (): JSX.Element => {
+  const { logger } = compositionRootLogger()
   const { userAuthRepository } = compositionRootUserAuth()
   const router = useRouter()
 
@@ -19,32 +21,14 @@ export const FormSignUserEmail = (): JSX.Element => {
 
     const { email, password } = e.target as HTMLFormElement
 
-    if (email.value.length < 1) {
-      toast.error('Please enter your email', {
-        style: {
-          ...stylesToaster.error
-        }
-      })
-      return
-    }
-    console.log(email.value)
-    if (password.value.length < 1) {
-      console.log(password.value.length)
-      toast.error('Please enter your password', {
-        style: {
-          ...stylesToaster.error
-        }
-      })
-      return
-    }
-    toast.success('You have successfully signed up!', {
-      description: 'Redirecting to sign in page...'
-    })
-
-
+    if (email.value.length < 1) { logger.error('Please enter your email'); return; }
+    if (password.value.length < 1) { logger.error('Please enter your password'); return; }
     userAuthRepository.signInWithEmailAndPassword(email.value, password.value).then(() => {
+      toast.success('You have successfully signed in!', {
+        description: 'Redirecting to home page...'
+      })
       router.push('/user/sign-in')
-    }).catch(() => { })
+    }).catch(() => { logger.error('Error with sign in'); })
   }
 
   return (
@@ -57,18 +41,18 @@ export const FormSignUserEmail = (): JSX.Element => {
           }}>
           <InputAtom
             id='email'
-            label={'Email'}
+            label={'` Email `'}
             placeholder='email@email.com'
             type={InputType.email}
             classInput='px-3 py-1 border border-white border-solid bg-transparent rounded-lg'
-            classLabel='flex flex-col gap-2'
-            classLabelText='text-white font-bold'
+            classLabel='flex flex-col gap-2  justify-center items-start'
+            classLabelText='text-white font-bold bg-dark-gray rounded-lg px-2 py-1 w-auto'
           />
           <InputAtom
             id='password'
-            classLabel='flex flex-col gap-2'
-            classLabelText='text-white font-bold'
-            label={'Password'}
+            classLabel='flex flex-col gap-2  justify-center items-start'
+            classLabelText='text-white font-bold bg-dark-gray rounded-lg px-2 py-1 w-auto'
+            label={'` Password `'}
             placeholder='********'
             type={InputType.password}
             classInput='px-2 py-1 border border-white border-solid bg-transparent rounded-lg'
