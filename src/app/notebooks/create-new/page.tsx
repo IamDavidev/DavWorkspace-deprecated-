@@ -1,19 +1,14 @@
-import { InputAtom, InputType } from '@components/atoms/Input.atom'
-import { userWithAuthServer } from '@lib/utils/UserWithAuth.util'
-import { FormCreateNotebookWrapper } from '../components/FormWrapper.component'
-
 export const metadata = {
   title: 'Create New Notebook | DavWorkspace',
   description: 'Create New Notebook'
 }
 
 const CreateNewPage = async (): Promise<JSX.Element> => {
-  const { user } = await userWithAuthServer({ urlRedirect: '/' })
 
   return (
     <div className='flex flex-row h-full w-full'>
       <div className='w-[50%] flex justify-center items-center h-full flex-col'>
-        <FormCreateNotebookWrapper userId={user?.id ?? ''}>
+        {/* <FormCreateNotebookWrapper userId={user?.id ?? ''}>
           <div className='w-full flex justify-start'>
             <h2 className='text-6xl font-bold '>
               <span className=' text-primary'>Create</span>
@@ -39,7 +34,7 @@ const CreateNewPage = async (): Promise<JSX.Element> => {
           <button className='px-4 py-2 bg-primary rounded-lg text-white font-bold'>
             <span>Submit</span>
           </button>
-        </FormCreateNotebookWrapper>
+        </FormCreateNotebookWrapper> */}
       </div>
       <div className='w-[50%]'>preview</div>
     </div>
