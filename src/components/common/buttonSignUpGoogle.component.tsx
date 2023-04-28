@@ -3,7 +3,7 @@
 import { GoogleIcon } from '@components/icons/Google.icon'
 import { COLORS } from '@constants/colors.const'
 import { compositionRootLogger } from '@lib/modules/logger/root'
-import { compositionRootUserAuth } from '@lib/modules/user/root'
+import { compositionRootUserAuth } from '@lib/modules/user/compositionRootUserAuth'
 
 export const ButtonSignUpGoogle = (): JSX.Element => {
   const { logger } = compositionRootLogger()

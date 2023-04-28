@@ -2,14 +2,13 @@
 
 import { useRouter } from 'next/navigation'
 import { type FormEvent } from 'react'
-import { toast } from 'sonner'
 
 import { ContainerCenter } from '@components/atoms/ContainerCenter.atom'
 import { Divider } from '@components/atoms/Divider.atom'
 import { InputAtom, InputType } from '@components/atoms/Input.atom'
 import { ButtonSignUpGithub } from '@components/common/ButtonSignUpGithub.component'
-import { stylesToaster } from '@lib/constants/toasterStyles.const'
-import { compositionRootUserAuth } from '@lib/modules/user/root'
+import { compositionRootLogger } from '@lib/modules/logger/root'
+import { compositionRootUserAuth } from '@lib/modules/user/compositionRootUserAuth'
 
 export const metadata = {
   title: 'Sign In | DavWorkspace',
@@ -17,6 +16,7 @@ export const metadata = {
 }
 
 const SignInUserPage = (): JSX.Element => {
+  const { logger } = compositionRootLogger()
   const { userAuthRepository } = compositionRootUserAuth()
   const router = useRouter()
 
@@ -32,11 +32,7 @@ const SignInUserPage = (): JSX.Element => {
     userAuthRepository.signInWithEmailAndPassword(email, password).then(() => {
       router.push('/dashboard')
     }).catch(() => {
-      toast.error('Please enter your email', {
-        style: {
-          ...stylesToaster.error
-        }
-      })
+      logger.error("Error with Sign In")
     })
   }
 

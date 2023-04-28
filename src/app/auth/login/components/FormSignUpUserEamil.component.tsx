@@ -7,7 +7,7 @@ import { toast } from 'sonner'
 import { ContainerCenter } from '@components/atoms/ContainerCenter.atom'
 import { InputAtom, InputType } from '@components/atoms/Input.atom'
 import { compositionRootLogger } from '@lib/modules/logger/root'
-import { compositionRootUserAuth } from '@lib/modules/user/root'
+import { compositionRootUserAuth } from '@lib/modules/user/compositionRootUserAuth'
 
 export const FormSignUserEmail = (): JSX.Element => {
   const { logger } = compositionRootLogger()

@@ -1,7 +1,7 @@
 'use client'
 import { COLORS } from '@constants/colors.const'
 import { compositionRootLogger } from '@lib/modules/logger/root'
-import { compositionRootUserAuth } from '@lib/modules/user/root'
+import { compositionRootUserAuth } from '@lib/modules/user/compositionRootUserAuth'
 import { GithubIcon } from '../icons/Github.icon'
 
 export const ButtonSignUpGithub = (): JSX.Element => {
