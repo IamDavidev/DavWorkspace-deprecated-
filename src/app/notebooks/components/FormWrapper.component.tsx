@@ -1,19 +1,16 @@
 'use client'
 
 import { type FC, type FormEvent, type ReactNode } from 'react'
-import { toast } from 'sonner'
 
 import { apiCreateNotebook } from '@lib/api/createNoteebook.api'
-import { stylesToaster } from '@lib/constants/toasterStyles.const'
+import { compositionRootLogger } from '@lib/modules/logger/root'
 
 export interface FormWrapperProps {
   children: ReactNode
   userId: string
 }
 
-export function inputEmptyExceptionClient(nameInput: string): void {
-  const message = `${nameInput}  can't be empty`
-}
+
 
 export const checkInputEmpty = (value: string): boolean => value.length < 1
 
@@ -29,6 +26,8 @@ export async function hanlderOnSubmit({
   evt,
   userId
 }: IHandlerOnSubmit): Promise<void> {
+
+  const { logger } = compositionRootLogger()
   evt.preventDefault()
   const form = evt.target as HTMLFormElement
 
@@ -38,11 +37,9 @@ export async function hanlderOnSubmit({
   const descriptionInput = description.value
 
   if (checkInputEmpty(titleInput)) {
-    inputEmptyExceptionClient('Title')
     return
   }
   if (checkInputEmpty(descriptionInput)) {
-    inputEmptyExceptionClient('Description')
     return
   }
 
@@ -56,12 +53,12 @@ export async function hanlderOnSubmit({
     ownerId: userId
   })
 
-  !isOk &&
-    toast.error(message, {
-      style: {
-        ...stylesToaster.error
-      }
-    })
+
+  if (isOk) {
+    logger.success(message)
+  }
+
+
 }
 
 export const FormCreateNotebookWrapper: FC<FormWrapperProps> = ({

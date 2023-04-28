@@ -4,10 +4,11 @@ import '../styles/global.css'
 
 import SlideNav from '@/components/SlideNav.component'
 import { ContainerToaster } from '@components/common/ContainerToaster.component'
-import { Inter } from '@next/font/google'
 import { compositionRootUser } from '@lib/modules/user/compositionRootUser'
+import { Inter } from '@next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
+
 
 export default async function RootLayout({
   children
@@ -16,7 +17,6 @@ export default async function RootLayout({
 }): Promise<JSX.Element> {
   const { userRepository } = compositionRootUser()
   const user = await userRepository.getCurrentUser()
-  console.info("🚀 ~>  file: layout.tsx:19 ~>  user:", user)
 
   return (
     <html lang='en'>

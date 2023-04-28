@@ -20,6 +20,7 @@ const NotebookIdPage = async ({
   const { documents } =
     await DocumentsServerRespository.getAllDocumentsByNotebookId(notebookId, '')
 
+  console.info("🚀 ~>  file: page.tsx:21 ~>  documents:", documents)
   return (
     <div className='p-12'>
       <h1 className='my-4'>Notebook : {notebookId}</h1>

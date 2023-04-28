@@ -1,3 +1,4 @@
+import { ButtonLogout } from '@components/ButtonLogout'
 import Link from 'next/link'
 
 export const metadata = {
@@ -11,6 +12,9 @@ const Home = (): JSX.Element => {
       <Link href={'/auth/login'} >
         Login
       </Link>
+      <hr />
+      <ButtonLogout />
+
     </section>
   )
 }
