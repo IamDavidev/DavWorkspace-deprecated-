@@ -6,7 +6,6 @@ import { BookIcon } from './icons/Book.icon'
 import { NewIcon } from './icons/New.icon'
 import { SearchIcon } from "./icons/Search.icon"
 import { LinkNav } from './navbar/LInkNav.component'
-// import Link from "next/link"
 import { DraftsIcon } from "./icons/Drafts.icon"
 
 export const btnStyle = 'text-white bg-primary  rounded-2xl p-2 w-full'
@@ -23,7 +22,7 @@ export const DotsNavbar: FC = (): JSX.Element => {
   )
 }
 
-const SlideNav = async (): Promise<JSX.Element> => {
+const SlideNav = (): JSX.Element => {
   return (
     <nav className='w-full h-full border border-solid  border-r border-b-0 border-l-0 border-t-0 p-4'>
       <header className="h-[72px]">
