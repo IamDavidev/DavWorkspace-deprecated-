@@ -13,12 +13,6 @@ export interface FormWrapperProps {
 
 export function inputEmptyExceptionClient(nameInput: string): void {
   const message = `${nameInput}  can't be empty`
-
-  toast.error(message, {
-    style: {
-      ...stylesToaster.error
-    }
-  })
 }
 
 export const checkInputEmpty = (value: string): boolean => value.length < 1
@@ -81,7 +75,7 @@ export const FormCreateNotebookWrapper: FC<FormWrapperProps> = ({
         hanlderOnSubmit({
           evt: e,
           userId
-        }).catch(() => {})
+        }).catch(() => { })
       }}>
       {children}
     </form>
