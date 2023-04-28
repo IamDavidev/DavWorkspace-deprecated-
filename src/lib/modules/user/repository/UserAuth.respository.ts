@@ -1,10 +1,9 @@
-import { createClient, type OAuthResponse } from "@supabase/supabase-js";
+import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
 
 import { type IUserAuthRepository } from "../schemas/repository.model";
-import { SUPABASE_KEY, SUPABASE_URL } from "@constants/client.const";
 
 interface IControlAuthenticator {
-  signInWithGithub: () => Promise<OAuthResponse>;
+  signInWithGithub: () => Promise<void>;
   signInWithEmailAndPassword: (
     email: string,
     password: string,
@@ -17,10 +16,10 @@ export enum PROVIDERS_AUTH {
 }
 
 export class ControlAuthenticator implements IControlAuthenticator {
-  private readonly client = createClient(SUPABASE_URL, SUPABASE_KEY);
+  private readonly client = createBrowserSupabaseClient();
 
-  public async signInWithGithub(): Promise<OAuthResponse> {
-    return await this.client.auth.signInWithOAuth({
+  public async signInWithGithub(): Promise<void> {
+    await this.client.auth.signInWithOAuth({
       provider: PROVIDERS_AUTH.GITHUB,
     });
   }
@@ -36,7 +35,11 @@ export class ControlAuthenticator implements IControlAuthenticator {
   }
 
   public async signOut(): Promise<void> {
-    await this.client.auth.signOut();
+    const { error } = await this.client.auth.signOut();
+    console.info(
+      "🚀 ~>  file: UserAuth.respository.ts:39 ~>  ControlAuthenticator ~>  signOut ~>  error:",
+      error,
+    );
   }
 }
 
