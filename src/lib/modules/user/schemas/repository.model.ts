@@ -1,3 +1,5 @@
+import { type IUser } from "./user.model";
+
 export interface IUserAuthRepository {
   signInWithGithub: () => Promise<void>;
   signInWithGoogle: () => Promise<void>;
@@ -6,4 +8,8 @@ export interface IUserAuthRepository {
     password: string,
   ) => Promise<void>;
   signOut: () => Promise<void>;
+}
+
+export interface IUserRepository {
+  getCurrentUser: () => Promise<IUser | null>;
 }
