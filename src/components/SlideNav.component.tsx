@@ -8,6 +8,8 @@ import { SearchIcon } from "./icons/Search.icon"
 import { LinkNav } from './navbar/LInkNav.component'
 import { DraftsIcon } from "./icons/Drafts.icon"
 import { ButtonLogout } from "./ButtonLogout"
+import Image from "next/image"
+import { FavoritesIcon } from "./icons/Favorites.icon"
 
 export const btnStyle = 'text-white bg-primary  rounded-2xl p-2 w-full'
 
@@ -23,20 +25,42 @@ export const DotsNavbar: FC = (): JSX.Element => {
   )
 }
 
-const SlideNav = (): JSX.Element => {
+interface IProfileProps {
+  imageSrc: string
+  name: string
+}
+
+export function Profile({
+  imageSrc,
+  name,
+
+}: IProfileProps): JSX.Element {
+  return (
+    <div className="flex flex-row gap-2 justify-start items-center">
+      <Image width={96} height={96} src={imageSrc} alt={name} className="rounded-full w-12 h-12" />
+      <span className="text-xs font-bold">{name}</span>
+    </div>
+  )
+}
+
+interface ISlideNavProps {
+  imageSrc: string
+  name: string
+  email?: string
+}
+
+const SlideNav = ({ imageSrc, name }: ISlideNavProps): JSX.Element => {
   return (
     <nav className='w-full h-full border border-solid  border-r border-b-0 border-l-0 border-t-0 p-4'>
       <header className="h-[72px]">
         <DotsNavbar />
       </header>
-      <section className="flex flex-col justify-between items-start h-[calc(100% - 72px)]">
-        <div
-          className="flex flex-col gap-4 "
-        >
+      <section className="flex flex-col justify-between items-start h-[calc(100%-72px)]">
+        <ul className="flex flex-col gap-4 ">
           <LinkNav
-            href="/documents/search/"
-            label='Search'
-            icon={<SearchIcon className='w-6 h-6' color={COLORS.WHITE} />}
+            href="/documents/favorites/"
+            label='Favorites'
+            icon={<FavoritesIcon className='w-6 h-6' color={COLORS.WHITE} />}
           />
           <LinkNav
             href="/"
@@ -59,8 +83,9 @@ const SlideNav = (): JSX.Element => {
             label="Drafts"
             icon={<DraftsIcon className='w-6 h-6' color={COLORS.WHITE} />}
           />
-        </div>
-        <div>
+        </ul>
+        <div className="flex flex-col gap-4 items-center justify-center">
+          <Profile imageSrc={imageSrc} name={name} key={name} />
           <ButtonLogout />
         </div>
       </section>

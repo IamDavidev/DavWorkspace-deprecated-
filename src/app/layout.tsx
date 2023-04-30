@@ -30,9 +30,9 @@ export default async function RootLayout({
             }>
             {
               user !== null && (
-                <header className='max-w-[250px] w-[250px]'>
-                  <SlideNav />
-                </header>
+                <section className='max-w-[250px] w-[250px]'>
+                  <SlideNav imageSrc={user.avatar_url ?? ""} name={user.nickname} email={user.email ?? ""} />
+                </section>
               )
             }
             <main className='w-full h-auto mx-auto'>
