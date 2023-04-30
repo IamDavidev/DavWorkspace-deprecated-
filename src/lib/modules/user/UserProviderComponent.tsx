@@ -1,39 +1,39 @@
 'use client'
-import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs'
-import { type AuthChangeEvent } from '@supabase/supabase-js'
+
+import { createBrowserSupabaseClient, type SupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState, type ReactNode } from 'react'
+import { createContext, useEffect, useState, type ReactNode } from 'react'
 
-interface UserProviderProps {
+const Context = createContext<{ supabase: SupabaseClient<any, "public", any> | null; }>({
+  supabase: null,
+})
+
+export default function UserProvider({ children }: {
   children: ReactNode
-}
-
-export enum EAuthEvents {
-  SIGNED_IN = 'SIGNED_IN',
-  SIGNED_OUT = 'SIGNED_OUT'
-}
-
-export default function UserProvider({
-  children
-}: UserProviderProps): JSX.Element {
-  const [browserClient] = useState(() => createBrowserSupabaseClient())
+}): JSX.Element {
+  console.log('UserProvider')
+  const [supabase] = useState(() => createBrowserSupabaseClient())
   const router = useRouter()
 
-
   useEffect(() => {
-    const { data: {
-      subscription
-    } } = browserClient.auth.onAuthStateChange((evt: AuthChangeEvent): void => {
-      if (evt === EAuthEvents.SIGNED_OUT) {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((evt) => {
+      if (evt === "SIGNED_OUT") {
         window.location.reload()
       }
-      router.refresh()
     })
 
-    return () => { subscription.unsubscribe(); }
-  }, [router, browserClient]
+    console.log('Auth state change')
+
+    return () => {
+      subscription.unsubscribe()
+    }
+  }, [router, supabase])
+
+  return (
+    <Context.Provider value={{ supabase }}>
+      <>{children}</>
+    </Context.Provider>
   )
-
-
-  return <>{children}</>
 }
