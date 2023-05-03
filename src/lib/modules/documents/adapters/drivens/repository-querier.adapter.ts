@@ -21,15 +21,11 @@ export class RepositoryQuerier implements RepositoryQuerying {
     return documents
   }
 
-  async getDocumentById(
-    id: string,
-    ownerId: string
-  ): Promise<DocumentEntity | null> {
+  async getDocumentById(id: string): Promise<DocumentEntity | null> {
     const { data } = await this.client
       .from('documents')
       .select('*')
       .eq('id', id)
-      .eq('owner_id', ownerId)
 
     if (data === null) return null
 

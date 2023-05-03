@@ -19,11 +19,8 @@ export class DocumentRepository implements ForDocumentRepository {
     private readonly repositoryQuerier: RepositoryQuerier
   ) {}
 
-  async getDocumentById(
-    id: string,
-    ownerId: string
-  ): Promise<DocumentEntity | null> {
-    return await this.repositoryQuerier.getDocumentById(id, ownerId)
+  async getDocumentById(id: string): Promise<DocumentEntity | null> {
+    return await this.repositoryQuerier.getDocumentById(id)
   }
 
   async getAllDocumentsByOwnerId(
