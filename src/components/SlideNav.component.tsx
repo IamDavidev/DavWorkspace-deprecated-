@@ -1,19 +1,29 @@
-import { COLORS } from "@constants/colors.const"
-import { type FC } from "react"
+import { type FC, type ReactNode } from "react"
 import { DocumentIcon } from "./icons/Document.icon"
 
-import { BookIcon } from './icons/Book.icon'
-import { NewIcon } from './icons/New.icon'
-import { SearchIcon } from "./icons/Search.icon"
-import { LinkNav } from './navbar/LInkNav.component'
-import { DraftsIcon } from "./icons/Drafts.icon"
-import { ButtonLogout } from "./ButtonLogout"
 import Image from "next/image"
+import { ButtonLogout } from "./ButtonLogout"
+import { BookIcon } from './icons/Book.icon'
+import { DraftsIcon } from "./icons/Drafts.icon"
 import { FavoritesIcon } from "./icons/Favorites.icon"
+import { NewIcon } from './icons/New.icon'
+import { LinkNav } from './navbar/LInkNav.component'
+import { COLORS } from "@constants/colors.const"
 
 export const btnStyle = 'text-white bg-primary  rounded-2xl p-2 w-full'
 
 export const dotStyle = "w-4 h-4  rounded-full"
+
+export interface LinkDB {
+  href : string
+  label: string
+  icon: ReactNode
+} 
+
+export const LINKS_DB = {
+
+  }
+
 
 export const DotsNavbar: FC = (): JSX.Element => {
   return (
@@ -51,11 +61,11 @@ interface ISlideNavProps {
 
 const SlideNav = ({ imageSrc, name }: ISlideNavProps): JSX.Element => {
   return (
-    <nav className='w-full h-full border border-solid  border-r border-b-0 border-l-0 border-t-0 p-4'>
-      <header className="h-[72px]">
+    <nav className='w-full h-full border border-solid  border-r border-b-0 border-l-0 border-t-0'>
+      <header className="h-[72px] p-4">
         <DotsNavbar />
       </header>
-      <section className="flex flex-col justify-between items-start h-[calc(100%-72px)]">
+      <section className="flex flex-col justify-between items-start h-[calc(100%-72px)] py-8 px-4">
         <ul className="flex flex-col gap-4 ">
           <LinkNav
             href="/documents/favorites/"
@@ -68,7 +78,7 @@ const SlideNav = ({ imageSrc, name }: ISlideNavProps): JSX.Element => {
             icon={<NewIcon className='w-6 h-6' color={COLORS.WHITE} />}
           />
           <LinkNav
-            href="/documents"
+            href="/dashboard/documents"
             label="Documents"
             icon={<DocumentIcon className='w-6 h-6' color={COLORS.WHITE} />}
           />

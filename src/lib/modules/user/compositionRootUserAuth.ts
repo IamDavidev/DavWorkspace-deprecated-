@@ -1,20 +1,18 @@
 import {
   ControlAuthenticator,
-  UserAuthRepository,
-} from "./repository/UserAuth.respository";
+  UserAuthRepository
+} from './repository/UserAuth.respository'
 
-interface ICompositionRootUserAuth {
-  userAuthRepository: UserAuthRepository;
+interface CompositionRootUserAuthResponse {
+  userAuthRepository: UserAuthRepository
 }
 
-export function compositionRootUserAuth(): ICompositionRootUserAuth {
-  const controlAuthenticator = new ControlAuthenticator();
+export function compositionRootUserAuth(): CompositionRootUserAuthResponse {
+  const controlAuthenticator = new ControlAuthenticator()
 
-  const userAuthRepository = new UserAuthRepository(
-    controlAuthenticator,
-  );
+  const userAuthRepository = new UserAuthRepository(controlAuthenticator)
 
   return {
-    userAuthRepository,
-  };
+    userAuthRepository
+  }
 }
