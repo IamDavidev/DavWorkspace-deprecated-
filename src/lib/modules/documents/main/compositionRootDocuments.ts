@@ -3,9 +3,10 @@ import { createServerComponentSupabaseClient } from '@supabase/auth-helpers-next
 import { DocumentRepository } from './root'
 import { ControlOperating } from '../adapters/drivens/control-operatier.adapter'
 import { RepositoryQuerier } from '../adapters/drivens/repository-querier.adapter'
+import { DocumentProxyAdapter } from '../adapters/drivers/documentProxy.adapter'
 
 interface compositionRootDocumentResponse {
-  documentReponsository: DocumentRepository
+  documentProxyAdapter: DocumentProxyAdapter
 }
 
 export function compositionRootDocument(): compositionRootDocumentResponse {
@@ -22,7 +23,9 @@ export function compositionRootDocument(): compositionRootDocumentResponse {
     repositoryQuerier
   )
 
+  const documentProxyAdapter = new DocumentProxyAdapter(documentReponsository)
+
   return {
-    documentReponsository
+    documentProxyAdapter
   }
 }

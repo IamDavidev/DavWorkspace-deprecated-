@@ -9,10 +9,12 @@ export class RepositoryQuerier implements RepositoryQuerying {
   async getAllDocumentsByOwnerId(
     ownerId: string
   ): Promise<DocumentEntity[] | null> {
-    const { data } = await this.client
+    const { data, error } = await this.client
       .from('documents')
       .select('*')
-      .eq('id_owner', ownerId)
+      .eq('owner_id', ownerId)
+
+    console.log(error)
 
     const documents = (data as DocumentEntity[]) ?? null
 
@@ -27,7 +29,7 @@ export class RepositoryQuerier implements RepositoryQuerying {
       .from('documents')
       .select('*')
       .eq('id', id)
-      .eq('id_owner', ownerId)
+      .eq('owner_id', ownerId)
 
     if (data === null) return null
 
