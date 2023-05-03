@@ -1,8 +1,10 @@
+
+
 const DasboardDocumentsPage = (): JSX.Element => {
   return (
     <section>
       <h1>
-        Documents
+        Content of Document Page
       </h1>
     </section>
   )

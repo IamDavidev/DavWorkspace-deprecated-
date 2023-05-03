@@ -1,22 +1,47 @@
-import { type FC, type ReactNode } from 'react'
+import { compositionRootDocument } from '@lib/modules/documents/main/compositionRootDocuments'
+import { type DocumentEntity } from '@lib/modules/documents/main/entities/documet.entity'
+import { compositionRootUser } from '@lib/modules/user/compositionRootUser'
+import Link from 'next/link'
+import { type ReactNode } from 'react'
 
 
 interface LayoutDashboardDocumentsProps {
   children: ReactNode
 }
 
-const LayoutDashboardDocuments: FC<LayoutDashboardDocumentsProps> = ({
+const LayoutDashboardDocuments = async ({
   children
-}): JSX.Element => {
+}: LayoutDashboardDocumentsProps): Promise<JSX.Element> => {
+  const { documentProxyAdapter } = compositionRootDocument()
+  const { userRepository } = compositionRootUser()
+  const user = await userRepository.getCurrentUser()
+
+  const ownerId = user?.id ?? ""
+
+  const documents = await documentProxyAdapter.getAllDocumentsByOwnerId(ownerId)
+
   return (
-    <>
-      <header className="h-[72px]">
-        search input
-      </header>
-      <div className='py-8 px-4'>
-        {children}
-      </div>
-    </>
+    <div className='flex flex-row gap-4 flex-wrap'>
+      <section>
+        <header className="h-[72px] px-4">
+          search input
+        </header>
+        <div className='py-8 px-4 flex flex-col gap-8'>
+          {documents?.map((doc: DocumentEntity): JSX.Element => {
+            return (
+              <Link href={`/dashboard/documents/${doc.id}`} key={doc.id}>
+                <article>
+                  <h2>
+                    {doc.title}
+                  </h2>
+                </article>
+              </Link>
+            )
+          })}
+        </div>
+      </section>
+      {children}
+    </div>
   )
 }
 
