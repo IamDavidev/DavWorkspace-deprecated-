@@ -1,6 +1,7 @@
-import { type FC, type ReactNode } from "react"
+import { type FC } from "react"
 import { DocumentIcon } from "./icons/Document.icon"
 
+import { COLORS } from "@constants/colors.const"
 import Image from "next/image"
 import { ButtonLogout } from "./ButtonLogout"
 import { BookIcon } from './icons/Book.icon'
@@ -8,21 +9,10 @@ import { DraftsIcon } from "./icons/Drafts.icon"
 import { FavoritesIcon } from "./icons/Favorites.icon"
 import { NewIcon } from './icons/New.icon'
 import { LinkNav } from './navbar/LInkNav.component'
-import { COLORS } from "@constants/colors.const"
 
 export const btnStyle = 'text-white bg-primary  rounded-2xl p-2 w-full'
 
 export const dotStyle = "w-4 h-4  rounded-full"
-
-export interface LinkDB {
-  href : string
-  label: string
-  icon: ReactNode
-} 
-
-export const LINKS_DB = {
-
-  }
 
 
 export const DotsNavbar: FC = (): JSX.Element => {
