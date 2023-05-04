@@ -21,8 +21,8 @@ const LayoutDashboardDocuments = async ({
   const documents = await documentProxyAdapter.getAllDocumentsByOwnerId(ownerId)
 
   return (
-    <div className='flex flex-row gap-4 flex-wrap'>
-      <section>
+    <div className='flex flex-row gap-4 h-full'>
+      <section className=' w-[400px] max-w-[400px] border border-r border-t-0 border-l-0 border-b-0 border-white  '>
         <header className="h-[72px] px-4">
           search input
         </header>

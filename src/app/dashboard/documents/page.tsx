@@ -2,10 +2,12 @@
 
 const DasboardDocumentsPage = (): JSX.Element => {
   return (
-    <section>
-      <h1>
-        Content of Document Page
-      </h1>
+    <section className="w-full h-full flex flex-col justify-center items-center">
+      <div className="">
+        <h2 className="text-2xl  text-center">
+          Select  <span className="block text-light-blue font-bold">**Document**</span> for inspect <span className="italic text-light-blue"> _preview_</span>
+        </h2>
+      </div>
     </section>
   )
 }
