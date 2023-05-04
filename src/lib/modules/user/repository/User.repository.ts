@@ -18,19 +18,8 @@ export class ControllQuerier implements ForControlQuerier {
 
   async getCurrentUser(): Promise<PersistanceUser | null> {
     const {
-      data: { user },
-      error
+      data: { user }
     } = await this.client.auth.getUser()
-
-    console.info(
-      '🚀 ~>  file: User.repository.ts:22 ~>  ControllQuerier ~>  getCurrentUser ~>  user:',
-      user
-    )
-
-    // add managaming errors
-    console.log({
-      error
-    })
 
     return await this.ForAdapterUser.toPersistence(user)
   }

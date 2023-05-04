@@ -11,7 +11,6 @@ const Context = createContext<{ supabase: SupabaseClient<any, "public", any> | n
 export default function UserProvider({ children }: {
   children: ReactNode
 }): JSX.Element {
-  console.log('UserProvider')
   const [supabase] = useState(() => createBrowserSupabaseClient())
   const router = useRouter()
 
@@ -23,8 +22,6 @@ export default function UserProvider({ children }: {
         window.location.reload()
       }
     })
-
-    console.log('Auth state change')
 
     return () => {
       subscription.unsubscribe()
