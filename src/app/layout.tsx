@@ -32,7 +32,7 @@ export default async function RootLayout({
         <UserProvider>
           <div
             className={
-              ' app-editor  flex  flex-row gap-4 min-h-screen text-white bg-dark ' +
+              ' app-editor  flex  flex-row gap-0 min-h-screen text-white bg-dark ' +
               inter.className
             }>
             {

@@ -13,6 +13,7 @@ export class RepositoryQuerier implements RepositoryQuerying {
       .from('documents')
       .select('*')
       .eq('owner_id', ownerId)
+    // add order for status on active
 
     console.log(error)
 
