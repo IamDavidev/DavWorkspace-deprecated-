@@ -1,5 +1,6 @@
 import { ButtonSignUpGithub } from '@components/common/ButtonSignUpGithub.component'
 import { ButtonSignUpGoogle } from '@components/common/buttonSignUpGoogle.component'
+import Link from 'next/link'
 
 import { FormSignUserEmail } from './components/FormSignUpUserEamil.component'
 
@@ -11,7 +12,7 @@ export const metadata = {
 const SignUpUserPage = (): JSX.Element => {
   return (
     <div className='flex justify-center items-center flex-col min-h-screen'>
-      <header>
+      <header className=''>
         <h1 className='mb-12 text-7xl text-light-violet font-bold'>
           # Login
         </h1>
@@ -30,6 +31,11 @@ const SignUpUserPage = (): JSX.Element => {
         </h2>
         <FormSignUserEmail />
       </section>
+      <Link href='/'
+        className='text-light-violet text-sm mt-8'
+      >
+        Back to home
+      </Link>
     </div>
   )
 }
