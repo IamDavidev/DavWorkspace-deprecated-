@@ -44,7 +44,7 @@ export const FormSignUserEmail = (): JSX.Element => {
             label={'` Email `'}
             placeholder='email@email.com'
             type={InputType.email}
-            classInput='px-3 py-1 border border-white border-solid bg-transparent rounded-lg'
+            classInput='px-3 py-1 border border-white border-solid bg-transparent rounded-lg min-w-[320px]'
             classLabel='flex flex-col gap-2  justify-center items-start'
             classLabelText='text-white font-bold bg-dark-gray rounded-lg px-2 py-1 w-auto'
           />
@@ -55,7 +55,7 @@ export const FormSignUserEmail = (): JSX.Element => {
             label={'` Password `'}
             placeholder='********'
             type={InputType.password}
-            classInput='px-2 py-1 border border-white border-solid bg-transparent rounded-lg'
+            classInput='px-2 py-1 border border-white border-solid bg-transparent rounded-lg min-w-[320px]'
           />{' '}
           <label className='flex justify-end'>
             <button
