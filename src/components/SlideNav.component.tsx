@@ -1,17 +1,12 @@
 import { type FC } from "react"
-import { DocumentIcon } from "./icons/Document.icon"
+import Image from "next/image"
 
 import { COLORS } from "@constants/colors.const"
-import Image from "next/image"
 import { ButtonLogout } from "./ButtonLogout"
-import { BookIcon } from './icons/Book.icon'
-import { DraftsIcon } from "./icons/Drafts.icon"
-import { FavoritesIcon } from "./icons/Favorites.icon"
-import { NewIcon } from './icons/New.icon'
-import { LinkNav } from './navbar/LInkNav.component'
+import { LinkNav } from "./navbar/LInkNav.component"
+import { BookIcon, DocumentIcon, DraftsIcon, FavoritesIcon, NewIcon } from "./icons"
 
 export const btnStyle = 'text-white bg-primary  rounded-2xl p-2 w-full'
-
 export const dotStyle = "w-4 h-4  rounded-full"
 
 
@@ -49,9 +44,11 @@ interface ISlideNavProps {
   email?: string
 }
 
+
+
 const SlideNav = ({ imageSrc, name }: ISlideNavProps): JSX.Element => {
   return (
-    <nav className='w-full h-full border border-solid  border-r border-b-0 border-l-0 border-t-0'>
+    <nav className='w-full h-full border border-solid  border-r border-b-0 border-l-0 border-t-0 border-white min-w-[240px] max-w-[240px]'>
       <header className="h-[72px] p-4">
         <DotsNavbar />
       </header>
@@ -77,7 +74,7 @@ const SlideNav = ({ imageSrc, name }: ISlideNavProps): JSX.Element => {
             label='Notebooks'
             icon={<BookIcon className='w-5 h-5 ' color={COLORS.WHITE} />}
           />
-          <span className="w-20 h-[1px] bg-white" />
+          <span className="w-32 h-[1px] bg-white" />
           <LinkNav
             href="/documents/drafts"
             label="Drafts"
