@@ -1,4 +1,4 @@
-
+import SlideNav from '@components/SlideNav.component'
 import { compositionRootUser } from '@lib/modules/user/compositionRootUser'
 import { redirect } from 'next/navigation'
 import { type ReactNode } from 'react'
@@ -18,7 +18,10 @@ const DashboardLayout = async ({
 
   return (
     <div className='h-full w-full relative'>
-      {children}
+      <SlideNav imageSrc={user.avatar_url ?? ""} name={user.nickname ?? ""} email={user.email} key={user.id} />
+      <div>
+        {children}
+      </div>
     </div>
   )
 }

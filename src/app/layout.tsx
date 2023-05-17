@@ -17,17 +17,14 @@ export default async function RootLayout({
 }): Promise<JSX.Element> {
   return (
     <html lang='en'>
-      <body>
+      <body className={
+        ' app-editor  flex  flex-row gap-0 min-h-screen text-white bg-dark ' +
+        inter.className
+      }>
         <UserProvider>
-          <div
-            className={
-              ' app-editor  flex  flex-row gap-0 min-h-screen text-white bg-dark ' +
-              inter.className
-            }>
-            <main className='w-full h-auto mx-auto'>
-              {children}
-            </main>
-          </div>
+          <main className='w-full h-auto mx-auto'>
+            {children}
+          </main>
           <ContainerToaster />
         </UserProvider>
       </body>
