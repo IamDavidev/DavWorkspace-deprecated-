@@ -11,7 +11,7 @@ export const metadata = {
 
 const SignUpUserPage = (): JSX.Element => {
   return (
-    <div className='flex justify-center items-center flex-col min-h-screen'>
+    <div className='flex justify-center items-center flex-col h-full'>
       <header className=''>
         <h1 className='mb-12 text-7xl text-light-violet font-bold'>
           # Login
