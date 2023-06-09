@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Home | DavWork',
+  title: 'Home | DavWorkspace',
   description: 'Home page'
 }
 

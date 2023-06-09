@@ -21,14 +21,25 @@ export const FormSignUserEmail = (): JSX.Element => {
 
     const { email, password } = e.target as HTMLFormElement
 
-    if (email.value.length < 1) { logger.error('Please enter your email'); return; }
-    if (password.value.length < 1) { logger.error('Please enter your password'); return; }
+    if (email.value.length < 1) {
+      logger.error('Please enter your email')
+      return
+    }
+    
+    if (password.value.length < 1) {
+      logger.error('Please enter your password')
+      return
+    }
+    
     userAuthRepository.signInWithEmailAndPassword(email.value, password.value).then(() => {
       toast.success('You have successfully signed in!', {
         description: 'Redirecting to home page...'
       })
       router.push('/user/sign-in')
-    }).catch(() => { logger.error('Error with sign in'); })
+    }).catch(() => {
+      logger.error('Error with sign in')
+    })
+    
   }
 
   return (
@@ -37,7 +48,8 @@ export const FormSignUserEmail = (): JSX.Element => {
         <form
           className='flex flex-col gap-4'
           onSubmit={(e): void => {
-            onSubmitHandler(e).catch(() => { })
+            onSubmitHandler(e).catch(() => {
+            })
           }}>
           <InputAtom
             id='email'
@@ -59,7 +71,9 @@ export const FormSignUserEmail = (): JSX.Element => {
           />{' '}
           <label className='flex justify-end'>
             <button
-              type='submit' className='flex gap-4 bg-white justify-center items-center border border-white border-solid px-16 py-2 rounded-2xl text-black  transition duration-300 ease-in-out    hover:border-light-violet hover:bg-transparent hover:text-light-violet'
+              type='submit'
+              // className='flex gap-4 bg-white justify-center items-center border border-white border-solid px-16 py-2 rounded-2xl text-black  transition duration-300 ease-in-out    hover:border-light-violet hover:bg-transparent hover:text-light-violet'
+              className={"bg-light-violet text-black px-16 py-2 rounded-2xl transition duration-300 ease-in-out hover:scale-105"}
             >
               Login
             </button>
