@@ -1,14 +1,12 @@
 'use client'
 
-import {
-  type FC
-} from 'react'
+import { type FC } from 'react'
 
 import { EDITOR } from '@constants/edtior.const'
 import { useEditor } from '@lib/hooks/useEditor.hook'
 
 import EditorLayout from './Editor.component'
-import { PreviewMode } from './PreviewLayout'
+import { PreviewModeMD } from './PreviewLayout'
 
 
 export interface ContainerEditorProps {
@@ -29,7 +27,7 @@ export const ContainerEditor: FC<ContainerEditorProps> = ({ value }): JSX.Elemen
         className={'h-editor-layout'}
         onChange={onChangeHandler}
       />
-      <PreviewMode value={preview !== undefined ? preview : ''} />
+      <PreviewModeMD value={preview !== undefined ? preview : ''} />
     </>
   )
 }
