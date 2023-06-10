@@ -1,14 +1,22 @@
 import { type ReactNode } from 'react'
-import { MDEditor } from "@components/icons"
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
+
+import { compositionRootUser } from '@lib/modules/user/compositionRootUser'
+import { MDEditor } from '@components/icons'
 
 export interface AuthLayoutProps {
   children: ReactNode
 }
 
-const AuthLayout = ({
-  children
-}: AuthLayoutProps): JSX.Element => {
+const AuthLayout = (props: AuthLayoutProps): JSX.Element => {
+  const { children } = props
+  const { userRepository } = compositionRootUser()
+  
+  const user = userRepository.getCurrentUser()
+  
+  if(user !== null) return redirect('/dashboard/');
+
   return (
     <div className='p-4 h-full'>
       <Link href={'/'}>

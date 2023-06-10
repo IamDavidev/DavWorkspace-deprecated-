@@ -1,6 +1,6 @@
 
 
-const DasboardDocumentsPage = (): JSX.Element => {
+const DashboardDocumentsPage = (): JSX.Element => {
   return (
     <section className="w-full h-full flex flex-col justify-center items-center">
       <div className="">
@@ -12,4 +12,4 @@ const DasboardDocumentsPage = (): JSX.Element => {
   )
 }
 
-export default DasboardDocumentsPage
+export default DashboardDocumentsPage

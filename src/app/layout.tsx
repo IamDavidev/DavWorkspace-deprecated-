@@ -9,28 +9,26 @@ import UserProvider from '@lib/modules/user/UserProviderComponent'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default async function RootLayout({
-  children,
-}: {
+export interface RootLayoutProps {
   children: ReactNode
-}): Promise<JSX.Element> {
+}
+
+export default async function RootLayout(props: RootLayoutProps): Promise<JSX.Element> {
+  const { children } = props
+ 
   return (
     <html lang='en'>
-      <head>
-        <meta charSet='utf-8' />
-        <link rel='icon' href='/davworkspace-logo.png' />
-      </head>
-      <body className={
-        ' app-editor  flex  flex-row gap-0 min-h-screen text-white bg-dark ' +
-        inter.className
-      }>
-        <UserProvider>
-          <main className='w-full h-auto mx-auto'>
-            {children}
-          </main>
-          <ContainerToaster />
-        </UserProvider>
-      </body>
-    </html >
+    <body className={
+      ' app-editor  flex  flex-row gap-0 min-h-screen text-white bg-dark ' +
+      inter.className
+    }>
+    <UserProvider>
+      <main className='w-full h-auto mx-auto'>
+        {children}
+      </main>
+      <ContainerToaster />
+    </UserProvider>
+    </body>
+    </html>
   )
 }

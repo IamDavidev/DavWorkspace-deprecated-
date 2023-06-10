@@ -7,13 +7,12 @@ interface DocumentRenderIdProps {
   }
 }
 
-const DocumentRenderId = async ({
-  params
-}: DocumentRenderIdProps): Promise<JSX.Element> => {
+
+const DocumentRenderId = async (props: DocumentRenderIdProps): Promise<JSX.Element> => {
+  const { params } = props
   const { id: docId } = params
 
   const { documentProxyAdapter } = compositionRootDocument()
-
 
   const document = await documentProxyAdapter.getDocumentById(docId)
 
