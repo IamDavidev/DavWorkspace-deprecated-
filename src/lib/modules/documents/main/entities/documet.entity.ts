@@ -23,9 +23,6 @@ export interface DocumentEntity {
   id_notebook: UUID
 }
 
-// export interface DocumentToUpdating
-//   extends Omit<DocumentEntity, 'id' | 'created_at' | 'id_notebook'> {}
-
 export interface DocumentToUpdating {
   title?: string
   status?: DocumentStatus
@@ -49,7 +46,7 @@ export interface ResponseDeletingDocument
   extends Pick<ResponseOperation, 'ok' | 'status'> {
 }
 
-export interface ResponseUpdatingSucces {
+export interface ResponseUpdatingSuccess {
   ok: boolean
   status: number | string | null
 }
@@ -60,4 +57,4 @@ export interface ResponseUpdatingFailure {
   messageError: string
 }
 
-export type ResponseUpdatingDocument = ResponseUpdatingFailure | ResponseUpdatingSucces
+export type ResponseUpdatingDocument = ResponseUpdatingFailure | ResponseUpdatingSuccess
