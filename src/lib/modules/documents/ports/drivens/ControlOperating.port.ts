@@ -4,7 +4,7 @@ import {
   type DocumentEntity,
   type DocumentToUpdating,
   type ResponseOperation,
-  type ReponseDeletingDocument
+  type ResponseDeletingDocument
 } from '../../main/entities/documet.entity'
 
 export interface ForControlOperating {
@@ -14,5 +14,5 @@ export interface ForControlOperating {
     document: DocumentToUpdating
   ) => Promise<DocumentCreatingResult>
 
-  deleteDocument: (id: UUID) => Promise<ReponseDeletingDocument>
+  deleteDocument: (id: UUID) => Promise<ResponseDeletingDocument>
 }

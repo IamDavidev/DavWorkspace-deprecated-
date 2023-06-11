@@ -3,12 +3,12 @@ import type {
   DocumentCreatingResult,
   DocumentEntity,
   DocumentToUpdating,
-  ReponseDeletingDocument,
+  ResponseDeletingDocument,
   ResponseOperation
 } from '../../main/entities/documet.entity'
 import { type ForControlOperating } from '../../ports/drivens/ControlOperating.port'
 
-export class ControlOperating implements ForControlOperating {
+export class ControlOperator implements ForControlOperating {
   constructor(private readonly client: SupabaseClient) {}
 
   async createDocument(document: DocumentEntity): Promise<ResponseOperation> {
@@ -41,7 +41,7 @@ export class ControlOperating implements ForControlOperating {
     }
   }
 
-  async deleteDocument(id: string): Promise<ReponseDeletingDocument> {
+  async deleteDocument(id: string): Promise<ResponseDeletingDocument> {
     return {
       ok: true,
       status: 200

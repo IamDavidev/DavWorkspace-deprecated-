@@ -40,5 +40,6 @@ export interface DocumentCreatingResult
 //   status: number | string | null
 // }
 
-export interface ReponseDeletingDocument
+export interface ResponseDeletingDocument
   extends Pick<ResponseOperation, 'ok' | 'status'> {}
+

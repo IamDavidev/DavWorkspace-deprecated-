@@ -2,7 +2,7 @@ import {
   type DocumentCreatingResult,
   type DocumentEntity,
   type DocumentToUpdating,
-  type ReponseDeletingDocument,
+  type ResponseDeletingDocument,
   type ResponseOperation
 } from '../../main/entities/documet.entity'
 import {
@@ -28,7 +28,7 @@ export class DocumentProxyAdapter implements ForDocumentRepository {
     return await this.respository.updateDocument(document)
   }
 
-  async deleteDocument(id: string): Promise<ReponseDeletingDocument> {
+  async deleteDocument(id: string): Promise<ResponseDeletingDocument> {
     return await this.respository.deleteDocument(id)
   }
 

@@ -1,7 +1,7 @@
 import { cookies, headers } from 'next/headers'
 import { createServerComponentSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { DocumentRepository } from './root'
-import { ControlOperating } from '../adapters/drivens/control-operatier.adapter'
+import { ControlOperator } from '../adapters/drivens/control-operatier.adapter'
 import { RepositoryQuerier } from '../adapters/drivens/repository-querier.adapter'
 import { DocumentProxyAdapter } from '../adapters/drivers/documentProxy.adapter'
 
@@ -15,15 +15,15 @@ export function compositionRootDocument(): compositionRootDocumentResponse {
     headers
   })
 
-  const controlOperating = new ControlOperating(client)
+  const controlOperator = new ControlOperator(client)
   const repositoryQuerier = new RepositoryQuerier(client)
 
-  const documentReponsository = new DocumentRepository(
-    controlOperating,
+  const documentRepository = new DocumentRepository(
+    controlOperator,
     repositoryQuerier
   )
 
-  const documentProxyAdapter = new DocumentProxyAdapter(documentReponsository)
+  const documentProxyAdapter = new DocumentProxyAdapter(documentRepository)
 
   return {
     documentProxyAdapter
