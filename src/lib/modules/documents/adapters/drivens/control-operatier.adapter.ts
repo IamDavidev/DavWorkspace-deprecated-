@@ -4,12 +4,15 @@ import type {
   DocumentEntity,
   DocumentToUpdating,
   ResponseDeletingDocument,
-  ResponseOperation
+  ResponseOperation,
+  ResponseUpdatingDocument
 } from '../../main/entities/documet.entity'
 import { type ForControlOperating } from '../../ports/drivens/ControlOperating.port'
+import { type UUID } from '@lib/modules/shared/uuid.type'
 
 export class ControlOperator implements ForControlOperating {
-  constructor(private readonly client: SupabaseClient) {}
+  constructor(private readonly client: SupabaseClient) {
+  }
 
   async createDocument(document: DocumentEntity): Promise<ResponseOperation> {
     const { data, status } = await this.client
@@ -23,21 +26,26 @@ export class ControlOperator implements ForControlOperating {
         status: status ?? null
       }
 
-    const documetResponse = data[0] as DocumentCreatingResult
+    const documentResponse = data[0] as DocumentCreatingResult
 
     return {
-      document: documetResponse,
+      document: documentResponse,
       ok: status === 201,
       status: status ?? null
     }
   }
 
   async updateDocument(
-    document: DocumentToUpdating
-  ): Promise<DocumentCreatingResult> {
+    document: DocumentToUpdating,
+    documentId: UUID
+  ): Promise<ResponseUpdatingDocument> {
+
+    const { data } = await this.client.from('documents').update(document).eq('id', documentId)
+
+
     return {
-      created_at: new Date(),
-      id: '123'
+      ok: true,
+      status: 200
     }
   }
 

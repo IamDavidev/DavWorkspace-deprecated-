@@ -8,6 +8,7 @@ import {
   type ResponseDeletingDocument,
   type ResponseOperation
 } from './entities/documet.entity'
+import { UUID } from '@lib/modules/shared/uuid.type'
 
 export interface ForDocumentRepository
   extends RepositoryQuerying,
@@ -34,9 +35,10 @@ export class DocumentRepository implements ForDocumentRepository {
   }
 
   async updateDocument(
-    document: DocumentToUpdating
+    document: DocumentToUpdating,
+    documentId: UUID
   ): Promise<DocumentCreatingResult> {
-    return await this.controlOperating.updateDocument(document)
+    return await this.controlOperating.updateDocument(document, documentId)
   }
 
   async deleteDocument(id: string): Promise<ResponseDeletingDocument> {
