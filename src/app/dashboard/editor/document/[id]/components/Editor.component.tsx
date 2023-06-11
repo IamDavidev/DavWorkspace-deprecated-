@@ -40,7 +40,7 @@ type PropsEditorLayout = EditorProps & {
 }
 
 
-interface BodyUpdateDocument {
+export interface BodyUpdateDocument {
   userId: string
   documentId: string
   documentToUpdate: DocumentToUpdating

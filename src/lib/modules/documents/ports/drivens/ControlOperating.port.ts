@@ -10,7 +10,7 @@ import type {
 export interface ForControlOperating {
   createDocument: (document: DocumentEntity) => Promise<ResponseOperation>
 
-  updateDocument: (
+updateDocument: (
     document: DocumentToUpdating,
     documentId: UUID
   ) => Promise<ResponseUpdatingDocument>
