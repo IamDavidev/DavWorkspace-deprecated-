@@ -13,7 +13,6 @@ interface RenderMDtoHTMLProps {
 
 export const RenderMDtoHTML = (props: RenderMDtoHTMLProps): JSX.Element => {
   const { markdown } = props
-  console.log(markdown)
   return (
     <ReactMarkdown
       components={{

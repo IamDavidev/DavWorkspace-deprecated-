@@ -1,5 +1,5 @@
-import { compositionRootDocument } from "@lib/modules/documents/main/compositionRootDocuments"
-import { ContainerEditor } from "./components/EditorContainer.component"
+// import { compositionRootDocument } from '@lib/modules/documents/main/compositionRootDocuments'
+import { ContainerEditor } from './components/EditorContainer.component'
 
 export interface IPropsEditNotePage {
   params: {
@@ -15,17 +15,22 @@ export const metadata = {
 const EditNotePage = async (
   props: IPropsEditNotePage
 ): Promise<JSX.Element> => {
-  const { id: docId } = props.params
-  const { documentProxyAdapter } = compositionRootDocument()
+  // const { id: docId } = props.params
+  // const { documentProxyAdapter } = compositionRootDocument()
+  // const document = await documentProxyAdapter.getDocumentById(docId)
 
-  const document = await documentProxyAdapter.getDocumentById(docId)
+
+  const document = {
+    id: '1',
+    owner_id: '1'
+  }
 
   return (
-    <>
-      <div className='w-full h-full flex flex-row py-8 rounded-2xl gap-4 overflow-hidden'>
-        <ContainerEditor value={document?.current_content ?? ""} />
-      </div>
-    </>
+    <ContainerEditor
+      initialValue={'# Hello World'}
+      userId={document.owner_id}
+      documentId={document.id}
+    />
   )
 }
 

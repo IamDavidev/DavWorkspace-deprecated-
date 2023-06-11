@@ -9,7 +9,7 @@ interface IPropsPreviewMode {
   value: string
 }
 
-export const animation : MotionProps= {
+export const animation: MotionProps = {
   initial: {
     opacity: 0,
     translateX: 70
@@ -17,11 +17,19 @@ export const animation : MotionProps= {
   animate: {
     opacity: 1,
     translateX: 0
-    
+
   }
 }
 
+export function saveInLocalStorage(key: string, value: string): void {
+  if (typeof window === 'undefined') return
+  localStorage.setItem(key, value)
+}
+
+
 export const PreviewModeMD: FC<IPropsPreviewMode> = ({ value }): JSX.Element => {
+  saveInLocalStorage("document value", value)
+  
   return (
     <motion.div
       initial={{
