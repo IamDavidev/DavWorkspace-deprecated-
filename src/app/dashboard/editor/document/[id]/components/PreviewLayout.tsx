@@ -3,7 +3,6 @@
 import { type FC } from 'react'
 import { motion, type MotionProps } from 'framer-motion'
 
-import '@/styles/MarkdownStyles.css'
 import { RenderMDtoHTML } from '@components/RederMDtoHTML'
 
 interface IPropsPreviewMode {

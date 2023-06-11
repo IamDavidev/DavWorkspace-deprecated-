@@ -1,6 +1,12 @@
 import Link from "next/link"
 
 
+export const metadata = {
+  title: 'Dashboard | DavWorkspace',
+  description: 'Dashboard page'
+}
+
+
 const DashboardPage = (): JSX.Element => {
   return (
     <>
