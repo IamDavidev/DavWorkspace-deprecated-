@@ -32,4 +32,3 @@ export const ButtonSignUpGithub = (): JSX.Element => {
     </>
   )
 }
-{/* [&>svg>path]:hover:stroke-light-violet [&>svg>path]:hover:transition  [&>svg>path]:hover:duration-300 [&>svg>path]:hover:ease-in-out */}
