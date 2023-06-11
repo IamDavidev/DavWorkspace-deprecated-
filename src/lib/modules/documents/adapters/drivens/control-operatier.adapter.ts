@@ -40,13 +40,22 @@ export class ControlOperator implements ForControlOperating {
     documentId: UUID
   ): Promise<ResponseUpdatingDocument> {
 
-    const { data } = await this.client.from('documents').update(document).eq('id', documentId)
+    const { status, error } = await this.client
+      .from('documents')
+      .update(document)
+      .eq('id', documentId)
 
-
+    if(error!==  null) return {
+      ok: false,
+      status: status ?? null,
+      messageError: error.message
+    }
+    
     return {
       ok: true,
       status: 200
     }
+    
   }
 
   async deleteDocument(id: string): Promise<ResponseDeletingDocument> {

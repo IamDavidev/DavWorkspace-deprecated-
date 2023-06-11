@@ -9,7 +9,7 @@ import type {
   ResponseUpdatingDocument
 } from './entities/documet.entity'
 
-import { UUID } from '@lib/modules/shared/uuid.type'
+import type {  UUID } from '@lib/modules/shared/uuid.type'
 
 export interface ForDocumentRepository
   extends RepositoryQuerying,
