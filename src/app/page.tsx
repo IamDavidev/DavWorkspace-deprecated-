@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
-import { compositionRootUser } from '@lib/modules/user/compositionRootUser'
+import { compositionRootUser } from '@lib/modules/user/main/compositionRootUser'
 
 export const metadata = {
   title: 'Home | DavWorkspace',
@@ -9,8 +9,8 @@ export const metadata = {
 }
 
 const Home = async (): Promise<JSX.Element> => {
-  const { userRepository } = compositionRootUser()
-  const user = await userRepository.getCurrentUser()
+  const { userProxyAdapter } = compositionRootUser()
+  const user = await userProxyAdapter.getCurrentUser()
 
   console.log('user app', user)
 

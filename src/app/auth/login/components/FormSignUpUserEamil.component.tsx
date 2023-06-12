@@ -2,16 +2,16 @@
 
 import { useRouter } from 'next/navigation'
 import { type FormEvent } from 'react'
-import { toast } from 'sonner'
 
 import { ContainerCenter } from '@components/atoms/ContainerCenter.atom'
 import { InputAtom, InputType } from '@components/atoms/Input.atom'
 import { compositionRootLogger } from '@lib/modules/logger/root'
-import { compositionRootUserAuth } from '@lib/modules/user/compositionRootUserAuth'
+import { compositionRootUserAuth } from '@lib/modules/user/main/compositionRootUserAuth'
 
 export const FormSignUserEmail = (): JSX.Element => {
   const { logger } = compositionRootLogger()
-  const { userAuthRepository } = compositionRootUserAuth()
+  const { userAuthProxy } = compositionRootUserAuth()
+
   const router = useRouter()
 
   const onSubmitHandler = async (
@@ -25,21 +25,19 @@ export const FormSignUserEmail = (): JSX.Element => {
       logger.error('Please enter your email')
       return
     }
-    
+
     if (password.value.length < 1) {
       logger.error('Please enter your password')
       return
     }
-    
-    userAuthRepository.signInWithEmailAndPassword(email.value, password.value).then(() => {
-      toast.success('You have successfully signed in!', {
-        description: 'Redirecting to home page...'
-      })
+
+    await userAuthProxy.signInWithEmailAndPassword(email.value, password.value).then(() => {
+      logger.success('You have successfully signed in!')
       router.push('/user/sign-in')
     }).catch(() => {
       logger.error('Error with sign in')
     })
-    
+
   }
 
   return (
@@ -73,7 +71,7 @@ export const FormSignUserEmail = (): JSX.Element => {
             <button
               type='submit'
               // className='flex gap-4 bg-white justify-center items-center border border-white border-solid px-16 py-2 rounded-2xl text-black  transition duration-300 ease-in-out    hover:border-light-violet hover:bg-transparent hover:text-light-violet'
-              className={"bg-light-violet text-black px-16 py-2 rounded-2xl transition duration-300 ease-in-out hover:scale-105"}
+              className={'bg-light-violet text-black px-16 py-2 rounded-2xl transition duration-300 ease-in-out hover:scale-105'}
             >
               Login
             </button>

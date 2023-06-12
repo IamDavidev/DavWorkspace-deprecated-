@@ -6,7 +6,7 @@ import type {
   ResponseUpdatingDocument
 } from '../../main/entities/documet.entity'
 import { type DocumentRepository, type ForDocumentRepository } from '../../main/root'
-import { UUID } from '@lib/modules/shared/uuid.type'
+import type { UUID } from '@lib/modules/shared/uuid.type'
 
 export class DocumentProxyAdapter implements ForDocumentRepository {
   constructor(private readonly repository: DocumentRepository) {

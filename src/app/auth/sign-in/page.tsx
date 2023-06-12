@@ -8,7 +8,7 @@ import { Divider } from '@components/atoms/Divider.atom'
 import { InputAtom, InputType } from '@components/atoms/Input.atom'
 import { ButtonSignUpGithub } from '@components/common/ButtonSignUpGithub.component'
 import { compositionRootLogger } from '@lib/modules/logger/root'
-import { compositionRootUserAuth } from '@lib/modules/user/compositionRootUserAuth'
+import { compositionRootUserAuth } from '@lib/modules/user/main/compositionRootUserAuth'
 
 export const metadata = {
   title: 'Sign In | DavWorkspace',
@@ -17,7 +17,7 @@ export const metadata = {
 
 const SignInUserPage = (): JSX.Element => {
   const { logger } = compositionRootLogger()
-  const { userAuthRepository } = compositionRootUserAuth()
+  const { userAuthProxy } = compositionRootUserAuth()
   const router = useRouter()
 
   const onSubmitHandler = async (
@@ -29,10 +29,10 @@ const SignInUserPage = (): JSX.Element => {
     const password = form.password.value
 
 
-    userAuthRepository.signInWithEmailAndPassword(email, password).then(() => {
+    userAuthProxy.signInWithEmailAndPassword(email, password).then(() => {
       router.push('/dashboard')
     }).catch(() => {
-      logger.error("Error with Sign In")
+      logger.error('Error with Sign In')
     })
   }
 
@@ -48,7 +48,8 @@ const SignInUserPage = (): JSX.Element => {
         <form
           className='flex flex-col gap-4'
           onSubmit={(e): void => {
-            onSubmitHandler(e).catch(() => { })
+            onSubmitHandler(e).catch(() => {
+            })
           }}>
           <InputAtom
             id='email'

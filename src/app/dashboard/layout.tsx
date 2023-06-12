@@ -1,5 +1,5 @@
 import SlideNav from '@components/SlideNav.component'
-import { compositionRootUser } from '@lib/modules/user/compositionRootUser'
+import { compositionRootUser } from '@lib/modules/user/main/compositionRootUser'
 import { redirect } from 'next/navigation'
 import { type ReactNode } from 'react'
 
@@ -12,8 +12,8 @@ interface DashboardLayoutProps {
 
 const DashboardLayout = async (props: DashboardLayoutProps): Promise<JSX.Element> => {
   const { children } = props
-  const { userRepository } = compositionRootUser()
-  const user = await userRepository.getCurrentUser()
+  const { userProxyAdapter } = compositionRootUser()
+  const user = await userProxyAdapter.getCurrentUser()
 
   if (user === null) return redirect('/auth/login/')
 

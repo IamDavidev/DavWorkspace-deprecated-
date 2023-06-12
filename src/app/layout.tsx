@@ -5,7 +5,7 @@ import '../styles/editor.styles.css'
 import '../styles/global.css'
 
 import { ContainerToaster } from '@components/common/ContainerToaster.component'
-import UserProvider from '@lib/modules/user/UserProviderComponent'
+import UserProvider from '@lib/modules/user/main/UserProviderComponent'
 
 const inter = Inter({ subsets: ['latin'] })
 
