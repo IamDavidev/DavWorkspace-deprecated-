@@ -1,75 +1,76 @@
-import { createBrowserSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { createPagesBrowserClient } from '@supabase/auth-helpers-nextjs'
 
-import { type IUserAuthRepository } from "../schemas/repository.model";
+import { type IUserAuthRepository } from '../schemas/repository.model'
 
 interface IControlAuthenticator {
   signInWithGithub: () => Promise<void>;
   signInWithEmailAndPassword: (
     email: string,
-    password: string,
+    password: string
   ) => Promise<void>;
   signOut: () => Promise<void>;
 }
+
 export enum PROVIDERS_AUTH {
-  GITHUB = "github",
-  GOOGlE = "google",
+  GITHUB = 'github',
+  GOOGlE = 'google',
 }
 
 export class ControlAuthenticator implements IControlAuthenticator {
-  private readonly client = createBrowserSupabaseClient();
+  private readonly client = createPagesBrowserClient()
 
   public async signInWithGithub(): Promise<void> {
     await this.client.auth.signInWithOAuth({
-      provider: PROVIDERS_AUTH.GITHUB,
-    });
+      provider: PROVIDERS_AUTH.GITHUB
+    })
   }
 
   public async signInWithEmailAndPassword(
     email: string,
-    password: string,
+    password: string
   ): Promise<void> {
     await this.client.auth.signInWithPassword({
       email,
-      password,
-    });
+      password
+    })
   }
 
   public async signOut(): Promise<void> {
-    const { error } = await this.client.auth.signOut();
+    const { error } = await this.client.auth.signOut()
     console.info(
-      "🚀 ~>  file: UserAuth.respository.ts:39 ~>  ControlAuthenticator ~>  signOut ~>  error:",
-      error,
-    );
+      '🚀 ~>  file: UserAuth.respository.ts:39 ~>  ControlAuthenticator ~>  signOut ~>  error:',
+      error
+    )
   }
 }
 
 export class UserAuthRepository implements IUserAuthRepository {
   constructor(
-    private readonly ControlAuthenticator: ControlAuthenticator,
+    private readonly ControlAuthenticator: ControlAuthenticator
   ) {
   }
 
   public async signOut(): Promise<void> {
-    await this.ControlAuthenticator.signOut();
+    await this.ControlAuthenticator.signOut()
   }
 
   public async signInWithGithub(): Promise<void> {
-    await this.ControlAuthenticator.signInWithGithub();
+    await this.ControlAuthenticator.signInWithGithub()
   }
 
   public async signInWithEmailAndPassword(
     email: string,
-    password: string,
+    password: string
   ): Promise<void> {
     await this.ControlAuthenticator.signInWithEmailAndPassword(
       email,
-      password,
-    );
+      password
+    )
   }
 
   public async signInWithGoogle(): Promise<void> {
     // change this
     // google auth
-    await this.ControlAuthenticator.signInWithGithub();
+    await this.ControlAuthenticator.signInWithGithub()
   }
 }

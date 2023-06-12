@@ -12,6 +12,8 @@ const Home = async (): Promise<JSX.Element> => {
   const { userRepository } = compositionRootUser()
   const user = await userRepository.getCurrentUser()
 
+  console.log('user app', user)
+
   if (user !== null) redirect('/dashboard/')
 
   return (

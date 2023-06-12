@@ -5,7 +5,7 @@ specifiers:
   '@codesandbox/sandpack-themes': ^2.0.1
   '@monaco-editor/react': ^4.4.6
   '@next/font': 13.1.6
-  '@supabase/auth-helpers-nextjs': ^0.5.6
+  '@supabase/auth-helpers-nextjs': ^0.7.0-next.8
   '@supabase/supabase-js': ^2.8.0
   '@types/node': 18.11.18
   '@types/react': 18.0.27
@@ -42,7 +42,7 @@ dependencies:
   '@codesandbox/sandpack-themes': 2.0.21
   '@monaco-editor/react': 4.5.1_waewrrayshn643ztij6zbniufy
   '@next/font': 13.1.6
-  '@supabase/auth-helpers-nextjs': 0.5.9_kxjue6puk3vnd6f53gvjovthai
+  '@supabase/auth-helpers-nextjs': 0.7.2_kxjue6puk3vnd6f53gvjovthai
   '@supabase/supabase-js': 2.24.0
   '@types/node': 18.11.18
   '@types/react': 18.0.27
@@ -574,22 +574,23 @@ packages:
     resolution: {integrity: sha512-Gfkvwk9o9kE9r9XNBmJRfV8zONvXThnm1tcuojL04Uy5uRyqg93DC83lDebl0rocZCfKSjUv+fWYtMQmEDJldg==}
     dev: false
 
-  /@supabase/auth-helpers-nextjs/0.5.9_kxjue6puk3vnd6f53gvjovthai:
-    resolution: {integrity: sha512-OBmltVuPNFbtznBAgQgOFaWh3dO6rRmU7i77TVzEkbViZoK2ylzlKPIORg9Wh+4ZgYbP2QMsI5GzEtAz+aNTvA==}
+  /@supabase/auth-helpers-nextjs/0.7.2_kxjue6puk3vnd6f53gvjovthai:
+    resolution: {integrity: sha512-n5IyGBYJV/WiR5Rgw4CUaiJYiOv9yW2of4ZP4EyzKt2O6/6rztt7PcGE4AoK2vERw+fb5F2QtJBdt6J5eOYCCw==}
     peerDependencies:
-      '@supabase/supabase-js': ^2.0.4
+      '@supabase/supabase-js': ^2.19.0
     dependencies:
-      '@supabase/auth-helpers-shared': 0.3.3_kxjue6puk3vnd6f53gvjovthai
+      '@supabase/auth-helpers-shared': 0.4.1_kxjue6puk3vnd6f53gvjovthai
       '@supabase/supabase-js': 2.24.0
+      set-cookie-parser: 2.6.0
     dev: false
 
-  /@supabase/auth-helpers-shared/0.3.3_kxjue6puk3vnd6f53gvjovthai:
-    resolution: {integrity: sha512-ZwZGffApfyz9MiT3knnZoF1DMWE56H/Q0Mrsn22J9ubhss7/+e7TP3dChxxwlUYqtDmjmLV6OV8W0BANENfUew==}
+  /@supabase/auth-helpers-shared/0.4.1_kxjue6puk3vnd6f53gvjovthai:
+    resolution: {integrity: sha512-IEDX9JzWkIjQiLUaP4Qy5YDiG0jFQatWfS+jw8cCQs6QfbNdEPd2Y3qonwGHnM90CZom9SvjuylBv2pFVAL7Lw==}
     peerDependencies:
-      '@supabase/supabase-js': ^2.0.4
+      '@supabase/supabase-js': ^2.19.0
     dependencies:
       '@supabase/supabase-js': 2.24.0
-      js-base64: 3.7.5
+      jose: 4.14.4
     dev: false
 
   /@supabase/functions-js/2.1.1:
@@ -2541,8 +2542,8 @@ packages:
     hasBin: true
     dev: true
 
-  /js-base64/3.7.5:
-    resolution: {integrity: sha512-3MEt5DTINKqfScXKfJFrRbxkrnk2AxPWGBL/ycjz4dK8iqiSJ06UxD8jh8xuh6p10TX4t2+7FsBYVxxQbMg+qA==}
+  /jose/4.14.4:
+    resolution: {integrity: sha512-j8GhLiKmUAh+dsFXlX1aJCbt5KMibuKb+d7j1JaOJG6s2UjX1PQlW+OKB/sD4a/5ZYF4RcmYmLSndOoU3Lt/3g==}
     dev: false
 
   /js-tokens/4.0.0:
@@ -3722,6 +3723,10 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
+
+  /set-cookie-parser/2.6.0:
+    resolution: {integrity: sha512-RVnVQxTXuerk653XfuliOxBP81Sf0+qfQE73LIYKcyMYHG94AuH0kgrQpRDuTZnSmjpysHmzxJXKNfa6PjFhyQ==}
+    dev: false
 
   /shebang-command/2.0.0:
     resolution: {integrity: sha512-kHxr2zZpYtdmrN1qDjrrX/Z1rR1kG8Dx+gkpK1G4eXmvXswmcE1hTWBWYUzlraYw1/yZp6YuDY77YtvbN0dmDA==}

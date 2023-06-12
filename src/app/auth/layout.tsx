@@ -15,7 +15,9 @@ const AuthLayout = (props: AuthLayoutProps): JSX.Element => {
   
   const user = userRepository.getCurrentUser()
   
-  if(user !== null) return redirect('/dashboard/');
+  console.log('user app', user)
+  
+  // if(user !== null) return redirect('/dashboard/');
 
   return (
     <div className='p-4 h-full'>

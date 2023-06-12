@@ -1,5 +1,5 @@
-import { cookies, headers } from 'next/headers'
-import { createServerComponentSupabaseClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 
 import { type DBUser, type PersistanceUser } from '../schemas/user.model'
 import { type IUserRepository } from '../schemas/repository.model'
@@ -9,24 +9,29 @@ interface ForControlQuerier {
 }
 
 export class ControllQuerier implements ForControlQuerier {
-  constructor(private readonly ForAdapterUser: ForAdapterUser) {}
+  constructor(private readonly ForAdapterUser: ForAdapterUser) {
+  }
 
-  private readonly client = createServerComponentSupabaseClient({
-    cookies,
-    headers
+  private readonly client = createServerComponentClient({
+    cookies
   })
 
   async getCurrentUser(): Promise<PersistanceUser | null> {
     const {
-      data: { user }
+      data: { user },
+      error
     } = await this.client.auth.getUser()
-
+    
+    console.log('user', user)
+    console.log('error', error)
+    
     return await this.ForAdapterUser.toPersistence(user)
   }
 }
 
 export class UserRepository implements IUserRepository {
-  constructor(private readonly ControlQuerier: ControllQuerier) {}
+  constructor(private readonly ControlQuerier: ControllQuerier) {
+  }
 
   async getCurrentUser(): Promise<PersistanceUser | null> {
     return await this.ControlQuerier.getCurrentUser()
