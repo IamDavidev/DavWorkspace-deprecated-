@@ -6,6 +6,8 @@ import '../styles/global.css'
 
 import { ContainerToaster } from '@components/common/ContainerToaster.component'
 
+export const dynamic = 'force-dynamic'
+
 const inter = Inter({ subsets: ['latin'] })
 
 export interface RootLayoutProps {

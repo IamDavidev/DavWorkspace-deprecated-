@@ -12,18 +12,9 @@ const AuthLayout = (props: AuthLayoutProps): JSX.Element => {
   const { children } = props
   const { userProxyAdapter } = compositionRootUser()
 
-  // const user = userProxyAdapter.getCurrentUser()
-  //
-  // if (user) {
-  //   return (
-  //     <div className='p-4 h-full'>
-  //       <Link href={'/'}>
-  //         <MDEditor className='h-8 hover:scale-105' color='' />
-  //       </Link>
-  //       {children}
-  //     </div>
-  //   )
-  // }
+  const user = userProxyAdapter.getCurrentUser()
+
+  console.log('USER APP AUTH ', user)
 
   return (
     <div className='p-4 h-full'>

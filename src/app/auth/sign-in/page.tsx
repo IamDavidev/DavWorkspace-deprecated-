@@ -10,10 +10,6 @@ import { ButtonSignUpGithub } from '@components/common/ButtonSignUpGithub.compon
 import { compositionRootLogger } from '@lib/modules/logger/root'
 import { compositionRootUserAuth } from '@lib/modules/user/main/compositionRootUserAuth'
 
-export const metadata = {
-  title: 'Sign In | DavWorkspace',
-  description: 'Sign In page'
-}
 
 const SignInUserPage = (): JSX.Element => {
   const { logger } = compositionRootLogger()
