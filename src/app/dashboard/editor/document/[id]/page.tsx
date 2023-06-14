@@ -1,4 +1,4 @@
-// import { compositionRootDocument } from '@lib/modules/documents/main/compositionRootDocuments'
+import { compositionRootDocument } from '@lib/modules/documents/main/compositionRootDocuments'
 import { ContainerEditor } from './components/EditorContainer.component'
 
 export interface IPropsEditNotePage {
@@ -15,23 +15,27 @@ export const metadata = {
 const EditNotePage = async (
   props: IPropsEditNotePage
 ): Promise<JSX.Element> => {
-  // const { id: docId } = props.params
-  // const { documentProxyAdapter } = compositionRootDocument()
-  // const document = await documentProxyAdapter.getDocumentById(docId)
+  const { id: docId } = props.params
+  const { documentProxyAdapter } = compositionRootDocument()
+  const document = await documentProxyAdapter.getDocumentById(docId)
 
 
-  const document = {
-    id: '1',
-    owner_id: '1'
-  }
+  if (document === null) return (<div>Document not found</div>)
+
+  // const document = {
+  //   id: '1',
+  //   owner_id: '1'
+  // }
 
   return (
     <ContainerEditor
-      initialValue={'# Hello World'}
+      initialValue={document.current_content}
       userId={document.owner_id}
-      documentId={document.id}
+      documentId={document?.id}
     />
   )
 }
+
+
 
 export default EditNotePage

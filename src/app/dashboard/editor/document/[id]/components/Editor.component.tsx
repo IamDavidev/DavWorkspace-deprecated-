@@ -41,8 +41,8 @@ type PropsEditorLayout = EditorProps & {
 
 
 export interface BodyUpdateDocument {
-  userId: string
-  documentId: string
+  userId: string | undefined
+  documentId: string | undefined
   documentToUpdate: DocumentToUpdating
 }
 

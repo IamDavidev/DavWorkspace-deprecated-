@@ -21,6 +21,7 @@ export interface DocumentEntity {
   created_at: Date
   updated_at: Date
   id_notebook: UUID
+  owner_id: UUID
 }
 
 export interface DocumentToUpdating {

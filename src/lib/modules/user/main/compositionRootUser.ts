@@ -9,6 +9,7 @@ interface CompositionRootUser {
 }
 
 export function compositionRootUser(): CompositionRootUser {
+  
   const client = createServerComponentClient({
     cookies
   })
