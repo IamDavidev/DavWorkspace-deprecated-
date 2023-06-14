@@ -34,13 +34,8 @@ export class RepositoryQuerier implements ForControlQuerying {
   async getCurrentUser(): Promise<PersistanceUser | null> {
     const {
       data: { user },
-      error
     } = await this.client.auth.getUser()
-
-    console.log('user', user)
-    console.log('error', error)
-
-    // return await this.ForAdapterUser.toPersistence(user)
+    
     return await this.controlAdapterUser.toPersistence(user)
   }
 
