@@ -1,15 +1,11 @@
 'use client'
 
-import {
-  createBrowserSupabaseClient,
-  createPagesBrowserClient,
-  type SupabaseClient
-} from '@supabase/auth-helpers-nextjs'
+import { createPagesBrowserClient, type SupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
-import { createContext, useEffect, useState, type ReactNode } from 'react'
+import { createContext, type ReactNode, useEffect, useState } from 'react'
 
-const Context = createContext<{ supabase: SupabaseClient<any, "public", any> | null; }>({
-  supabase: null,
+const Context = createContext<{ supabase: SupabaseClient<any, 'public', any> | null; }>({
+  supabase: null
 })
 
 export default function UserProvider({ children }: {
@@ -20,9 +16,9 @@ export default function UserProvider({ children }: {
 
   useEffect(() => {
     const {
-      data: { subscription },
+      data: { subscription }
     } = supabase.auth.onAuthStateChange((evt) => {
-      if (evt === "SIGNED_OUT") {
+      if (evt === 'SIGNED_OUT') {
         window.location.reload()
       }
     })

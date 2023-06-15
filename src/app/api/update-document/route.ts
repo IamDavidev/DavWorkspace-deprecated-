@@ -1,79 +1,103 @@
-// import type { NextApiRequest, NextApiResponse } from 'next'
-//
-// import { METHODS } from '@constants/methods.const'
-// import { type  BodyUpdateDocument } from '@/app/dashboard/editor/document/[id]/components/Editor.component'
-// import { compositionRootDocument } from '@lib/modules/documents/main/compositionRootDocuments'
-// import { compositionRootUser } from '@lib/modules/user/compositionRootUser'
-// import type { ResponseUpdatingFailure } from '@lib/modules/documents/main/entities/documet.entity'
-
-// export default async function handler(
-//   req: NextApiRequest,
-//   res: NextApiResponse
-// ): Promise<void> {
-//
-//   const { documentProxyAdapter } = compositionRootDocument()
-//   const { userRepository } = compositionRootUser()
-//
-//   /**
-//    * Verify if document exists
-//    */
-//   const document = await documentProxyAdapter.getDocumentById(documentId)
-//
-//   if (document === null) res.status(404).json({ message: 'Document not found' })
-//
-//
-//   /**
-//    * Verify if user is the owner of document
-//    */
-//   const user = await userRepository.getCurrentUser()
-//   if (user?.id !== userId) res.status(401).json({ message: 'Unauthorized' })
-//
-//
-//   const responseUpdateDocument = await documentProxyAdapter.updateDocument(documentToUpdate, documentId)
-//
-//
-//   if (!responseUpdateDocument.ok) res
-//     .status((responseUpdateDocument.status as number) ?? 500)
-//     .json({
-//       message: 'Failed to update document',
-//       error: (responseUpdateDocument as ResponseUpdatingFailure).messageError ?? ''
-//     })
-//   // if (responseUpdateDocument.ok) res.status(200).json({ message: 'Document updated' })
-//
-//   res.status(200).json({ message: 'Document updated' })
-// }
-
 import { NextResponse } from 'next/server'
+
+import { type BodyUpdateDocument } from '@/app/dashboard/editor/document/[id]/components/Editor.component'
+import { type ResponseUpdatingFailure } from '@lib/modules/documents/main/entities/documet.entity'
+
 import { METHODS } from '@constants/methods.const'
+import { compositionRootUser } from '@lib/modules/user/main/compositionRootUser'
+import { compositionRootDocumentRoutes } from '@lib/modules/documents/main/compositionRootDocuments'
+
+
+export enum STATUS_CODE {
+  OK = 200,
+  BAD_REQUEST = 400,
+  UNAUTHORIZED = 401,
+  NOT_FOUND = 404,
+  METHOD_NOT_ALLOWED = 405,
+  INTERNAL_SERVER_ERROR = 500
+}
+
 
 export async function POST(req: Request): Promise<NextResponse> {
 
-  const { body, method } = req
+  const { method } = req
+
+  console.log('method', method)
+  // console.log('body', await req.json())
+
 
   if (method !== METHODS.POST)
     return NextResponse.json({
       message: 'Method not allowed',
       status: 405
     })
-  
-  console.log('body', body)
 
   //
-  // const { userId, documentId, documentToUpdate } =  body.
-  //
-  // if (userId == null || documentId == null || documentToUpdate == null) NextResponse.json({
-  //   message: 'Bad request',
-  //   status: 400
-  // })
-  //
-  //
-  // console.log('userId', userId)
-  // console.log('documentId', documentId)
-  // console.log('documentToUpdate', documentToUpdate)
-  // //
-  //
+  // const {
+  //   userId,
+  //   documentId,
+  //   documentToUpdate
+  // } = await req.json() as BodyUpdateDocument
+
+  const body = await req.json()
+
+  console.log('body', body)
+
+  const {
+    userId,
+    documentId,
+    documentToUpdate
+  } = body as BodyUpdateDocument
+
+  console.log('userId', userId)
+  console.log('documentId', documentId)
+  console.log('documentToUpdate', documentToUpdate)
+
+  if (userId == null || documentId == null || documentToUpdate == null) NextResponse.json({
+    message: 'Bad request',
+    status: STATUS_CODE.BAD_REQUEST
+  })
+
+  const { userProxyAdapter } = compositionRootUser()
+
+  const user = await userProxyAdapter.getCurrentUser()
+
+
+  if ((user == null) || user?.id !== userId) NextResponse.json({
+    message: 'Unauthorized',
+    status: STATUS_CODE.UNAUTHORIZED
+  })
+
+  const { documentProxyAdapter } = compositionRootDocumentRoutes()
+  const document = await documentProxyAdapter.getDocumentById((documentId as string))
+
+  if (document == null) NextResponse.json({
+    message: 'Document not found',
+    status: STATUS_CODE.NOT_FOUND
+  })
+
+  if (document?.owner_id !== userId) NextResponse.json({
+    message: 'Unauthorized',
+    status: STATUS_CODE.UNAUTHORIZED
+  })
+
+  const responseUpdatingDocument = await documentProxyAdapter.updateDocument(documentToUpdate, documentId as string)
+
+
+  if (!responseUpdatingDocument.ok) NextResponse.json({
+    message: 'Failed to update document',
+    status: (responseUpdatingDocument as ResponseUpdatingFailure).status ?? STATUS_CODE.INTERNAL_SERVER_ERROR,
+    error: (responseUpdatingDocument as ResponseUpdatingFailure).messageError ?? ''
+  })
+
   return NextResponse.json({
     message: 'Document updated',
-    status: 200
+    status: STATUS_CODE.OK
   })
+
+  // return NextResponse.json({
+  //   message: 'Method not allowed',
+  // })
 }
+
+

@@ -66,7 +66,8 @@ export async function saveDocument(newValue: string, documentId: string, userId:
     headers: {
       'Content-Type': 'application/json'
     }
-  }).then(() => {
+  }).then((res): void => {
+    console.log(res)
   })
 }
 
