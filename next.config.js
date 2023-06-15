@@ -1,4 +1,3 @@
-// (https://avatars.githubusercontent.com/u/85713808?v=4)
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {

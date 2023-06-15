@@ -2,6 +2,7 @@ import { compositionRootDocument } from '@lib/modules/documents/main/composition
 import { compositionRootUser } from '@lib/modules/user/main/compositionRootUser'
 import { type ReactNode } from 'react'
 import { DocumentItem } from './components/DocumentItem.component'
+import { SearchIcon } from '@components/icons'
 
 
 interface LayoutDashboardDocumentsProps {
@@ -24,14 +25,21 @@ const LayoutDashboardDocuments = async (props: LayoutDashboardDocumentsProps): P
       <section className=' min-w-[400px] max-w-[400px] border border-r border-t-0 border-l-0 border-b-0 border-white  '>
         <header className='h-[72px] p-4'>
           <form className='flex flex-row gap-4'>
-            <input
-              className='flex-grow rounded-lg border border-white border-solid'
-              type='text'
-              placeholder='Search'
-            />
+            <label htmlFor='search'
+                   className='flex flex-row gap-4 items-center bg-white px-4 py-2.5 rounded-lg w-full '>
+              <span className='w-6 h-6'>
+                <SearchIcon color='#111111' className='h-6 w-6' />
+              </span>
+              <input
+                id={'search'}
+                className='flex-grow rounded-lg bg-transparent border-none focus:ring-0 focus:outline-none text-dark-gray'
+                type='text'
+                placeholder='Search'
+              />
+            </label>
           </form>
         </header>
-        <ul className='flex flex-col gap-0'>
+        <ul className='flex flex-col gap-0 py-8'>
           {documents?.map(DocumentItem)}
         </ul>
       </section>
