@@ -2,7 +2,6 @@ import { type FC } from 'react'
 
 import { type DocumentEntity } from '@lib/modules/documents/main/entities/documet.entity'
 import { formatMarkdownToText } from '@lib/utils/formatMarkdownToText'
-import * as console from 'console'
 
 export const TagItem: FC<{
   name: string
@@ -23,7 +22,6 @@ export function formatCropString(str: string, end: number, placeholder: string):
 
 
 export const DocumentItem: FC<DocumentEntity> = (props): JSX.Element => {
-  console.log(props)
   const { title, status, current_content: currentContent, id } = props
 
   const contentFmt = formatCropString(
