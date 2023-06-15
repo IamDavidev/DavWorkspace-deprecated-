@@ -4,7 +4,8 @@ import { type DocumentEntity } from '../../main/entities/documet.entity'
 import { type RepositoryQuerying } from '../../ports/drivens/RepositoryQuerying.port'
 
 export class RepositoryQuerier implements RepositoryQuerying {
-  constructor(private readonly client: SupabaseClient) {}
+  constructor(private readonly client: SupabaseClient) {
+  }
 
   async getAllDocumentsByOwnerId(
     ownerId: string
@@ -14,24 +15,24 @@ export class RepositoryQuerier implements RepositoryQuerying {
       .select('*')
       .eq('owner_id', ownerId)
     // add order for status on active
+    
+    console.log("ERROR FROM GET ALL DOCUMENTS BY OWNER ID: ", error)
+    
+    if(error !== null) return null
 
-    console.log(error)
-
-    const documents = (data as DocumentEntity[]) ?? null
-
-    return documents
+    return (data as DocumentEntity[]) ?? null
   }
 
   async getDocumentById(id: string): Promise<DocumentEntity | null> {
-    const { data } = await this.client
+    const { data, error } = await this.client
       .from('documents')
       .select('*')
       .eq('id', id)
 
-    if (data === null) return null
+    console.log("ERROR FROM GET DOCUMENT BY ID: ", error)
 
-    const document = data[0] as DocumentEntity
+    if (error !== null) return null
 
-    return document
+    return data[0] as DocumentEntity
   }
 }

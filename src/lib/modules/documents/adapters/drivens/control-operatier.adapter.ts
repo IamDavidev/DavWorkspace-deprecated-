@@ -15,10 +15,14 @@ export class ControlOperator implements ForControlOperating {
   }
 
   async createDocument(document: DocumentEntity): Promise<ResponseOperation> {
-    const { data, status } = await this.client
+    const { data, status, error } = await this.client
       .from('documents')
-      .insert(document as any)
+      .insert([document])
 
+
+    console.log('ERROR CREATE DOCUMENT', error)
+    console.log('DATA CREATE DOCUMENT', data)
+   
     if (data === null)
       return {
         document: null,
