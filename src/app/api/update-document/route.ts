@@ -6,38 +6,17 @@ import { type ResponseUpdatingFailure } from '@lib/modules/documents/main/entiti
 import { METHODS } from '@constants/methods.const'
 import { compositionRootUser } from '@lib/modules/user/main/compositionRootUser'
 import { compositionRootDocumentRoutes } from '@lib/modules/documents/main/compositionRootDocuments'
-
-
-export enum STATUS_CODE {
-  OK = 200,
-  BAD_REQUEST = 400,
-  UNAUTHORIZED = 401,
-  NOT_FOUND = 404,
-  METHOD_NOT_ALLOWED = 405,
-  INTERNAL_SERVER_ERROR = 500
-}
+import { STATUS_CODE } from '@lib/models/StatusCode.enum'
 
 
 export async function POST(req: Request): Promise<NextResponse> {
-
   const { method } = req
-
-  console.log('method', method)
-  // console.log('body', await req.json())
-
 
   if (method !== METHODS.POST)
     return NextResponse.json({
       message: 'Method not allowed',
       status: 405
     })
-
-  //
-  // const {
-  //   userId,
-  //   documentId,
-  //   documentToUpdate
-  // } = await req.json() as BodyUpdateDocument
 
   const body = await req.json()
 
@@ -95,9 +74,6 @@ export async function POST(req: Request): Promise<NextResponse> {
     status: STATUS_CODE.OK
   })
 
-  // return NextResponse.json({
-  //   message: 'Method not allowed',
-  // })
 }
 
 
