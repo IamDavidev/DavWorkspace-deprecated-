@@ -17,6 +17,7 @@ export const TagItem: FC<{
 }
 
 export function formatCropString(str: string, end: number, placeholder: string): string {
+  if (str.length <= end) return str
   return str.substring(0, end) + placeholder
 }
 
