@@ -1,17 +1,14 @@
 import { type FC, type ReactNode } from 'react'
-import Head from './Head'
 
 interface IPropsRootLayoutEditor {
   children: ReactNode
 }
 
-const RootLayoutEditor: FC<IPropsRootLayoutEditor> = ({
-  children
-}): JSX.Element => {
+const RootLayoutEditor: FC<IPropsRootLayoutEditor> = (props) => {
+  const { children } = props
   return (
     <>
-      <Head title='Editor | DavWorSpace' />
-      <div className={'layout-editor h-full max-h-screen'}>{children}</div>
+      <div className={'layout-editor h-full max-h-screen p-8'}>{children}</div>
     </>
   )
 }

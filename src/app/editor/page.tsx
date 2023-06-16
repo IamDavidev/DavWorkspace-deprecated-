@@ -1,7 +1,9 @@
-'use client'
+import { type FC } from 'react'
+import { redirect } from 'next/navigation'
 
-const EditorPage = (): JSX.Element => {
-  return <>deprecated editor</>
+const EditorPage: FC = () => {
+  redirect('/editor/md')
+  return <></>
 }
 
 export default EditorPage
