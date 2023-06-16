@@ -12,11 +12,20 @@ interface MarkdownPageProps {
   searchParams: Record<string, string | string[]>
 }
 
+export type valueToDecode = string | undefined
+
+export function decodeBase64(value: string | undefined): string {
+  if (value === undefined) return ''
+  if (value === '') return ''
+
+  return decode(value)
+}
+
 const MarkdownPage: FC<MarkdownPageProps> = (props) => {
   const { searchParams } = props
   const { value } = searchParams
 
-  const rawMarkdown = decode(value as string)
+  const rawMarkdown = decodeBase64(value as valueToDecode)
 
   return (
     <div>
