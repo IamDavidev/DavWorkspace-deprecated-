@@ -5,33 +5,13 @@ import { JetBrains_Mono } from '@next/font/google'
 import { motion } from 'framer-motion'
 import { METHODS } from '@constants/methods.const'
 import type { DocumentToUpdating } from '@lib/modules/documents/main/entities/documet.entity'
+import { globalEditorOptions } from '@constants/editor.const'
 
-// const theme = monaco
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ['latin']
 })
 
-export const globalEditorOptions: EditorProps['options'] = {
-  minimap: {
-    enabled: false
-  },
-  fontSize: 13,
-  fontWeight: '400',
-  lineHeight: 20,
-  scrollBeyondLastLine: false,
-  wordWrap: 'on',
-  wordWrapColumn: 80,
-  wrappingIndent: 'same',
-  automaticLayout: true,
-  tabSize: 2,
-  insertSpaces: true,
-  cursorStyle: 'line',
-  cursorWidth: 2,
-  cursorBlinking: 'smooth',
-  lineNumbers: 'on',
-  quickSuggestions: false
-}
 
 type PropsEditorLayout = EditorProps & {
   title: string

@@ -28,6 +28,11 @@ const Home = async (): Promise<JSX.Element> => {
       >
         Dashboard
       </Link>
+      <Link href={'/editor/md/'}
+            className='bg-white text-dark-gray rounded-lg py-2 px-6 hover:bg-dark-gray hover:text-white transition-all hover:duration-500'
+      >
+        Markdown Editor 
+      </Link>
     </section>
   )
 }

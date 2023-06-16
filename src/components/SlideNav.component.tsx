@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { COLORS } from '@constants/colors.const'
 import { ButtonLogout } from './ButtonLogout'
 import { LinkNav } from './navbar/LInkNav.component'
-import { BookIcon, DocumentIcon, DraftsIcon, FavoritesIcon, NewIcon } from './icons'
+import { BookIcon, DocumentIcon, DraftsIcon, FavoritesIcon } from './icons'
 import { BtnCreateNewDocument } from '@components/BtnCreateNewDocument'
 
 export const btnStyle = 'text-white bg-primary  rounded-2xl p-2 w-full'

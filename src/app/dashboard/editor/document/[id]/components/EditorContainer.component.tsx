@@ -2,11 +2,11 @@
 
 import { type FC } from 'react'
 
-import { EDITOR } from '@constants/edtior.const'
 import { useEditor } from '@lib/hooks/useEditor.hook'
 
 import EditorLayout from './Editor.component'
 import { PreviewModeMD } from './PreviewLayout'
+import { EDITOR } from '@constants/editor.const'
 
 
 export interface ContainerEditorProps {
