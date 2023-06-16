@@ -23,6 +23,7 @@ specifiers:
   eslint-plugin-promise: ^6.0.0
   eslint-plugin-react: ^7.32.2
   framer-motion: 10.0.0
+  js-base64: ^3.7.5
   monaco-editor: ^0.36.0
   next: 13.4.5
   postcss: ^8.4.21
@@ -50,6 +51,7 @@ dependencies:
   '@types/react-syntax-highlighter': 15.5.6
   eslint-config-next: 13.4.5_kigkzfftsmftz3xok324pyvzui
   framer-motion: 10.0.0_biqbaboplfbrettd7655fr4n2y
+  js-base64: 3.7.5
   monaco-editor: 0.36.1
   next: 13.4.5_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
@@ -2519,6 +2521,10 @@ packages:
 
   /jose/4.14.4:
     resolution: {integrity: sha512-j8GhLiKmUAh+dsFXlX1aJCbt5KMibuKb+d7j1JaOJG6s2UjX1PQlW+OKB/sD4a/5ZYF4RcmYmLSndOoU3Lt/3g==}
+    dev: false
+
+  /js-base64/3.7.5:
+    resolution: {integrity: sha512-3MEt5DTINKqfScXKfJFrRbxkrnk2AxPWGBL/ycjz4dK8iqiSJ06UxD8jh8xuh6p10TX4t2+7FsBYVxxQbMg+qA==}
     dev: false
 
   /js-tokens/4.0.0:
