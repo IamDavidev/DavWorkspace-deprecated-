@@ -13,10 +13,11 @@ interface MarkdownPageProps {
 }
 
 export type valueToDecode = string | undefined
+const defaultValueToDecode = '# Hello World!'
 
-export function decodeBase64(value: string | undefined): string {
-  if (value === undefined) return ''
-  if (value === '') return ''
+function decodeBase64(value: string | undefined): string {
+  if (value === undefined) return defaultValueToDecode
+  if (value === '') return defaultValueToDecode
 
   return decode(value)
 }
