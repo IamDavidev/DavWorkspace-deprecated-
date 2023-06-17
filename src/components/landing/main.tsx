@@ -2,7 +2,7 @@ import { type FC } from 'react'
 import Link from 'next/link'
 
 import { MDEditor } from '@components/icons'
-
+import { PreviewEditorImg } from '@components/landing/PreviewEditorImg'
 
 export const NavbarLanding: FC = () => {
   return (
@@ -27,15 +27,6 @@ export const NavbarLanding: FC = () => {
         </Link>
       </div>
     </nav>
-
-  )
-}
-export const PreviewEditorImg: FC = () => {
-  return (
-    <div className='w-[80%] mx-auto rounded-2xl pb-4'>
-      <img src={'/previewEditor.png'} alt={'preview editor'}
-           className={'w-full rounded-2xl border-light-violet border border-solid'} />
-    </div>
   )
 }
 
