@@ -1,18 +1,22 @@
 import { type ReactNode } from 'react'
 
 import { compositionRootUser } from '@lib/modules/user/main/compositionRootUser'
+import { redirect } from 'next/navigation'
 
 export interface AuthLayoutProps {
   children: ReactNode
 }
 
-const AuthLayout = (props: AuthLayoutProps): JSX.Element => {
+const AuthLayout = async (props: AuthLayoutProps): Promise<JSX.Element> => {
   const { children } = props
   const { userProxyAdapter } = compositionRootUser()
 
-  const user = userProxyAdapter.getCurrentUser()
+  const user = await userProxyAdapter.getCurrentUser()
 
-  console.log('USER APP AUTH ', user)
+  if (user !== null) {
+    redirect('/dashboard')
+    return <span>redirect </span>
+  }
 
   return (
     <div className='h-full'>
