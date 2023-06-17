@@ -16,9 +16,14 @@ export class ControlAuthenticator implements ForControlAuthenticating {
   }
 
   public async signInWithGithub(): Promise<void> {
-    await this.client.auth.signInWithOAuth({
-      provider: PROVIDERS_AUTH.GITHUB
+    const { data, error } = await this.client.auth.signInWithOAuth({
+      provider: PROVIDERS_AUTH.GITHUB,
+      options: {
+        redirectTo: 'http://localhost:3000/auth/callback'
+      }
     })
+    console.log('SIGN IN WITH GITHUB DATA:', data)
+    console.log('SIGN IN WITH GITHUB ERROR:', error)
   }
 
   public async signInWithEmailAndPassword(
@@ -33,9 +38,7 @@ export class ControlAuthenticator implements ForControlAuthenticating {
 
   public async signOut(): Promise<void> {
     const { error } = await this.client.auth.signOut()
-    console.info(
-      '🚀 ~>  file: UserAuth.respository.ts:39 ~>  ControlAuthenticator ~>  signOut ~>  error:',
-      error
-    )
+
+    console.log('SIGN OUT ERROR:', error)
   }
 }
