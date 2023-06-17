@@ -14,19 +14,24 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin']
 })
 
+interface WaitTimeInMS {
+  DEFAULT: number
+}
+
+const WAIT_TIME_IN_MS: WaitTimeInMS = {
+  DEFAULT: 3000
+}
+
 const debounceEncode = debounce((value: string) => {
   const hashValue = encode(value)
   if (window === null) return
-
   window.history.replaceState(null, '', `/editor/md?value=${hashValue}`)
-
-}, 3000)
+}, WAIT_TIME_IN_MS.DEFAULT)
 
 interface EditorLayoutProps {
   initialValue: string
   title?: string
 }
-
 
 export const PermanentDocument: FC<EditorLayoutProps> = (props) => {
   const { initialValue } = props

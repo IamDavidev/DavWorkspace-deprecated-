@@ -8,6 +8,9 @@ export const metadata = {
   description: 'Home page'
 }
 
+
+
+
 const Home = async (): Promise<JSX.Element> => {
   const { userProxyAdapter } = compositionRootUser()
   const user = await userProxyAdapter.getCurrentUser()

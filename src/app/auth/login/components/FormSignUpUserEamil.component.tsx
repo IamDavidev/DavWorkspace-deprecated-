@@ -1,14 +1,14 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { type FormEvent } from 'react'
+import { type FC, type FormEvent } from 'react'
 
 import { ContainerCenter } from '@components/atoms/ContainerCenter.atom'
 import { InputAtom, InputType } from '@components/atoms/Input.atom'
 import { compositionRootLogger } from '@lib/modules/logger/root'
 import { compositionRootUserAuth } from '@lib/modules/user/main/compositionRootUserAuth'
 
-export const FormSignUserEmail = (): JSX.Element => {
+export const FormSignUserEmail: FC = () => {
   const { logger } = compositionRootLogger()
   const { userAuthProxy } = compositionRootUserAuth()
 
@@ -51,11 +51,11 @@ export const FormSignUserEmail = (): JSX.Element => {
           }}>
           <InputAtom
             id='email'
-            label={'` Email `'}
+            label={' ` Email ` '}
             placeholder='email@email.com'
             type={InputType.email}
-            classInput='px-3 py-1 border border-white border-solid bg-transparent rounded-lg min-w-[320px]'
-            classLabel='flex flex-col gap-2  justify-center items-start'
+            classInput='px-3 py-2 border border-white border-solid bg-transparent rounded-lg min-w-[320px]'
+            classLabel='flex flex-col gap-2  justify-center items-start '
             classLabelText='text-white font-bold bg-dark-gray rounded-lg px-2 py-1 w-auto'
           />
           <InputAtom
@@ -65,13 +65,14 @@ export const FormSignUserEmail = (): JSX.Element => {
             label={'` Password `'}
             placeholder='********'
             type={InputType.password}
-            classInput='px-2 py-1 border border-white border-solid bg-transparent rounded-lg min-w-[320px]'
+            classInput='px-3 py-2 border border-white border-solid bg-transparent rounded-lg min-w-[320px]'
           />{' '}
           <label className='flex justify-end'>
             <button
               type='submit'
               // className='flex gap-4 bg-white justify-center items-center border border-white border-solid px-16 py-2 rounded-2xl text-black  transition duration-300 ease-in-out    hover:border-light-violet hover:bg-transparent hover:text-light-violet'
-              className={'bg-light-violet text-black px-16 py-2 rounded-2xl transition duration-300 ease-in-out hover:scale-105'}
+              // className={'bg-light-violet text-black px-16 py-2 rounded-2xl transition duration-300 ease-in-out hover:scale-105'}
+              className='bg-transparent border border-solid text-light-violet border-light-violet px-16 py-2 font-bold rounded-xl transition hover:duration-500 ease-in-out hover:bg-light-violet hover:text-black'
             >
               Login
             </button>
