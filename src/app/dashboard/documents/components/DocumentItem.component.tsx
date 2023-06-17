@@ -2,6 +2,7 @@ import { type FC } from 'react'
 
 import { type DocumentEntity } from '@lib/modules/documents/main/entities/documet.entity'
 import { formatMarkdownToText } from '@lib/utils/formatMarkdownToText'
+import { FavoritesIcon } from '@components/icons'
 
 export const TagItem: FC<{
   name: string
@@ -39,7 +40,9 @@ export const DocumentItem: FC<DocumentEntity> = (props): JSX.Element => {
         <header>
           <div className='w-full flex flex-row justify-between'>
             <span className='text-light-violet '> {status}</span>
-            <span> 1 day ago </span>
+            <div>
+              <FavoritesIcon color={'#fff'} className={"w-6 h-6"} />
+            </div>
           </div>
           <h2 className='text-2xl font-bold '>{title}</h2>
         </header>

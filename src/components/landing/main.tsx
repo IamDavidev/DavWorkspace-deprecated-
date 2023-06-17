@@ -13,14 +13,18 @@ export const NavbarLanding: FC = () => {
               DavWorkspace
           </span>
       </Link>
-      <Link href={'/editor/md'}>
+      <Link href={'/editor/md'}
+            className={'bg-transparent px-8 py-2 rounded-lg border border-solid border-white text-white hover:border-light-violet hover:text-light-violet transition-all hover:duration-500'}
+      >
         Playground
       </Link>
       <div className={'flex flex-row gap-4 items-center'}>
-        <Link href={'/auth/login/'}>
+        <Link href={'/auth/login/'}
+              className={'bg-dark-gray px-8 py-2 rounded-lg text-white hover:bg-white hover:text-dark transition-all hover:duration-500'}
+        >
           Login
         </Link>
-        <Link href={'/auth/signup/'}
+        <Link href={'/auth/sign-in/'}
               className={'bg-white px-8 py-2 rounded-lg text-dark hover:bg-dark-gray hover:text-white transition-all hover:duration-500 '}
         >
           Signup

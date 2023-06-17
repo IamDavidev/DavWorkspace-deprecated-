@@ -20,7 +20,7 @@ const DashboardLayout = async (props: DashboardLayoutProps): Promise<JSX.Element
   return (
     <div className='h-full w-full relative flex flex-row gap-0'>
       <SlideNav imageSrc={user.avatar_url ?? ''} name={user.nickname ?? ''} email={user.email} key={user.id} />
-      <div className='w-full h-full'>
+      <div className='w-full h-full flex flex-col gap-4'>
         {children}
       </div>
     </div>
