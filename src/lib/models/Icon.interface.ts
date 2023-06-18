@@ -1,7 +1,10 @@
+import { type CSSProperties } from 'react'
+
 export interface IPropsIcon {
-  color: string
+  color?: string
   width?: number
   height?: number
   className: string
-  styles?: React.CSSProperties
+  styles?: CSSProperties
+  strokeColor?: string
 }
