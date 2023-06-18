@@ -40,7 +40,9 @@ const LayoutDashboardDocuments = async (props: LayoutDashboardDocumentsProps): P
           </form>
         </header>
         <ul className='flex flex-col gap-0 py-8'>
-          {documents?.map(DocumentItem)}
+          {documents?.map((document) => {
+            return <DocumentItem {...document} key={document.id} userId={user?.id as string} />
+          })}
         </ul>
       </section>
       {children}

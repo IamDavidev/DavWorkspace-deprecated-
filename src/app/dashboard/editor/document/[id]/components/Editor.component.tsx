@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import { METHODS } from '@constants/methods.const'
 import type { DocumentToUpdating } from '@lib/modules/documents/main/entities/documet.entity'
 import { globalEditorOptions } from '@constants/editor.const'
+import { URL_ACTION_SAVE_DOCUMENT } from '@constants/actionURL.const'
 
 
 const jetBrainsMono = JetBrains_Mono({
@@ -27,8 +28,6 @@ export interface BodyUpdateDocument {
 }
 
 
-export const ULR_SAVE_DOCUMENT = '/api/update-document'
-
 export async function saveDocument(newValue: string, documentId: string, userId: string): Promise<void> {
   if (newValue === '') return
 
@@ -40,7 +39,7 @@ export async function saveDocument(newValue: string, documentId: string, userId:
     }
   }
 
-  await fetch(ULR_SAVE_DOCUMENT, {
+  await fetch(URL_ACTION_SAVE_DOCUMENT, {
     method: METHODS.POST,
     body: JSON.stringify(body),
     headers: {

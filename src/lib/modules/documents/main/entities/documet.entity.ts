@@ -5,9 +5,6 @@ export enum DocumentStatus {
   Published = 'published',
   Archived = 'archived',
   Active = 'active',
-  /**
-   * after 1 week of being trashed, the document is deleted
-   */
   Trashed = 'trashed'
 }
 
@@ -22,6 +19,7 @@ export interface DocumentEntity {
   updated_at: Date
   id_notebook: UUID
   owner_id: UUID
+  isFavorite: boolean
 }
 
 export interface DocumentToUpdating {
@@ -31,6 +29,7 @@ export interface DocumentToUpdating {
   latest_content?: string
   tags?: string[]
   updated_at?: Date
+  isFavorite?: boolean
 }
 
 export interface ResponseOperation {
