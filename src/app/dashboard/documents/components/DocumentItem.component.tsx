@@ -2,7 +2,7 @@ import { type FC } from 'react'
 
 import { type DocumentEntity } from '@lib/modules/documents/main/entities/documet.entity'
 import { formatMarkdownToText } from '@lib/utils/formatMarkdownToText'
-import { FavoritesIcon } from '@components/icons'
+import { ButtonFavorite } from '@/app/dashboard/documents/components/ButtonFavorite'
 
 export const TagItem: FC<{
   name: string
@@ -22,8 +22,10 @@ export function formatCropString(str: string, end: number, placeholder: string):
 }
 
 
-export const DocumentItem: FC<DocumentEntity> = (props): JSX.Element => {
-  const { title, status, current_content: currentContent, id } = props
+export const DocumentItem: FC<DocumentEntity & {
+  userId: string
+}> = (props): JSX.Element => {
+  const { title, status, current_content: currentContent, id, isFavorite, userId } = props
 
   const contentFmt = formatCropString(
     formatMarkdownToText(currentContent),
@@ -33,23 +35,21 @@ export const DocumentItem: FC<DocumentEntity> = (props): JSX.Element => {
 
 
   return (
-    <a href={`documents/${id}/`}>
-      <article
-        id={id}
-        className='rounded-lg py-2 px-4 hover:transition-all hover:duration-500 hover:ease-out hover:bg-dark-gray flex flex-col gap-2'>
-        <header>
-          <div className='w-full flex flex-row justify-between'>
-            <span className='text-light-violet '> {status}</span>
-            <div>
-              <FavoritesIcon color={'#fff'} className={"w-6 h-6"} />
-            </div>
-          </div>
-          <h2 className='text-2xl font-bold '>{title}</h2>
-        </header>
-        <p>
-          {contentFmt}
-        </p>
-      </article>
-    </a>
+    <article
+      id={id}
+      className='rounded-lg py-2 px-4 hover:transition-all hover:duration-500 hover:ease-out hover:bg-dark-gray flex flex-col gap-2'>
+      <header>
+        <div className='w-full flex flex-row justify-between'>
+          <span className='text-light-violet '> {status}</span>
+          <ButtonFavorite documentId={id} isFavorite={isFavorite} userId={userId} />
+        </div>
+        <h2 className='text-2xl font-bold '>{title}</h2>
+      </header>
+      <a href={`documents/${id}/`}
+         className={'text-white opacity-80 hover:text-light-violet'}
+      >
+        {contentFmt}
+      </a>
+    </article>
   )
 }
