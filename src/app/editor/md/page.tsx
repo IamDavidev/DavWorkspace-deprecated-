@@ -22,6 +22,17 @@ function decodeBase64(value: string | undefined): string {
   return decode(value)
 }
 
+const Title: FC = () => {
+  return (
+    <h1
+      className={'text-3xl font-bold text-center text-primary pb-8 text-white opacity-80'}
+    >
+      Markdown Editor
+    </h1>
+  )
+}
+
+
 const MarkdownPage: FC<MarkdownPageProps> = (props) => {
   const { searchParams } = props
   const { value } = searchParams
@@ -30,9 +41,7 @@ const MarkdownPage: FC<MarkdownPageProps> = (props) => {
 
   return (
     <div>
-      <h1
-        className={'text-3xl font-bold text-center text-primary pb-4 text-light-violet'}
-      >Markdown Editor</h1>
+      <Title />
       <PermanentDocument initialValue={rawMarkdown} />
     </div>
   )

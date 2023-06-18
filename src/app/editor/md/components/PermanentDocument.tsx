@@ -46,7 +46,7 @@ export const PermanentDocument: FC<EditorLayoutProps> = (props) => {
           options={globalEditorOptions}
           defaultLanguage={EDITOR.LANGUAGES.MD}
           width={'100%'}
-          height={'calc(100vh - 6rem)'}
+          height={'calc(100vh - 8rem)'}
           onChange={(value, ev) => {
             console.log('change')
             onChangeHandler(value)
