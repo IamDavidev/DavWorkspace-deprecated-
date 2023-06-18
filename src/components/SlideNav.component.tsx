@@ -7,9 +7,7 @@ import { LinkNav } from './navbar/LInkNav.component'
 import { BookIcon, DocumentIcon, DraftsIcon, FavoritesIcon } from './icons'
 import { BtnCreateNewDocument } from '@components/BtnCreateNewDocument'
 
-export const btnStyle = 'text-white bg-primary  rounded-2xl p-2 w-full'
 export const dotStyle = 'w-4 h-4  rounded-full'
-
 
 export const DotsNavbar: FC = () => {
   return (
@@ -54,28 +52,23 @@ const SlideNav: FC<ISlideNavProps> = ({ imageSrc, name }) => {
         <ul className='flex flex-col gap-4 '>
           <BtnCreateNewDocument />
           <LinkNav
-            href='/documents/favorites/'
+            href='/dashboard/favorites/'
             label='Favorites'
             icon={<FavoritesIcon className='w-6 h-6' color={COLORS.WHITE} />}
           />
-          {/* <LinkNav */}
-          {/*   href='/' */}
-          {/*   label='New document' */}
-          {/*   icon={<NewIcon className='w-6 h-6' color={COLORS.WHITE} />} */}
-          {/* /> */}
           <LinkNav
             href='/dashboard/documents'
             label='Documents'
             icon={<DocumentIcon className='w-6 h-6' color={COLORS.WHITE} />}
           />
           <LinkNav
-            href='/notebooks'
+            href='/dashboard/notebooks'
             label='Notebooks'
             icon={<BookIcon className='w-6 h-6 ' color={COLORS.WHITE} />}
           />
           <span className='w-32 h-[1px] bg-white' />
           <LinkNav
-            href='/documents/drafts'
+            href='/dashboard/drafts/'
             label='Drafts'
             icon={<DraftsIcon className='w-6 h-6' color={COLORS.WHITE} />}
           />
