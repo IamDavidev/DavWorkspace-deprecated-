@@ -23,7 +23,7 @@ const DocumentRenderId = async (props: DocumentRenderIdProps): Promise<JSX.Eleme
   const document = await documentProxyAdapter.getDocumentById(docId)
 
   return (
-    <section className='w-full h-editor-layout'>
+    <section className='w-full h-editor-layout overflow-y-scroll overflow-x-hidden'>
       <header className='min-h-[72px] w-full flex justify-center items-center'>
         <h1>
           {document?.title}

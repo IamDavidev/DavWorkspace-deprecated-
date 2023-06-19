@@ -15,14 +15,14 @@
 
 .h-editor-layout::-webkit-scrollbar {
     width: 0.5rem !important;
-    background-color: #1b1b1b;
+    background-color: #0d0d0d;
     border-radius: 0.5rem;
-    border: 1px solid #dd9ee5c9;
+    /*border: 1px solid #dd9ee5c9;*/
 }
 
 .h-editor-layout::-webkit-scrollbar-thumb {
-    width: 0.5rem !important;
-    background-color: #1b1b1b;
+    /*width: 0.5rem !important;*/
+    background-color: #dd9ee5d1;
     border-radius: 0.5rem;
-    border: 1px solid #dd9ee5d0;
+    /*border: 1px solid #dd9ee5d0;*/
 }

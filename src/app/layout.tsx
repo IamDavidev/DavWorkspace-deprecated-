@@ -23,7 +23,7 @@ export default async function RootLayout(props: RootLayoutProps): Promise<JSX.El
       ' app-editor  flex  flex-row gap-0 min-h-screen text-white bg-dark ' +
       inter.className
     }>
-    <main className='w-full h-auto mx-auto'>
+    <main className='w-full h-auto mx-auto max-h-screen'>
       {children}
     </main>
     <ContainerToaster />

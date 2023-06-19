@@ -13,7 +13,7 @@
     width: 0.5rem;
     background-color: #0d0d0d;
     border-radius: 0.5rem;
-    border: 1px solid #dd9ee5;
+    /*border: 1px solid #dd9ee5;*/
 }
 
 ::-webkit-scrollbar-thumb {
