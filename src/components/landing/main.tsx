@@ -3,10 +3,11 @@ import Link from 'next/link'
 
 import { MDEditor } from '@components/icons'
 import { PreviewEditorImg } from '@components/landing/PreviewEditorImg'
+import { ButtonSignUpGithub } from '@components/common'
 
 export const NavbarLanding: FC = () => {
   return (
-    <nav className={'w-full py-4 flex flex-row justify-around'}>
+    <nav className='w-full py-4 flex flex-row justify-around items-center'>
       <Link href={'/'} className={'flex flex-row gap-4 items-center'}>
         <MDEditor className='h-8 hover:scale-105' color='' />
         <span className={'font-bold text-white'}>
@@ -19,16 +20,17 @@ export const NavbarLanding: FC = () => {
         Playground
       </Link>
       <div className={'flex flex-row gap-4 items-center'}>
-        <Link href={'/auth/login/'}
-              className={'bg-dark-gray px-8 py-2 rounded-lg text-white hover:bg-white hover:text-dark transition-all hover:duration-500'}
-        >
-          Login
-        </Link>
-        <Link href={'/auth/sign-in/'}
-              className={'bg-white px-8 py-2 rounded-lg text-dark hover:bg-dark-gray hover:text-white transition-all hover:duration-500 '}
-        >
-          Signup
-        </Link>
+        <ButtonSignUpGithub />
+        {/* <Link href={'/auth/login/'} */}
+        {/*       className={'bg-dark-gray px-8 py-2 rounded-lg text-white hover:bg-white hover:text-dark transition-all hover:duration-500'} */}
+        {/* > */}
+        {/*   Login */}
+        {/* </Link> */}
+        {/* <Link href={'/auth/sign-in/'} */}
+        {/*       className={'bg-white px-8 py-2 rounded-lg text-dark hover:bg-dark-gray hover:text-white transition-all hover:duration-500 '} */}
+        {/* > */}
+        {/*   Signup */}
+        {/* </Link> */}
       </div>
     </nav>
   )

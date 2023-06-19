@@ -28,7 +28,6 @@ export async function POST(req: Request): Promise<NextResponse> {
       current_content: '# New document',
       title: 'New document',
       updated_at: new Date(),
-      id_notebook: '3a2a8d86-2397-4e6e-80c0-bcc620c88a32',
       tags: [],
       latest_content: '',
       isFavorite: false

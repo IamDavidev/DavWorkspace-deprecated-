@@ -38,7 +38,6 @@ export class ControlAuthenticator implements ForControlAuthenticating {
 
   public async signOut(): Promise<void> {
     const { error } = await this.client.auth.signOut()
-
     console.log('SIGN OUT ERROR:', error)
   }
 }

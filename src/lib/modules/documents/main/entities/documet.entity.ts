@@ -17,7 +17,6 @@ export interface DocumentEntity {
   tags: string[]
   created_at: Date
   updated_at: Date
-  id_notebook: UUID
   owner_id: UUID
   isFavorite: boolean
 }

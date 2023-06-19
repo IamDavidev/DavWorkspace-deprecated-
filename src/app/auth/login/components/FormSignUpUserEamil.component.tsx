@@ -33,7 +33,7 @@ export const FormSignUserEmail: FC = () => {
 
     await userAuthProxy.signInWithEmailAndPassword(email.value, password.value).then(() => {
       logger.success('You have successfully signed in!')
-      router.push('/user/sign-in')
+      router.push('/dashboard/')
     }).catch(() => {
       logger.error('Error with sign in')
     })
@@ -70,8 +70,6 @@ export const FormSignUserEmail: FC = () => {
           <label className='flex justify-end'>
             <button
               type='submit'
-              // className='flex gap-4 bg-white justify-center items-center border border-white border-solid px-16 py-2 rounded-2xl text-black  transition duration-300 ease-in-out    hover:border-light-violet hover:bg-transparent hover:text-light-violet'
-              // className={'bg-light-violet text-black px-16 py-2 rounded-2xl transition duration-300 ease-in-out hover:scale-105'}
               className='bg-transparent border border-solid text-light-violet border-light-violet px-16 py-2 font-bold rounded-xl transition hover:duration-500 ease-in-out hover:bg-light-violet hover:text-black'
             >
               Login

@@ -32,7 +32,7 @@ const FavoritesPage = async (): Promise<JSX.Element> => {
           return (
             <article key={doc.id} className={'p-4 border border-solid border-white rounded-2xl flex flex-col gap-2'}>
               <header className={'w-full flex flex-row justify-between'}>
-                <span className={'text-white opacity-80 '}>Academy</span>
+                <span className={'text-white opacity-80 '}>Doc</span>
                 <a href={`/dashboard/documents/${doc.id}`}>
                   <ExpandIcon className={'w-6 h-6 text-white opacity-80'} strokeColor={COLORS.WHITE} />
                 </a>
