@@ -3,6 +3,7 @@ import { compositionRootUser } from '@lib/modules/user/main/compositionRootUser'
 import { type ReactNode } from 'react'
 import { DocumentItem } from './components/DocumentItem.component'
 import { SearchIcon } from '@components/icons'
+import { DocumentStatus } from '@lib/modules/documents/main/entities/documet.entity'
 
 
 interface LayoutDashboardDocumentsProps {
@@ -19,6 +20,7 @@ const LayoutDashboardDocuments = async (props: LayoutDashboardDocumentsProps): P
   const ownerId = user?.id ?? ''
 
   const documents = await documentProxyAdapter.getAllDocumentsByOwnerId(ownerId)
+
 
   return (
     <div className='flex flex-row gap-4 h-full'>
@@ -40,9 +42,11 @@ const LayoutDashboardDocuments = async (props: LayoutDashboardDocumentsProps): P
           </form>
         </header>
         <ul className='flex flex-col gap-0 py-8'>
-          {documents?.map((document) => {
-            return <DocumentItem {...document} key={document.id} userId={user?.id as string} />
-          })}
+          {documents
+            ?.filter(doc => doc.status === DocumentStatus.Active)
+            .map((document) => {
+              return <DocumentItem {...document} key={document.id} userId={user?.id as string} />
+            })}
         </ul>
       </section>
       {children}

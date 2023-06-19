@@ -8,23 +8,11 @@ interface DocumentRenderIdProps {
     id: string
   }
 }
+
 export const metadata = {
   title: 'Document',
-  description: 'Document',
+  description: 'Document'
 }
-
-// export async function generateMetadata(props: DocumentRenderIdProps): Promise<{ title: string }> {
-//   const { params } = props
-//   const { id: docId } = params
-//
-//   const { documentProxyAdapter } = compositionRootDocument()
-//   const document = await documentProxyAdapter.getDocumentById(docId)
-//
-//   return {
-//     title: document?.title ?? '' + ' | DavWorkspace'
-//   }
-// }
-
 
 const DocumentRenderId = async (props: DocumentRenderIdProps): Promise<JSX.Element> => {
   const { params } = props
@@ -35,7 +23,7 @@ const DocumentRenderId = async (props: DocumentRenderIdProps): Promise<JSX.Eleme
   const document = await documentProxyAdapter.getDocumentById(docId)
 
   return (
-    <section className='w-full'>
+    <section className='w-full h-editor-layout'>
       <header className='min-h-[72px] w-full flex justify-center items-center'>
         <h1>
           {document?.title}

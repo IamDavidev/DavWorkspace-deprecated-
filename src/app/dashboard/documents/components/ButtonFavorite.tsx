@@ -19,7 +19,7 @@ export async function favoriteAction(
 ): Promise<void> {
   const { logger } = compositionRootLogger()
   const { documentId, userId, isFavorite, setIsFavorite } = props
-  
+
   const body = JSON.stringify({
     documentId,
     userId,
@@ -66,7 +66,7 @@ export const ButtonFavorite: FC<ButtonAddFavoriteProps> = (props) => {
           console.log('Error')
         })
       }}
-      className='[&>svg>path]:hover:stroke-[#FFD89C] [&>svg>path]:hover:duration-500 transition-all'
+      className='[&>svg>path]:hover:stroke-[#FFD89C] [&>svg>path]:hover:duration-500 transition-all [&>svg>path]:hover:drop-shadow-lg filter '
     >
       <FavoritesIcon color={isFavoriteState ? '#FFD89C' : '#fff'} className={'w-6 h-6'} />
     </button>
