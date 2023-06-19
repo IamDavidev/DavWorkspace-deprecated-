@@ -6,7 +6,6 @@ import { ButtonLogout } from './ButtonLogout'
 import { LinkNav } from './navbar/LInkNav.component'
 import { BookIcon, DocumentIcon, DraftsIcon, FavoritesIcon } from './icons'
 import { BtnCreateNewDocument } from '@components/BtnCreateNewDocument'
-import { SignOutBtn } from '@components/navbar/SignOut.component'
 
 export const dotStyle = 'w-4 h-4  rounded-full'
 
