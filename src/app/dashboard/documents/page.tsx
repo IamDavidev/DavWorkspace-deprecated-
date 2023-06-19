@@ -1,19 +1,25 @@
-export const metadata = {
-  title: 'Dashboard Documents Page',
-  description: 'Dashboard Documents Page'
-}
+import { compositionRootUser } from '@lib/modules/user/main/compositionRootUser'
+import { compositionRootDocument } from '@lib/modules/documents/main/compositionRootDocuments'
+import { redirect } from 'next/navigation'
 
-const DashboardDocumentsPage = (): JSX.Element => {
+
+const DocumentsPage = async (): Promise<JSX.Element> => {
+  const { userProxyAdapter } = compositionRootUser()
+  const { documentProxyAdapter } = compositionRootDocument()
+
+  const user = await userProxyAdapter.getCurrentUser()
+
+  if (user === null) return redirect('/auth/login')
+
+  const documents = await documentProxyAdapter.getAllDocumentsByOwnerId(user.id)
+
+  if (documents !== null) redirect(`/dashboard/documents/${documents[0].id}`)
+
   return (
-    <section className='w-full flex flex-col justify-center items-center'>
-      <div className=''>
-        <h2 className='text-2xl  text-center'>
-          Select <span className='block text-light-blue font-bold'>**Document**</span> for inspect <span
-          className='italic text-light-blue'> _preview_</span>
-        </h2>
-      </div>
-    </section>
+    <span>
+      Documents Page 
+    </span>
   )
 }
 
-export default DashboardDocumentsPage
+export default DocumentsPage

@@ -1,12 +1,11 @@
-import { type FC } from 'react'
 import Link from 'next/link'
+import { type FC } from 'react'
 
 
 export const metadata = {
   title: 'Dashboard | DavWorkspace',
   description: 'Dashboard page'
 }
-
 
 const DashboardPage: FC = () => {
   return (

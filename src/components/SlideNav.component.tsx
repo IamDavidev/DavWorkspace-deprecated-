@@ -52,7 +52,7 @@ const SlideNav: FC<ISlideNavProps> = ({ imageSrc, name }) => {
         <ul className='flex flex-col gap-4 '>
           <BtnCreateNewDocument />
           <LinkNav
-            href='/dashboard/favorites/'
+            href='/dashboard/documents/favorites/'
             label='Favorites'
             icon={<FavoritesIcon className='w-6 h-6' color={COLORS.WHITE} />}
           />
@@ -62,13 +62,13 @@ const SlideNav: FC<ISlideNavProps> = ({ imageSrc, name }) => {
             icon={<DocumentIcon className='w-6 h-6' color={COLORS.WHITE} />}
           />
           <LinkNav
-            href='/dashboard/notebooks'
+            href='/dashboard/documents/notebooks'
             label='Notebooks'
             icon={<BookIcon className='w-6 h-6 ' color={COLORS.WHITE} />}
           />
           <span className='w-32 h-[1px] bg-white' />
           <LinkNav
-            href='/dashboard/drafts/'
+            href='/dashboard/documents/drafts/'
             label='Drafts'
             icon={<DraftsIcon className='w-6 h-6' color={COLORS.WHITE} />}
           />

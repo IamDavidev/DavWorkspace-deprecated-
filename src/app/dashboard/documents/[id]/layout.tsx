@@ -1,7 +1,7 @@
 import { compositionRootDocument } from '@lib/modules/documents/main/compositionRootDocuments'
 import { compositionRootUser } from '@lib/modules/user/main/compositionRootUser'
 import { type ReactNode } from 'react'
-import { DocumentItem } from './components/DocumentItem.component'
+import { DocumentItem } from '@/app/dashboard/documents/[id]/components/DocumentItem.component'
 import { SearchIcon } from '@components/icons'
 import { DocumentStatus } from '@lib/modules/documents/main/entities/documet.entity'
 

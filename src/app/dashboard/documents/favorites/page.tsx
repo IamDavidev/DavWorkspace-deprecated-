@@ -1,9 +1,9 @@
+import { redirect } from 'next/navigation'
+
 import { compositionRootDocument } from '@lib/modules/documents/main/compositionRootDocuments'
 import { compositionRootUser } from '@lib/modules/user/main/compositionRootUser'
-import { redirect } from 'next/navigation'
-import { COLORS } from '@constants/colors.const'
 import { ExpandIcon } from '@components/icons/Expand.icon'
-
+import { COLORS } from '@constants/colors.const'
 
 const FavoritesPage = async (): Promise<JSX.Element> => {
   const { documentProxyAdapter } = compositionRootDocument()

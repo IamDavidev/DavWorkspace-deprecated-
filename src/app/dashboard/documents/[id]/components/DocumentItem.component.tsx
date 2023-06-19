@@ -2,7 +2,7 @@ import { type FC } from 'react'
 
 import { type DocumentEntity } from '@lib/modules/documents/main/entities/documet.entity'
 import { formatMarkdownToText } from '@lib/utils/formatMarkdownToText'
-import { ButtonFavorite } from '@/app/dashboard/documents/components/ButtonFavorite'
+import { ButtonFavorite } from '@/app/dashboard/documents/[id]/components/ButtonFavorite'
 
 export const TagItem: FC<{
   name: string
@@ -24,7 +24,7 @@ export function formatCropString(str: string, end: number, placeholder: string):
 
 export const DocumentItem: FC<DocumentEntity & {
   userId: string
-}> = (props): JSX.Element => {
+}> = (props) => {
   const { title, status, current_content: currentContent, id, isFavorite, userId } = props
 
   const contentFmt = formatCropString(
