@@ -6,7 +6,7 @@ import Editor from '@monaco-editor/react'
 import { useEditor } from '@lib/hooks/useEditor.hook'
 import { RenderMDtoHTML } from '@components/RederMDtoHTML'
 import { EDITOR, globalEditorOptions } from '@constants/editor.const'
-import { JetBrains_Mono } from '@next/font/google'
+import { JetBrains_Mono } from 'next/font/google'
 import { debounce } from '@lib/utils/debounce'
 import { encode } from 'js-base64'
 

@@ -1,4 +1,5 @@
 'use client'
+
 import { type  FC } from 'react'
 import { useRouter } from 'next/navigation'
 import { type  AppRouterInstance } from 'next/dist/shared/lib/app-router-context'
@@ -11,10 +12,11 @@ import { LogOutIcon } from '@components/icons'
 
 export async function logoutAction(router: AppRouterInstance): Promise<void> {
   const { userAuthProxy } = compositionRootUserAuth()
-
   await userAuthProxy.signOut()
 
-  router.push('/login')
+  console.log('logout Action')
+
+  router.push('/')
 }
 
 export const ButtonLogout: FC = () => {
@@ -23,12 +25,17 @@ export const ButtonLogout: FC = () => {
 
   return (
     <button
-      className='px-6 py-1 bg-white text-dark-gray  rounded-lg flex flex-row gap-2 opacity-80 hover:opacity-100 justify-center items-center'
+      className='px-8 py-2 bg-white text-dark-gray  rounded-lg flex flex-row gap-2 opacity-80 hover:opacity-100 justify-center items-center'
       onClick={() => {
-        logoutAction(router).catch(() => {
+        logoutAction(router).then(() => {
+          logger.success('Redirect home page')
+        }).catch(() => {
           logger.error('Logout error')
         })
       }}
+      // onClick={() => {
+      //   console.log('logout')
+      // }}
     >
       <LogOutIcon className='h-4 w-4' color={COLORS.DARK_GRAY} />
       <span className='text-xs'>

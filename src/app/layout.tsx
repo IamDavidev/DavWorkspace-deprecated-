@@ -1,4 +1,4 @@
-import { Inter } from '@next/font/google'
+import { Inter } from 'next/font/google'
 import { type ReactNode } from 'react'
 
 import '../styles/editor.styles.css'

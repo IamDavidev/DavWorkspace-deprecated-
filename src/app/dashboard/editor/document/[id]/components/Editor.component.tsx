@@ -1,7 +1,7 @@
 import { type FC } from 'react'
 
 import Editor, { type EditorProps } from '@monaco-editor/react'
-import { JetBrains_Mono } from '@next/font/google'
+import { JetBrains_Mono } from 'next/font/google'
 import { motion } from 'framer-motion'
 import { METHODS } from '@constants/methods.const'
 import type { DocumentToUpdating } from '@lib/modules/documents/main/entities/documet.entity'
