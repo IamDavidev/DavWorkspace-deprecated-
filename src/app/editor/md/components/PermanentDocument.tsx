@@ -40,7 +40,7 @@ export const PermanentDocument: FC<EditorLayoutProps> = (props) => {
   return (
     <div className={'w-full flex flex-row gap-4 overflow-hidden'}>
       <div
-        className='w-1/2 bg-secondary rounded-2xl  min-h-full overflow-y-scroll max-h-[calc(100vh-4rem)]'>
+        className='w-1/2 bg-secondary rounded-2xl  min-h-full max-h-[calc(100vh-8rem)]'>
         <Editor
           onMount={onMountHandler}
           options={globalEditorOptions}
@@ -52,12 +52,12 @@ export const PermanentDocument: FC<EditorLayoutProps> = (props) => {
             onChangeHandler(value)
             debounceEncode(value as string)
           }}
-          className={`h-editor-layout ${jetbrainsMono.className}`}
+          className={`h-editor-layout ${jetbrainsMono.className} rounded-2xl py-2`}
           defaultValue={initialValue}
         />
       </div>
       <div
-        className='w-1/2  bg-secondary rounded-2xl  min-h-full overflow-y-scroll max-h-[calc(100vh-4rem)]'>
+        className='w-1/2 px-1 rounded-l  bg-secondary  min-h-full overflow-y-scroll max-h-[calc(100vh-8rem)] bg-[#0d0d0d] border border-white border-solid'>
         <RenderMDtoHTML markdown={preview ?? ''} />
       </div>
     </div>
