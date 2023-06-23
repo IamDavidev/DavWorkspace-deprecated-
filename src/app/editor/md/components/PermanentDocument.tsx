@@ -48,7 +48,6 @@ export const PermanentDocument: FC<EditorLayoutProps> = (props) => {
           width={'100%'}
           height={'calc(100vh - 8rem)'}
           onChange={(value, ev) => {
-            console.log('change')
             onChangeHandler(value)
             debounceEncode(value as string)
           }}

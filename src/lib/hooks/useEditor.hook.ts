@@ -1,6 +1,10 @@
 import { useRef, useState } from 'react'
 
 import oneDarkTheme from '@lib/utils/oneDarkTheme.json'
+import { editor, languages } from 'monaco-editor'
+import { type  Monaco } from '@monaco-editor/react'
+import CompletionItem = languages.CompletionItem
+import EditorOnMount = editor.IStandaloneCodeEditor
 
 export interface IUseEditor {
   preview: string | undefined
@@ -35,12 +39,44 @@ export const rules: Token[] = [
   }
 ]
 
+
+export function generateSuggestionsHTML(editor: EditorOnMount, monaco: Monaco): CompletionItem[] {
+  return [
+    {
+      label: 'div',
+      kind: monaco.languages.CompletionItemKind.Snippet,
+      insertText: '<div>$1</div>',
+      detail: 'HTML tag',
+      range: monaco.Range.fromPositions(editor.getPosition() as any)
+    },
+    {
+      label: 'span',
+      kind: monaco.languages.CompletionItemKind.Snippet,
+      insertText: '<span></span>',
+      detail: 'HTML tag',
+      range: monaco.Range.fromPositions(editor.getPosition() as any)
+    }, {
+      label: 'a',
+      kind: monaco.languages.CompletionItemKind.Snippet,
+      insertText: '<a href=""></a>',
+      detail: 'HTML tag',
+      range: monaco.Range.fromPositions(editor.getPosition() as any)
+    }, {
+      label: 'img',
+      kind: monaco.languages.CompletionItemKind.Snippet,
+      insertText: '<img src="" alt="">',
+      detail: 'HTML tag',
+      range: monaco.Range.fromPositions(editor.getPosition() as any)
+    }
+  ]
+}
+
 export function useEditor(): IUseEditor {
   const [preview, setPreview] = useState<string | undefined>('')
-  const editorRef = useRef(null)
+  const editorRef = useRef()
 
-  const onMountHandler = (editor: any, monaco: any): void => {
-    editorRef.current = editor
+  const onMountHandler = (editor: EditorOnMount, monaco: Monaco): void => {
+    editorRef.current = editor as any
     setPreview(editor.getValue())
     monaco.editor.defineTheme('vs-dark-custom', {
       base: 'hc-black',
@@ -52,6 +88,13 @@ export function useEditor(): IUseEditor {
       }
     })
     monaco.editor.setTheme('vs-dark-custom')
+    monaco.languages.registerCompletionItemProvider('markdown', {
+      provideCompletionItems() {
+        return {
+          suggestions: generateSuggestionsHTML(editor, monaco)
+        }
+      }
+    })
   }
 
   const onChangeHandler = (value: string | undefined): void => {
