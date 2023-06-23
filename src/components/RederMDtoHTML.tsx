@@ -2,9 +2,10 @@
 
 import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import '@/styles/MarkdownStyles.css'
 
 interface RenderMDtoHTMLProps {
@@ -35,7 +36,9 @@ export const RenderMDtoHTML = (props: RenderMDtoHTMLProps): JSX.Element => {
         }
       }}
       className='preview-md markdown-body'
-      remarkPlugins={[remarkGfm]}>
+      remarkPlugins={[remarkGfm]}
+      rehypePlugins={[rehypeRaw]}
+    >
       {markdown}
     </ReactMarkdown>
   )
