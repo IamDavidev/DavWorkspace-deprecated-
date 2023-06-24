@@ -1,12 +1,14 @@
-import { useRef, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 
 import oneDarkTheme from '@lib/utils/oneDarkTheme.json'
-import { editor, languages } from 'monaco-editor'
+import { editor } from 'monaco-editor'
 import { type  Monaco } from '@monaco-editor/react'
-import CompletionItem = languages.CompletionItem
+
+import { generateSuggestionsHTML } from '@lib/utils/generateSuggestionsHTML.util'
+import { rules } from '@lib/utils/rulesTokens.util'
 import EditorOnMount = editor.IStandaloneCodeEditor
 
-export interface IUseEditor {
+export interface UseEditor {
   preview: string | undefined
   editorRef: any
   onMountHandler: (editor: any, monaco: any) => void
@@ -14,68 +16,15 @@ export interface IUseEditor {
   editorWillMount: (monaco: any) => void
 }
 
-export interface Token {
-  token: string
-  foreground: string
-  background?: string
-}
 
-export const rules: Token[] = [
-  {
-    token: 'keyword.md',
-    foreground: '#EF596F'
-  },
-  {
-    token: 'strong.md',
-    foreground: '#D8985F'
-  },
-  {
-    token: 'emphasis.md',
-    foreground: '#d55fde'
-  },
-  {
-    token: 'string.link.md',
-    foreground: '#d55fde'
-  }
-]
-
-
-export function generateSuggestionsHTML(editor: EditorOnMount, monaco: Monaco): CompletionItem[] {
-  return [
-    {
-      label: 'div',
-      kind: monaco.languages.CompletionItemKind.Snippet,
-      insertText: '<div>$1</div>',
-      detail: 'HTML tag',
-      range: monaco.Range.fromPositions(editor.getPosition() as any)
-    },
-    {
-      label: 'span',
-      kind: monaco.languages.CompletionItemKind.Snippet,
-      insertText: '<span></span>',
-      detail: 'HTML tag',
-      range: monaco.Range.fromPositions(editor.getPosition() as any)
-    }, {
-      label: 'a',
-      kind: monaco.languages.CompletionItemKind.Snippet,
-      insertText: '<a href=""></a>',
-      detail: 'HTML tag',
-      range: monaco.Range.fromPositions(editor.getPosition() as any)
-    }, {
-      label: 'img',
-      kind: monaco.languages.CompletionItemKind.Snippet,
-      insertText: '<img src="" alt="">',
-      detail: 'HTML tag',
-      range: monaco.Range.fromPositions(editor.getPosition() as any)
-    }
-  ]
-}
-
-export function useEditor(): IUseEditor {
+export function useEditor(): UseEditor {
   const [preview, setPreview] = useState<string | undefined>('')
   const editorRef = useRef()
+  console.log('UseEditor')
 
-  const onMountHandler = (editor: EditorOnMount, monaco: Monaco): void => {
+  /* const onMountHandler = */
+
+  const onMountHandler = useCallback((editor: EditorOnMount, monaco: Monaco): void => {
     editorRef.current = editor as any
     setPreview(editor.getValue())
     monaco.editor.defineTheme('vs-dark-custom', {
@@ -95,7 +44,7 @@ export function useEditor(): IUseEditor {
         }
       }
     })
-  }
+  }, [])
 
   const onChangeHandler = (value: string | undefined): void => {
     setPreview(value)
