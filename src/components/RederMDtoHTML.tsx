@@ -35,7 +35,7 @@ export const RenderMDtoHTML = (props: RenderMDtoHTMLProps): JSX.Element => {
           )
         }
       }}
-      className='preview-md markdown-body'
+      className='preview-md markdown-body min-h-[calc(100vh-10rem)] p-4'
       remarkPlugins={[remarkGfm]}
       rehypePlugins={[rehypeRaw]}
     >
