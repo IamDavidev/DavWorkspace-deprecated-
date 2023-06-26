@@ -25,10 +25,13 @@ function editTitleAction(
 }
 
 
+const DEFAULT_TITLE_IN_BASE64 = 'RG9jdW1lbnQgVW50aXRsZWQ'
+
+
 export const TitleDocument: FC = () => {
   const [newTitle, setNewTitle] = useState(
     decode(
-      getParamFromSearchParam('title') ?? 'RG9jdW1lbnQgVW50aXRsZWQ'
+      getParamFromSearchParam('title') ?? DEFAULT_TITLE_IN_BASE64
     )
   )
   const [isEdit, setIsEdit] = useState(false)
@@ -37,7 +40,7 @@ export const TitleDocument: FC = () => {
     <>
       {
         isEdit ? (
-          <div className={' flex flex-row gap-4 items-center justify-center p-4'}>
+          <div className={'w-[80%] mx-auto flex flex-row gap-4 items-center p-4'}>
             <input
               type={'text'}
               className={'border-none bg-transparent text-3xl w-auto font-medium'}
@@ -56,9 +59,9 @@ export const TitleDocument: FC = () => {
             </button>
           </div>
         ) : (
-          <div className={' flex flex-row gap-4 items-center justify-center p-4'}>
+          <div className={'w-[80%] mx-auto flex flex-row gap-4 items-center p-4'}>
             <span
-              className={'text-3xl font-medium text-center text-primary text-white opacity-90 border border-solid border-dark'}
+              className={'text-3xl font-medium text-center text-primary text-white opacity-90 border-2 border-solid border-dark'}
             >
               {newTitle}
             </span>

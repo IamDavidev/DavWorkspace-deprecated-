@@ -5,6 +5,7 @@ import '../styles/editor.styles.css'
 import '../styles/global.css'
 
 import { ContainerToaster } from '@components/common/ContainerToaster.component'
+import { Metadata } from 'next'
 
 export const dynamic = 'force-dynamic'
 

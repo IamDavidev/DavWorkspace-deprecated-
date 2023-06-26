@@ -16,8 +16,6 @@ const MarkdownPage: FC = (props) => {
       <DotsNavbar />
       <TitleDocument />
       <PermanentDocument />
-      {/*      <PermanentDocument initialValue={rawMarkdown} /> */}
-
     </>
   )
 }
