@@ -1,5 +1,5 @@
 export function getParamFromSearchParam(
-  param: string,
+  param: string
 ): string | undefined {
   const searchParams = new URLSearchParams(window.location.search)
   return searchParams.get(param) ?? undefined

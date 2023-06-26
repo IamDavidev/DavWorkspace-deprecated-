@@ -37,18 +37,10 @@ export const TitleDocument: FC = () => {
   const [isEdit, setIsEdit] = useState(false)
 
   return (
-    <>
+    <div className={'h-16 overflow-hidden'}>
       {
         isEdit ? (
           <div className={'w-[80%] mx-auto flex flex-row gap-4 items-center p-4'}>
-            <input
-              type={'text'}
-              className={'border-none bg-transparent text-3xl w-auto font-medium'}
-              defaultValue={newTitle}
-              onChange={(e: any): void => {
-                onChangeAction(e, setNewTitle)
-              }}
-            />
             <button
               onClick={(): void => {
                 editTitleAction(newTitle, setIsEdit, setNewTitle)
@@ -57,14 +49,17 @@ export const TitleDocument: FC = () => {
             >
               Save
             </button>
+            <input
+              type={'text'}
+              className={'border-none bg-transparent text-2xl w-auto font-medium'}
+              defaultValue={newTitle}
+              onChange={(e: any): void => {
+                onChangeAction(e, setNewTitle)
+              }}
+            />
           </div>
         ) : (
           <div className={'w-[80%] mx-auto flex flex-row gap-4 items-center p-4'}>
-            <span
-              className={'text-3xl font-medium text-center text-primary text-white opacity-90 border-2 border-solid border-dark'}
-            >
-              {newTitle}
-            </span>
             <button
               onClick={(): void => {
                 setIsEdit(true)
@@ -73,9 +68,14 @@ export const TitleDocument: FC = () => {
             >
               <EditIcon className={'w-6 h-6'} color={'#fff'} />
             </button>
+            <span
+              className={'text-2xl font-medium text-center text-primary text-white opacity-90 border-2 border-solid border-dark'}
+            >
+              {newTitle}
+            </span>
           </div>
         )
       }
-    </>
+    </div>
   )
 }
