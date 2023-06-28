@@ -3,18 +3,20 @@
 import { type FC, useState } from 'react'
 import Editor from '@monaco-editor/react'
 import { JetBrains_Mono } from 'next/font/google'
-import { debounce } from '@lib/utils/debounce'
 import { encode } from 'js-base64'
+import { motion } from 'framer-motion'
 
 import { EDITOR, globalEditorOptions } from '@constants/editor.const'
 import { useEditor } from '@lib/hooks/useEditor.hook'
 import { RenderMDtoHTML } from '@components/RederMDtoHTML'
 import { ShareIcon } from '@components/icons/Share.icon'
 import { compositionRootLogger } from '@lib/modules/logger/root'
+import { debounce } from '@lib/utils/debounce'
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin']
 })
+
 
 interface WaitTimeInMS {
   DEFAULT: number
@@ -53,20 +55,20 @@ export const HeaderEditorDocument: FC<HeaderEditorDocumentProps> = (
   const { isEditor, setIsEditor } = props
 
   return (
-    <header className={'flex w-[80%] mx-auto flex-row  justify-around px-4'}>
+    <header className={'flex w-[80%] mx-auto flex-row  justify-around px-4 bg-bg-editor rounded-2xl'}>
       <nav className={'flex flex-row gap-4 items-center'}>
-        <button
+        <motion.button
           onClick={() => {
             setIsEditor(true)
           }}
-          className={'text-white px-4 py-2 rounded-2xl hover:bg-dark-gray transition-colors duration-300' +
-            `${isEditor ? ' bg-dark-gray' : 'bg-transparent'}`}
+          className={'px-8 py-2 rounded-2xl hover:bg-white hover:text-bg-editor transition-colors hover:duration-600 ' +
+            `${isEditor ? ' bg-white text-bg-editor' : 'bg-transparent text-white'}`}
         >
           Editor
-        </button>
+        </motion.button>
         <button
-          className={' text-white px-4 py-2 rounded-2xl hover:bg-dark-gray transition-colors duration-300' +
-            `${!isEditor ? ' bg-dark-gray' : 'bg-transparent'}`}
+          className={'px-8 py-2 rounded-2xl hover:bg-white hover:text-bg-editor transition-colors hover:hover:duration-300 ' +
+            `${!isEditor ? 'bg-white text-bg-editor' : 'bg-transparent text-white'}`}
           onClick={() => {
             setIsEditor(false)
           }}>
@@ -106,7 +108,7 @@ export const PermanentDocument: FC = () => {
       />
       {isEditor && (
         <div
-          className='w-[80%] bg-[#0d0d0d] rounded-2xl min-h-[calc(100vh-10rem)] mx-auto border border-solid border-gray-500'>
+          className='w-[80%] bg-[#0d0d0d] rounded-2xl min-h-[calc(100vh-10rem)] mx-auto border border-solid border-gray-200'>
           <Editor
             onMount={onMountHandler}
             options={globalEditorOptions}

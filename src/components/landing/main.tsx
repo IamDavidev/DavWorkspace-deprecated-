@@ -37,9 +37,11 @@ export const TitleLanding: FC = () => {
   return (
     <div className={'w-full h-full flex flex-col justify-center items-center gap-8 py-36'}>
       <h1 className='text-8xl text-center font-bold'>
-        Markdown <span
-        className={'text-clip text-transparent bg-clip-text bg-gradient-to-br from-light-violet to-white'}
-      >Editor</span>
+        Markdown
+        <span
+          className={'text-clip text-transparent bg-clip-text bg-gradient-to-br from-light-violet to-white'}>
+          Editor
+        </span>
         <span className={'block'}></span>
         Made Simple
       </h1>
