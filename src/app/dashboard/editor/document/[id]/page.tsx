@@ -22,11 +22,6 @@ const EditNotePage = async (
 
   if (document === null) return (<div>Document not found</div>)
 
-  // const document = {
-  //   id: '1',
-  //   owner_id: '1'
-  // }
-
   return (
     <ContainerEditor
       initialValue={document.current_content}

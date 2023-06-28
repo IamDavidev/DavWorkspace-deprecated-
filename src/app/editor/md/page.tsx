@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { type FC } from 'react'
 import { type  Metadata } from 'next'
 
@@ -13,7 +14,9 @@ const MarkdownPage: FC = (props) => {
 
   return (
     <>
-      <DotsNavbar />
+      <Link href={'/'}>
+        <DotsNavbar />
+      </Link>
       <TitleDocument />
       <PermanentDocument />
     </>
