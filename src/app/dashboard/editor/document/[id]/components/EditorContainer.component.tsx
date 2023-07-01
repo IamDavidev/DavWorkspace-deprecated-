@@ -16,8 +16,8 @@ export interface ContainerEditorProps {
 }
 
 export const ContainerEditor: FC<ContainerEditorProps> = (props): JSX.Element => {
-  const { initialValue ,userId, documentId} = props
-  const { onChangeHandler, onMountHandler, preview } = useEditor()
+  const { initialValue, userId, documentId } = props
+  const { onChangeHandler, onMountHandler, preview } = useEditor('IyBIZWxsbyB3b3JsZCA=')
 
   return (
     <div className='w-full flex flex-row py-8 rounded-2xl gap-4 overflow-hidden p-4'>
