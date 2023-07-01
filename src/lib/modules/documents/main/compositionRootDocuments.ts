@@ -10,10 +10,11 @@ interface CompositionRootDocumentResponse {
   documentProxyAdapter: DocumentProxyAdapter
 }
 
-export function compositionRootDocument(): CompositionRootDocumentResponse {
-  const client = createServerComponentClient({
-    cookies
-  })
+
+export function createCompositionRootDocument(
+  client: ReturnType<typeof createServerComponentClient> | ReturnType<typeof createRouteHandlerClient>
+): CompositionRootDocumentResponse {
+
 
   const controlOperator = new ControlOperator(client)
   const repositoryQuerier = new RepositoryQuerier(client)
@@ -30,21 +31,20 @@ export function compositionRootDocument(): CompositionRootDocumentResponse {
   }
 }
 
-export function compositionRootDocumentRoutes(): CompositionRootDocumentResponse {
-  const client = createRouteHandlerClient({ cookies })
-
-  const controlOperator = new ControlOperator(client)
-  const repositoryQuerier = new RepositoryQuerier(client)
-
-  const documentRepository = new DocumentRepository(
-    controlOperator,
-    repositoryQuerier
-  )
-
-  const documentProxyAdapter = new DocumentProxyAdapter(documentRepository)
+export function compositionRootDocument(): CompositionRootDocumentResponse {
+  const { documentProxyAdapter } = createCompositionRootDocument(createServerComponentClient({
+    cookies
+  }))
 
   return {
     documentProxyAdapter
   }
+}
 
+export function compositionRootDocumentRoutes(): CompositionRootDocumentResponse {
+  const { documentProxyAdapter } = createCompositionRootDocument(createRouteHandlerClient({ cookies }))
+
+  return {
+    documentProxyAdapter
+  }
 }
