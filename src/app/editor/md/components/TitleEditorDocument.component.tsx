@@ -2,9 +2,10 @@
 
 import { type FC, useState } from 'react'
 import { EditIcon } from '@components/icons'
-import { decode, encode } from 'js-base64'
-
-import { getParamFromSearchParam } from '@lib/utils/getParamFromSearchParam.util'
+import { decode } from 'js-base64'
+import { SaveIcon } from '@components/icons/Save.icon'
+import { COLORS } from '@constants/colors.const'
+import { editTitleAction } from '@lib/utils/editTitleAction.util'
 
 function onChangeAction(e: Event, setTitle: (value: string) => void): void {
   const target = e.target as HTMLInputElement
@@ -12,28 +13,18 @@ function onChangeAction(e: Event, setTitle: (value: string) => void): void {
   setTitle(value)
 }
 
-function editTitleAction(
-  newTitle: string,
-  setIsEdit: (value: boolean) => void,
-  setNewTitle: (value: string) => void
-): void {
-  setIsEdit(false)
-  setNewTitle(newTitle)
-  const url = new URL(window.location.href)
-  url.searchParams.set('title', encode(newTitle))
-  window.history.pushState({}, '', url.toString())
+interface TitleDocumentProps {
+  title: string
 }
 
 
-const DEFAULT_TITLE_IN_BASE64 = 'RG9jdW1lbnQgVW50aXRsZWQ'
-
-
-export const TitleDocument: FC = () => {
+export const TitleDocument: FC<TitleDocumentProps> = (props) => {
   const [newTitle, setNewTitle] = useState(
     decode(
-      getParamFromSearchParam('title') ?? DEFAULT_TITLE_IN_BASE64
+      props.title
     )
   )
+
   const [isEdit, setIsEdit] = useState(false)
 
   return (
@@ -47,12 +38,14 @@ export const TitleDocument: FC = () => {
               }}
               className={'bg-transparent border-none font-bold w-12 h-6'}
             >
-              Save
+              <SaveIcon className={'w-6 h-6'} strokeColor={COLORS.WHITE} />
             </button>
             <input
+              id={'edit-title'}
               type={'text'}
               className={'border-none bg-transparent text-2xl w-auto font-medium'}
               defaultValue={newTitle}
+              autoFocus
               onChange={(e: any): void => {
                 onChangeAction(e, setNewTitle)
               }}
@@ -66,10 +59,10 @@ export const TitleDocument: FC = () => {
               }}
               className={'w-12 h-6 bg-transparent border-none'}
             >
-              <EditIcon className={'w-6 h-6'} color={'#fff'} />
+              <EditIcon className={'w-6 h-6'} color={COLORS.WHITE} />
             </button>
             <span
-              className={'text-2xl font-medium text-center text-primary text-white opacity-90 border-2 border-solid border-dark'}
+              className={'text-2xl font-medium text-center text-primary text-white opacity-90 border border-solid border-transparent'}
             >
               {newTitle}
             </span>

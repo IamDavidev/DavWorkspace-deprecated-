@@ -10,15 +10,31 @@ export const metadata: Metadata = {
   title: 'Markdown Editor | DavWorkspace'
 }
 
-const MarkdownPage: FC = (props) => {
+const DEFAULT_TITLE_IN_BASE64 = 'RG9jdW1lbnQgVW50aXRsZWQ'
+// # hello world- > RG9jdW1lbnQgVW50aXRsZWQ=
+const INITIAL_MARKDOWN = 'IyBIZWxsbyBXb3JsZCE%3D'
+
+interface MarkdownPageProps {
+  searchParams: {
+    title: string
+    value: string
+  }
+}
+
+const MarkdownPage: FC<MarkdownPageProps> = (props) => {
+
+  const { searchParams } = props
+
+  const title = searchParams.title ?? DEFAULT_TITLE_IN_BASE64
+  const initialMarkdown = searchParams.value ?? INITIAL_MARKDOWN
 
   return (
     <>
       <Link href={'/'}>
         <DotsNavbar />
       </Link>
-      <TitleDocument />
-      <PermanentDocument />
+      <TitleDocument title={title} />
+      <PermanentDocument initialValueBase64={initialMarkdown} />
     </>
   )
 }

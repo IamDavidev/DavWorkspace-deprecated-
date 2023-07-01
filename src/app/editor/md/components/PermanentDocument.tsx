@@ -3,7 +3,6 @@
 import { type FC, useState } from 'react'
 import Editor from '@monaco-editor/react'
 import { JetBrains_Mono } from 'next/font/google'
-import { encode } from 'js-base64'
 import { motion } from 'framer-motion'
 
 import { EDITOR, globalEditorOptions } from '@constants/editor.const'
@@ -11,41 +10,18 @@ import { useEditor } from '@lib/hooks/useEditor.hook'
 import { RenderMDtoHTML } from '@components/RederMDtoHTML'
 import { ShareIcon } from '@components/icons/Share.icon'
 import { compositionRootLogger } from '@lib/modules/logger/root'
-import { debounce } from '@lib/utils/debounce'
+import { debounceEncode } from '@lib/utils/debounceEncode.util'
+import { shareDocument } from '@lib/utils/shareDocumentAction.util'
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin']
 })
 
 
-interface WaitTimeInMS {
-  DEFAULT: number
-}
-
-const WAIT_TIME_IN_MS: WaitTimeInMS = {
-  DEFAULT: 3000
-}
-
-const debounceEncode = debounce((value: string) => {
-  const hashValue = encode(value)
-  if (window === null) return
-  const url = new URL(window.location.href)
-  url.searchParams.set('value', hashValue)
-  window.history.pushState({}, '', url.toString())
-  /*  
-    window.history.replaceState(null, '', `/editor/md?value=${hashValue}`)
-  */
-}, WAIT_TIME_IN_MS.DEFAULT)
-
 interface HeaderEditorDocumentProps {
   isEditor: boolean
   setIsEditor: (isEditor: boolean) => void
 
-}
-
-async function shareDocument(): Promise<void> {
-  const url = new URL(window.location.href)
-  await navigator.clipboard.writeText(url.toString())
 }
 
 export const HeaderEditorDocument: FC<HeaderEditorDocumentProps> = (
@@ -94,11 +70,15 @@ export const HeaderEditorDocument: FC<HeaderEditorDocumentProps> = (
   )
 }
 
-export const PermanentDocument: FC = () => {
+interface PermanentDocumentProps {
+  initialValueBase64: string
+}
+
+export const PermanentDocument: FC<PermanentDocumentProps> = (props) => {
 
   const [isEditor, setIsEditor] = useState<boolean>(true)
 
-  const { preview, onChangeHandler, onMountHandler } = useEditor()
+  const { preview, onChangeHandler, onMountHandler } = useEditor(props.initialValueBase64 ?? '')
 
   return (
     <div className={'w-full flex flex-col gap-4 overflow-hidden'}>

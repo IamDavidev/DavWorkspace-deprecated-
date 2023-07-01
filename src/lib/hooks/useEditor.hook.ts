@@ -7,7 +7,6 @@ import { type  Monaco } from '@monaco-editor/react'
 import { generateSuggestionsHTML } from '@lib/utils/generateSuggestionsHTML.util'
 import { rules } from '@lib/utils/rulesTokens.util'
 import { decode } from 'js-base64'
-import { getParamFromSearchParam } from '@lib/utils/getParamFromSearchParam.util'
 import EditorOnMount = editor.IStandaloneCodeEditor
 
 export interface UseEditor {
@@ -29,10 +28,10 @@ function decodeBase64(value: string | undefined): string {
 }
 
 
-export function useEditor(): UseEditor {
-  const [preview, setPreview] = useState<string | undefined>(decodeBase64(getParamFromSearchParam('value')))
+export function useEditor(initialValueBase64: string): UseEditor {
+  const [preview, setPreview] = useState<string | undefined>(decodeBase64(initialValueBase64))
   const editorRef = useRef()
- 
+
   const onMountHandler = useCallback((editor: EditorOnMount, monaco: Monaco): void => {
     editorRef.current = editor as any
     setPreview(editor.getValue())

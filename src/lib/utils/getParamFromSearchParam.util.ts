@@ -1,3 +1,5 @@
+'use client'
+
 export function getParamFromSearchParam(
   param: string
 ): string | undefined {
